@@ -17,8 +17,15 @@
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/tailwind.css" />
 <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
+    <script src="/js/custom.js"></script>
+    <!-- AlpineJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.8.1/cdn.min.js" defer></script>
+   
+    <script src="/js/carousel.js" defer></script>
+    <link href="https://cdn.flowbite.com/assets/css/flowbite.css" rel="stylesheet" />
+    <script src="https://cdn.flowbite.com/assets/js/flowbite.js"></script>
 </head>
-<body>
+<body class="dark:bg-black">
     <component type="typeof(App)" render-mode="ServerPrerendered" />
 
     <div id="blazor-error-ui">
@@ -34,10 +41,34 @@
 
     <script src="_framework/blazor.server.js"></script>
 	 <script>
-        function isSidebar(x, y) {
-            var sidebarEle = document.elementFromPoint(x, y);
-            return (sidebarEle && sidebarEle.closest('.sidebar') != null) ? true : false;
+        function navToggle() {
+            btn.classList.toggle('open');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('hidden');
+
+            if (menu.classList.contains('flex')) {
+                logo.setAttribute('src', 'images/logo-bookmark-footer.svg');
+            } else {
+                logo.setAttribute('src', 'images/logo-bookmark.svg');
+            }
         }
+    </script>
+    <script>
+        const appData = () => {
+            return {
+                percent: 0,
+
+                appInit() {
+                    // source: https://codepen.io/A_kamel/pen/qBmmGKJ
+                    window.addEventListener('scroll', () => {
+                        let winScroll = document.body.scrollTop || document.documentElement.scrollTop,
+                            height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+                        this.percent = Math.round((winScroll / height) * 100);
+                    });
+                },
+            };
+        };
     </script>
 </body>
 </html>
