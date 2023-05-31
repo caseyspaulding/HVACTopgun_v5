@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace HVACTopgun_v5.Data
+﻿namespace HVACTopgun_v5.Data
 {
     public class ScheduleData
     {
@@ -621,6 +616,7 @@ namespace HVACTopgun_v5.Data
             public string StartTimezone { get; set; } = string.Empty;
             public string EndTimezone { get; set; } = string.Empty;
         }
+
         public class ResourceData : AppointmentData
         {
             public int ProjectId { get; set; }

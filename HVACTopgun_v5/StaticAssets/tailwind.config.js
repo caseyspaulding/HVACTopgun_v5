@@ -3,7 +3,7 @@ module.exports = {
     mode: 'jit',
 
     darkMode: 'class',
-    
+
     content: ['./**/*.{razor,html}',
         './node_modules/flowbite/**/*.js',
         '../{Pages,Shared}/**/*.{cshtml,razor,cs,css}',
@@ -32,7 +32,6 @@ module.exports = {
                 'bubble-gum': '#ff77e9',
                 'bermuda': '#78dcca',
                 'black': '#000000',
-               
             },
         fontFamily: {
             'body': [
@@ -69,14 +68,12 @@ module.exports = {
                 'Segoe UI Symbol',
                 'Noto Color Emoji'
             ]
-        
-
         },
     },
     plugins: [
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('flowbite/plugin'),
-        require("tw-elements/dist/plugin.cjs"),
+
     ]
 }

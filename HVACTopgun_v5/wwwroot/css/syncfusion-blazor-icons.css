@@ -28,9 +28,9 @@
     content: "\e715";
 }
 
-.syncfusion-blazor-icon-carousel:before { 
+.syncfusion-blazor-icon-carousel:before {
     content: "\e757";
- }
+}
 
 .syncfusion-blazor-icon-diagram:before {
     content: "\e72b";
@@ -60,9 +60,8 @@
     content: "\e748";
 }
 
-
-.syncfusion-blazor-icon-appbar:before { 
-	content: "\e758"; 
+.syncfusion-blazor-icon-appbar:before {
+    content: "\e758";
 }
 
 .syncfusion-blazor-icon-kanban:before {
@@ -348,34 +347,39 @@
 .syncfusion-blazor-icon-breadcrumb:before {
     content: "\e754";
 }
+
 .syncfusion-blazor-icon-signature:before {
     content: "\e755";
 }
+
 .syncfusion-blazor-icon-floatingactionbutton:before {
     content: "\e759";
 }
+
 .syncfusion-blazor-icon-message:before {
     content: "\e75a";
 }
-.syncfusion-blazor-icon-speeddial:before 
-{ 
-content: "\e75b";
+
+.syncfusion-blazor-icon-speeddial:before {
+    content: "\e75b";
 }
-.syncfusion-blazor-icon-skeleton:before 
-{ 
-content: "\e759"; 
+
+.syncfusion-blazor-icon-skeleton:before {
+    content: "\e759";
 }
-.syncfusion-blazor-icon-mention:before 
-{ 
-content: "\e75c"; 
+
+.syncfusion-blazor-icon-mention:before {
+    content: "\e75c";
 }
-.syncfusion-blazor-icon-rating:before 
-{ 
-content: "\e75d"; 
+
+.syncfusion-blazor-icon-rating:before {
+    content: "\e75d";
 }
-.syncfusion-blazor-icon-mediaquery:before { 
-    content: "\e75e"; 
+
+.syncfusion-blazor-icon-mediaquery:before {
+    content: "\e75e";
 }
+
 .syncfusion-blazor-hide {
     visibility: hidden;
 }
