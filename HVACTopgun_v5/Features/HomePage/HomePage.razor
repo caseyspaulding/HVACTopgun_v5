@@ -1,12 +1,10 @@
-﻿@page "/"
+﻿
 @using Syncfusion.Blazor.Navigations
-
-@inject AuthenticationStateProvider AuthState
 
 
 <PageTitle>HVAC TopGun</PageTitle>
 <div class="bg-black">
-  
+
     <div class="relative isolate overflow-hidden pt-14">
         <img src="/images/171111-N-CL027-264D.jpg" alt="" class="opacity-30 absolute inset-0 -z-10 h-full w-full object-cover">
         <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -14,7 +12,7 @@
         </div>
         <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div class="text-center sm:mb-8 sm:flex sm:justify-center">
-                
+
                 <p class="leading-8 mx-auto mt-3 text-base text-gray-400 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">HVAC TopGun is under construction. Join the waitlist to try the beta before it's publicly available.</p>
             </div>
             <div class="text-center">
@@ -22,17 +20,17 @@
                 <p class="mt-6 text-lg leading-8 text-gray-400">Online Scheduling and management tools designed for HVAC business owners to dominate their market. Streamline Scheduling, Boost Productivity, and Delight Customers.</p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                     <!-- Begin Mailchimp Signup Form -->
-                   
+
                     <div id="mc_embed_signup" class="sm:m-1 px-11 bg-black/60 text-white rounded border border-sky-400 justify-center">
                         <form action="https://hvaccoder.us21.list-manage.com/subscribe/post?u=df2e5e77decf6cfdd7e4658b7&amp;id=883f905729&amp;f_id=005cd6e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self">
                             <div class="px-16 py-7 justify-center mx-auto" id="mc_embed_signup_scroll">
 
-                         
+
                                 <div class="mc-field-group mb-4 ">
                                     <label for="mce-EMAIL" class="mb-5 justify-center">
-                                       Join Our Waitlist for Early Access.  
+                                        Join Our Waitlist for Early Access.
                                     </label><p></p>
-                                   
+
                                 </div>
                                 <div id="mce-responses" class="clear foot m-4">
                                     <input type="email" value="" placeholder="Enter Your Email" name="EMAIL" class="required email" id="mce-EMAIL" required>
@@ -44,7 +42,7 @@
                                 <div class="">
                                     <div class="clear foot mx-auto justify-center">
                                         <input type="submit" value="Join Waitlist" name="subscribe" id="mc-embedded-subscribe" class="rounded-2xl mt-3 mx-auto mb-4 p-3 justify-center bg-gradient-to-r from-emerald-700 to-emerald-400 text-white hover:text-zinc-900 hover:border-gray-300 hover:underline font-semibold hover:shadow-emerald-500/50 shadow-xl shadow-sky-500/50">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +51,7 @@
 
                     <!--End mc_embed_signup-->
 
-                   
+
                 </div>
             </div>
         </div>
@@ -364,7 +362,7 @@
                         <a href="#" aria-describedby="tier-team" class="mt-8 block rounded-md bg-sky-600 px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">Get started today</a>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -378,7 +376,7 @@
         <div class="sm:flex sm:items-center sm:justify-between">
             <a href="" class="flex items-center mb-4 sm:mb-0">
                 <img src="/images/logo-dark.png" class="mx-auto block" alt="Logo" id="logo" />
-                
+
             </a>
             <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                 <li>
@@ -402,21 +400,3 @@
 
 <AnchorNavigation />
 
-@code {
-    private string Username = "Anonymous User";
-    private string Picture = "";
-
-    protected override async Task OnInitializedAsync()
-    {
-        var state = await AuthState.GetAuthenticationStateAsync();
-
-        Username = state.User.Identity.Name ?? string.Empty;
-
-        Picture = state.User.Claims
-                    .Where(c => c.Type.Equals("picture"))
-                    .Select(c => c.Value)
-                    .FirstOrDefault() ?? string.Empty;
-
-        await base.OnInitializedAsync();
-    }
-}

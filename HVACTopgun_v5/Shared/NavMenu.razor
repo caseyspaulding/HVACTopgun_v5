@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
 @inject ILocalStorageService localStorage
 
+
 <header class="bg-black/60 fixed w-full z-20 top-0 left-0 border-b border-sky-500 dark:bg-black/80">
     <nav class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4" aria-label="Global">
         <div class="flex lg:flex-1">
@@ -11,13 +12,14 @@
         </div>
         
         <div class="hidden lg:flex lg:gap-x-12">
-            <a href="#" class="text-sm font-semibold leading-6 text-white">Product</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-white">Features</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-white">Marketplace</a>
+            <a href="#pricing" class="text-sm font-semibold leading-6 text-white">Product</a>
+            <a href="#features" class="text-sm font-semibold leading-6 text-white">Features</a>
+            <a href="https://suggestionapphvactopgun.azurewebsites.net/" class="text-sm font-semibold leading-6 text-white">Suggestion</a>
             <a href="#" class="text-sm font-semibold leading-6 text-white">Company</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" class="text-sm font-semibold leading-6 text-white">Log in <span aria-hidden="true">&rarr;</span></a>
+            <AccessControl />
+            <span aria-hidden="true">&rarr;</span>
         </div>
         <!-- Hamburger Button -->
         <button @ref="btn" @onclick="NavToggle" id="btn"
@@ -28,7 +30,8 @@
         </button>
         <!-- Mobile Menu -->
         <div @ref="menu" id="menu" class="fixed inset-0 z-20 @(isMenuOpen ? "flex" : "hidden")
-    flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 bg-black">
+         flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase 
+         divide-y divide-gray-500 bg-black/90">
             <div class="w-full py-3 text-center">
 
                 <img @ref="logo" src="/images/logo-dark.png" class="mx-auto block" alt="Logo" id="logo" />
@@ -38,13 +41,13 @@
                 <a href="#features" class="block hover:text-sky-500">Features</a>
             </div>
             <div class="w-full py-3 text-center">
-                <a href="#download" class="block hover:text-sky-500">Download</a>
+                <a href="https://suggestionapphvactopgun.azurewebsites.net/" class="block hover:text-sky-500">Suggestion</a>
             </div>
             <div class="w-full py-3 text-center">
                 <a href="#faq" class="block hover:text-sky-500">FAQ</a>
             </div>
             <div class="w-full py-3 text-center">
-                <a href="#" class="block hover:text-sky-500 hover:shadow-xl" @onclick="LoginClicked">Login</a>
+                <a href="#" class="block hover:text-sky-500 hover:shadow-xl" @onclick="LoginClicked"><AccessControl></AccessControl></a>
             </div>
         </div>
     </nav>

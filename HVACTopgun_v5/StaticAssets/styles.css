@@ -2,6 +2,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Use a more specific selector if possible */
+*[id] {
+    scroll-margin-top: 5rem;
+}
+
 .hamburger {
     cursor: pointer;
     width: 24px;
