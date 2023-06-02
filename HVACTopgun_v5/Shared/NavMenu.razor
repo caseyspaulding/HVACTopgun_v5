@@ -3,7 +3,7 @@
 
 
 <header class="bg-black/60 fixed w-full z-20 top-0 left-0 border-b border-sky-500 dark:bg-black/80">
-    <nav class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4" aria-label="Global">
+    <nav class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3" aria-label="navigation">
         <div class="flex lg:flex-1">
             <a href="#" class="-m-1.5 p-1.5">
                 <span class="sr-only">HVAC TopGun</span>
@@ -12,10 +12,10 @@
         </div>
         
         <div class="hidden lg:flex lg:gap-x-12">
-            <a href="#pricing" class="text-sm font-semibold leading-6 text-white">Product</a>
-            <a href="#features" class="text-sm font-semibold leading-6 text-white">Features</a>
-            <a href="https://suggestionapphvactopgun.azurewebsites.net/" class="text-sm font-semibold leading-6 text-white">Suggestion</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-white">Company</a>
+            <a href="#pricing" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Product</a>
+            <a href="#features" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Features</a>
+            <a href="https://suggestionapphvactopgun.azurewebsites.net/" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Suggestion</a>
+            <a href="#" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Company</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
             <AccessControl />
@@ -46,8 +46,8 @@
             <div class="w-full py-3 text-center">
                 <a href="#faq" class="block hover:text-sky-500">FAQ</a>
             </div>
-            <div class="w-full py-3 text-center">
-                <a href="#" class="block hover:text-sky-500 hover:shadow-xl" @onclick="LoginClicked"><AccessControl></AccessControl></a>
+            <div class="w-full py-3 text-center block hover:text-sky-500 hover:shadow-xl">
+               <AccessControl></AccessControl>
             </div>
         </div>
     </nav>
