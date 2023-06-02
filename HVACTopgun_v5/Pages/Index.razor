@@ -1,12 +1,11 @@
 ﻿@page "/"
 @using Syncfusion.Blazor.Navigations
-
 @inject AuthenticationStateProvider AuthState
+@inject NavigationManager Navigation
 
 
 <PageTitle>HVAC TopGun</PageTitle>
 <div class="bg-black">
-  
     <div class="relative isolate overflow-hidden pt-4">
         <img src="/images/171111-N-CL027-264D.jpg" alt="" class="opacity-30 absolute inset-0 -z-10 h-full w-full object-cover">
         <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -386,18 +385,17 @@
                     <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
                 </li>
                 <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                    <NavLink href="Privacy"  class="mr-4 hover:underline md:mr-6">Privacy Policy </NavLink>
                 </li>
+                
                 <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline">Contact</a>
+                    <a href="mailto:casey@hvaccoder.com" class="hover:underline">Contact</a>
+                    
                 </li>
             </ul>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="" class="hover:underline">HVACTopGun™</a>. All Rights Reserved.</span>
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="http://www.hvactopgun.com" class="hover:underline">HVACTopGun™</a>. All Rights Reserved.</span>
     </div>
 </footer>
 
