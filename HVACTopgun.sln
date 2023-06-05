@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopgun_v5", "HVACTopgun_v5\HVACTopgun_v5.csproj", "{4196F0B3-D666-43AF-9189-95BC208D5B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopgun.UI", "HVACTopgun.UI\HVACTopgun.UI.csproj", "{4196F0B3-D666-43AF-9189-95BC208D5B63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HVACTopGun.Api", "HVACTopGun.Api\HVACTopGun.Api.csproj", "{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HVACTopGun.WPPlugin", "HVACTopGun.WPPlugin", "{84B5FE6E-DAEE-41ED-8F82-D8276D78BCE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,10 @@ Global
 		{4196F0B3-D666-43AF-9189-95BC208D5B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4196F0B3-D666-43AF-9189-95BC208D5B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4196F0B3-D666-43AF-9189-95BC208D5B63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,6 +29,7 @@
   
    <ItemGroup>
      <Folder Include="Features\Layout\" />
+     <Folder Include="Infrastructure\" />
    </ItemGroup>
 
 	<Target Name="CheckForNpm" BeforeTargets="BuildCSS">
