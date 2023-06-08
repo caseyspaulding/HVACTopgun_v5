@@ -12,11 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HVACTopGun.WPPlugin", "HVAC
 		HVACTopGun.Shared\ReadMe.md = HVACTopGun.Shared\ReadMe.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HVACTopGun.DataAccess", "HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj", "{DC9F0C10-A3A9-4569-8F00-A20E165C87D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.DataAccess", "HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj", "{DC9F0C10-A3A9-4569-8F00-A20E165C87D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HVACTopGun.Shared", "HVACTopGun.Shared\HVACTopGun.Shared.csproj", "{C4881AD5-0C50-4375-A87E-A1F20FACBF6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.Shared", "HVACTopGun.Shared\HVACTopGun.Shared.csproj", "{C4881AD5-0C50-4375-A87E-A1F20FACBF6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HVACTopGun.Scheduling", "HVACTopGun.Scheduling\HVACTopGun.Scheduling.csproj", "{D205FF31-11BC-4728-8A7C-91C69FCB0770}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.Scheduling", "HVACTopGun.Scheduling\HVACTopGun.Scheduling.csproj", "{D205FF31-11BC-4728-8A7C-91C69FCB0770}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
