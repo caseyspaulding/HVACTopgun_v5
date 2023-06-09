@@ -65,7 +65,7 @@
    </ItemGroup>
   
    <ItemGroup>
-     <ProjectReference Include="..\SupportLibrary\SupportLibrary.csproj" />
+     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
    </ItemGroup>
 
 	<Target Name="CheckForNpm" BeforeTargets="BuildCSS">

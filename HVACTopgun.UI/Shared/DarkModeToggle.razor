@@ -14,7 +14,7 @@
 @code {
     private bool _darkMode;
     private IJSObjectReference _themeModule = default!;
-    
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -27,7 +27,7 @@
         }
     }
 
-    private async Task ToggleTheme(ChangeEventArgs args)
+    private async Task ToggleTheme(Microsoft.AspNetCore.Components.ChangeEventArgs args)
     {
         _darkMode = (bool)args.Value;
         var theme = _darkMode ? "dark" : "light";

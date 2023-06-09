@@ -90,8 +90,16 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
+    <Build Include="dbo\Stored Procedures\getAllCustomers.sql" />
+    <Build Include="dbo\Stored Procedures\getCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\deleteCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\addCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\updateCustomer.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database-Home.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

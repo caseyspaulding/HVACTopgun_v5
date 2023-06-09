@@ -1,5 +1,7 @@
 ﻿using Auth0.AspNetCore.Authentication;
 using Blazored.LocalStorage;
+using DataAccess.Data;
+using DataAccess.DbAccess;
 using Microsoft.Data.SqlClient;
 using Syncfusion.Blazor;
 using System.Data;
@@ -15,6 +17,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddSyncfusionBlazor();
 IServiceCollection serviceCollection = builder.Services.AddScoped<IDbConnection>(c => new SqlConnection(ConnectionStrings));
+builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddTransient<ICustomerData, CustomerData>();
 
 builder.Services.AddMediatR(cfg =>
 {
