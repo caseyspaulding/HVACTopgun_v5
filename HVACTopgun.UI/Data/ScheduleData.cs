@@ -1,4 +1,4 @@
-﻿namespace HVACTopgun_v5.Data
+﻿namespace HVACTopgun.UI
 {
     public class ScheduleData
     {

@@ -12,11 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HVACTopGun.WPPlugin", "HVAC
 		HVACTopGun.Shared\ReadMe.md = HVACTopGun.Shared\ReadMe.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.DataAccess", "HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj", "{DC9F0C10-A3A9-4569-8F00-A20E165C87D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupportLibrary", "SupportLibrary\SupportLibrary.csproj", "{503A1688-7A19-46A7-B424-752495272E17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.Shared", "HVACTopGun.Shared\HVACTopGun.Shared.csproj", "{C4881AD5-0C50-4375-A87E-A1F20FACBF6E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.Scheduling", "HVACTopGun.Scheduling\HVACTopGun.Scheduling.csproj", "{D205FF31-11BC-4728-8A7C-91C69FCB0770}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database-Home", "Database-Home\Database-Home.sqlproj", "{2E3663F8-21E5-41E0-B83C-F8782884B78C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,18 +30,16 @@ Global
 		{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB9682B0-4527-4BA7-BAFD-B3EA90CF77A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC9F0C10-A3A9-4569-8F00-A20E165C87D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC9F0C10-A3A9-4569-8F00-A20E165C87D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC9F0C10-A3A9-4569-8F00-A20E165C87D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC9F0C10-A3A9-4569-8F00-A20E165C87D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4881AD5-0C50-4375-A87E-A1F20FACBF6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4881AD5-0C50-4375-A87E-A1F20FACBF6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4881AD5-0C50-4375-A87E-A1F20FACBF6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4881AD5-0C50-4375-A87E-A1F20FACBF6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D205FF31-11BC-4728-8A7C-91C69FCB0770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D205FF31-11BC-4728-8A7C-91C69FCB0770}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D205FF31-11BC-4728-8A7C-91C69FCB0770}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D205FF31-11BC-4728-8A7C-91C69FCB0770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503A1688-7A19-46A7-B424-752495272E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503A1688-7A19-46A7-B424-752495272E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503A1688-7A19-46A7-B424-752495272E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503A1688-7A19-46A7-B424-752495272E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3663F8-21E5-41E0-B83C-F8782884B78C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3663F8-21E5-41E0-B83C-F8782884B78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3663F8-21E5-41E0-B83C-F8782884B78C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2E3663F8-21E5-41E0-B83C-F8782884B78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3663F8-21E5-41E0-B83C-F8782884B78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3663F8-21E5-41E0-B83C-F8782884B78C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

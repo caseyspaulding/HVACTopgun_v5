@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>ccc67336-da75-404b-bb55-c0dd184a01a5</UserSecretsId>
   </PropertyGroup>
   
    <ItemGroup>
@@ -17,6 +18,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.5" />
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.21.3" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
     <PackageReference Include="SendGrid" Version="9.28.1" />
     <PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="21.2.9" />
     <PackageReference Include="Syncfusion.Blazor.BulletChart" Version="21.2.9" />
@@ -59,13 +65,7 @@
    </ItemGroup>
   
    <ItemGroup>
-     <Folder Include="Features\Layout\" />
-   </ItemGroup>
-  
-   <ItemGroup>
-     <ProjectReference Include="..\HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj" />
-     <ProjectReference Include="..\HVACTopGun.Scheduling\HVACTopGun.Scheduling.csproj" />
-     <ProjectReference Include="..\HVACTopGun.Shared\HVACTopGun.Shared.csproj" />
+     <ProjectReference Include="..\SupportLibrary\SupportLibrary.csproj" />
    </ItemGroup>
 
 	<Target Name="CheckForNpm" BeforeTargets="BuildCSS">
