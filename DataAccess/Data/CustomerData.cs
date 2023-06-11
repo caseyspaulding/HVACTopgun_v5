@@ -34,5 +34,4 @@ public class CustomerData : ICustomerData
 
     public Task DeleteCustomer(int id) =>
         _db.SaveData("dbo.deleteCustomer", new { Id = id });
-
 }

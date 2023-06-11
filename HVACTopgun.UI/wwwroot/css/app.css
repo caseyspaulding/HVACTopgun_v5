@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 /*! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com*/ *, :after, :before {
     border: 0 solid #e5e7eb;
     box-sizing: border-box

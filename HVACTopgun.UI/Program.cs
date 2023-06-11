@@ -25,12 +25,15 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
 });
 
-
 builder.Services
     .AddAuth0WebAppAuthentication(options =>
     {
+#pragma warning disable CS8601 // Possible null reference assignment.
         options.Domain = builder.Configuration["Auth0:Domain"];
+#pragma warning restore CS8601 // Possible null reference assignment.
+#pragma warning disable CS8601 // Possible null reference assignment.
         options.ClientId = builder.Configuration["Auth0:ClientId"];
+#pragma warning restore CS8601 // Possible null reference assignment.
     });
 
 var app = builder.Build();

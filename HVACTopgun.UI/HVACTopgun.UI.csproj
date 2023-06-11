@@ -67,6 +67,10 @@
    <ItemGroup>
      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
    </ItemGroup>
+  
+   <ItemGroup>
+     <Folder Include="Pages\Admin\" />
+   </ItemGroup>
 
 	<Target Name="CheckForNpm" BeforeTargets="BuildCSS">
 		<Exec Command="npm -v" ContinueOnError="true">

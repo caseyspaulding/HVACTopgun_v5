@@ -5,7 +5,7 @@
 <div class="flex justify-end items-center space-x-2">
     
     <label for="toggle" class="w-9 h-5 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out dark:bg-gray-600">
-        <div class="w-4 h-4 rounded-full bg-white shadow-md transform duration-300 ease-in-out dark:translate-x-3"></div>
+        
     </label>
    
     <input id="toggle" type="checkbox" class="hidden" checked="@_darkMode" @onchange="ToggleTheme" />
@@ -29,6 +29,11 @@
 
     private async Task ToggleTheme(Microsoft.AspNetCore.Components.ChangeEventArgs args)
     {
+        if (args is null)
+        {
+            throw new ArgumentNullException(nameof(args));
+        }
+
         _darkMode = (bool)args.Value;
         var theme = _darkMode ? "dark" : "light";
 

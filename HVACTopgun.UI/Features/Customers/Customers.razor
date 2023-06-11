@@ -52,7 +52,7 @@
         };
         await _db.AddCustomer(c);
 
-        customers.Append(c);
+        customers?.Append(c);
  
         newCustomer = new DisplayCustomerModel();
         
