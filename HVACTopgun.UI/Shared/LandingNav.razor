@@ -1,0 +1,219 @@
+﻿
+
+<nav class="border-b border-sky-500 bg-black lg:border-none">
+    <div class="max-w-9xl px-2 sm:px-4 lg:px-8">
+        <div class=" relative flex h-16 items-center justify-between justify-center lg:border-b lg:border-sky-500">
+            <div class="flex items-center lg:px-1">
+                <div class="flex items-center">
+
+                    <button @ref="btn" @onclick="NavToggle" id="btn"
+                            class="z-30 md:hidden focus:outline-none hamburger @(isMenuOpen ? "open" : "")">
+                        <span class="text-white hamburger-top"></span>
+                        <span class="hamburger-middle"></span>
+                        <span class="hamburger-bottom"></span>
+
+                    </button>
+
+
+
+
+                    <div class="flex-shrink-0 @(isMenuOpen ? "pl-6" : "")">
+                        <img class="block h-10 w-30 pl-2" src="images/logo-dark.png" alt="HVAC TopGun Logo">
+                    </div>
+
+                </div>
+                
+                
+
+              
+            </div>
+            
+            <div class="hidden lg:ml-4 lg:block">
+                <div class="flex items-center">
+                    <div class="lg:flex hidden content-center gap-8 ">
+
+
+                    <button class="flex block items-center rounded-lg bg-transparent text-white px-2 border border-transparent hover:border-sky-400 rounded">
+
+                            <a href="#pricing" class="text-sm font-semibold leading-5 tracking-wide text-white hover:text-sky-400">Pricing</a>
+                    </button>
+
+                    <button class="flex block items-center rounded-lg  bg-transparent text-white px-2 border border-transparent hover:border-sky-400 rounded">
+
+                            <a href="#features" class="text-sm font-semibold leading-5 tracking-wide text-white hover:text-sky-400">Features</a>
+                    </button>
+                    <button class="flex block items-center rounded-lg  bg-transparent text-white px-2 border border-transparent hover:border-sky-400 rounded">
+
+                            <a href="https://suggestionapphvactopgun.azurewebsites.net/" class="text-sm font-semibold leading-5 tracking-wide tracking-wide text-white hover:text-sky-400">Suggestions</a>
+                    </button>
+                    <button class="flex block items-center rounded-lg  bg-transparent text-white px-2 border border-transparent hover:border-sky-400 rounded">
+
+                            <a href="#" class="text-sm font-semibold leading-5 tracking-wide text-white hover:text-sky-400">Company</a>
+                    </button>
+
+                    <AccessControl></AccessControl>
+
+
+                </div>
+
+
+                    <!-- Profile dropdown -->
+                    @* <div class="relative ml-3 flex-shrink-0">
+                        <div>
+                            <button type="button" class="flex rounded-full bg-sky-600 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-sky-600"
+                            @onclick="ToggleDropdown" aria-expanded="@isDropdownOpen">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="h-8 w-8 rounded-full"
+                                     src="/images/profilepicsm .png"
+                                     alt="profile picture">
+                            </button>
+                        </div>
+
+                        <!-- Dropdown menu -->
+                        <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 @(isDropdownOpen ? "block" : "none")"
+                        @onclick="CloseDropdown" style="display: @(isDropdownOpen ? "block" : "none")">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                                <!-- Dropdown items -->
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
+                                @onclick="HandleMenuItemClick">Your Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
+                                @onclick="HandleMenuItemClick">Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
+                                @onclick="HandleMenuItemClick">Sign out</a>
+                            </div>
+                        </div>
+                    </div> *@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <!-- Mobile menu -->
+    <div @ref="menu" class="pb-3 pt-4 lg:hidden @(isMenuOpen ? "flex" : "hidden")" id="menu">
+
+        <div class="flex items-center px-5 py-5">
+            <AccessControl></AccessControl>
+            @* <div class="flex-shrink-0">
+                <img class="h-10 w-10 rounded-full"
+                     src="/images/profilepicsm .png"
+                     alt="">
+            </div> *@
+            @* <div class="ml-3">
+                <div class="text-base font-medium text-white">Casey Spaulding</div>
+                <div class="text-sm font-medium text-sky-300">Casey@HvacCoder.com</div>
+            </div> *@
+            @* <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-sky-300 hover:bg-opacity-75">Your Profile</a>
+
+            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-sky-300 hover:bg-blur-75">Sign out</a> *@
+        </div>
+
+    </div>
+    <div @ref="menu1" class=" pb-3 pt-4 lg:hidden @(isMenuOpen ? "flex" : "hidden") column-1" id="menu1">
+
+
+        <div class="items-center px-5 space-y-1 px-2 pb-3 pt-2 ">
+
+
+            <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="#pricing" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Pricing</a>
+            </button>
+
+            <button class="flex  block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="#features" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Features</a>
+            </button>
+            <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="https://suggestionapphvactopgun.azurewebsites.net/" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Suggestions</a>
+            </button>
+            <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="#" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Company</a>
+            </button>
+        </div>
+
+    </div>
+</nav>
+
+@code {
+    private string menuClass2 => isMenuOpen ? "flex" : "hidden";
+    private string dropdownClass => isDropdownOpen ? "block" : "hidden";
+
+    private bool isDropdownOpen = false;
+    private bool isMobileMenuOpen = false;
+    private ElementReference btn;
+    private ElementReference menu;
+    private ElementReference menu1;
+    private ElementReference logo;
+    private bool isMenuOpen = false;
+    private bool _darkMode = true;
+    private string menuClass => isMenuOpen ? "flex" : "hidden";
+    private string Theme { get; set; } = "light";
+
+    private bool isDarkMode = false;
+
+    private async Task ToggleDarkMode(bool darkMode)
+    {
+        isDarkMode = darkMode;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private void NavToggle()
+    {
+        isMenuOpen = !isMenuOpen;
+
+    }
+
+
+    private string GetLogoSource()
+    {
+        string logoFileName = _darkMode ? "logo-dark.png" : "logo-light.png";
+        string logoSource = $"images/{logoFileName}";
+        return logoSource;
+    }
+
+    private void toggleMobileMenu()
+    {
+        isMobileMenuOpen = !isMobileMenuOpen;
+    }
+
+
+    private void LoginClicked()
+    {
+        // Handle login button click event
+    }
+
+    private async Task UpdateDarkMode(bool darkMode)
+    {
+        _darkMode = darkMode;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private void ToggleDropdown()
+    {
+        isDropdownOpen = !isDropdownOpen;
+    }
+
+    private void CloseDropdown()
+    {
+        isDropdownOpen = false;
+    }
+
+    private void HandleMenuItemClick()
+    {
+        // Handle the menu item click event here
+    }
+
+    private void HandleMobileMenuItemClick()
+    {
+        // Handle the mobile menu item click event here
+    }
+
+
+
+
+
+}

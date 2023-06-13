@@ -6,15 +6,15 @@
 
 <PageTitle>HVAC TopGun</PageTitle>
 <div class="bg-black">
-    <div class="relative isolate overflow-hidden pt-4">
+    <div class="relative isolate overflow-hidden pt-2">
         <img src="/images/5075643.jpg" alt="" class="opacity-30 absolute inset-0 -z-10 h-full w-full object-cover">
         <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
             <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#bae6fd] to-[#0ea5e9] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
-        <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div class="mx-auto max-w-2xl py-30 sm:py-40 lg:py-50">
             <div class="text-center mb-10 sm:flex sm:justify-center">
                 
-                <p class="leading-8 px-1 sm:mb-4 mx-auto mt-3 text-base text-gray-400 sm:mt-4 sm:text-xl lg:text-lg xl:text-xl">HVAC TopGun is under construction. Join the waitlist for FREE Access.</p>
+                <p class="leading-8 px-1 sm:mb-4 mx-auto mt-1 text-base text-gray-400 sm:mt-2 sm:text-xl lg:text-lg xl:text-xl">HVAC TopGun is Coming Soon. Join the waitlist for FREE Access.</p>
             </div>
             <div class="text-center">
                 <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Perfected Scheduling and Business Efficiency.</h1>
@@ -368,38 +368,39 @@
                 </div>
             </div>
         </div>
+        <footer class="shadow-lg shadow-sky-500/50 rounded-lg shadow bg-black m-4">
+            <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <a href="" class="flex items-center mb-4 sm:mb-0">
+                        <img src="/images/logo-dark.png" class="mx-auto block" alt="Logo" id="logo" />
+
+                    </a>
+                    <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                        <li>
+                            <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+                        </li>
+                        <li>
+                            <NavLink href="Privacy" class="mr-4 hover:underline md:mr-6">Privacy Policy </NavLink>
+                        </li>
+
+                        <li>
+                            <a href="mailto:casey@hvaccoder.com" class="hover:underline">Contact</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="http://www.hvactopgun.com" class="hover:underline">HVACTopGun™</a>. All Rights Reserved.</span>
+            </div>
+        </footer>
+
+        <AnchorNavigation />
     </div>
+
+   
 </div>
 
 
-
-<footer class="shadow-lg shadow-sky-500/50 rounded-lg shadow bg-black m-4">
-    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="" class="flex items-center mb-4 sm:mb-0">
-                <img src="/images/logo-dark.png" class="mx-auto block" alt="Logo" id="logo" />
-                
-            </a>
-            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
-                </li>
-                <li>
-                    <NavLink href="Privacy"  class="mr-4 hover:underline md:mr-6">Privacy Policy </NavLink>
-                </li>
-                
-                <li>
-                    <a href="mailto:casey@hvaccoder.com" class="hover:underline">Contact</a>
-                    
-                </li>
-            </ul>
-        </div>
-        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="http://www.hvactopgun.com" class="hover:underline">HVACTopGun™</a>. All Rights Reserved.</span>
-    </div>
-</footer>
-
-<AnchorNavigation />
 
 @code {
     private string Username = "Anonymous User";

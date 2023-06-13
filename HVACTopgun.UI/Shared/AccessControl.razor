@@ -1,10 +1,18 @@
 ﻿
 <AuthorizeView>
     <Authorized>
-        <a href="logout" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Log out</a>
+        <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+            <a href="logout" class="text-sm font-semibold leading-5 tracking-wide text-white hover:text-sky-400">Log out</a>
+        </button>
+       
     </Authorized>
     <NotAuthorized>
-        <a href="login?redirectUri=/" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Log in</a>
+        <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+            <a href="login?redirectUri=/" class="text-sm font-semibold leading-5 tracking-wide text-white hover:text-sky-400">Log in</a>
+        </button>
+        
     </NotAuthorized>
 </AuthorizeView>
 

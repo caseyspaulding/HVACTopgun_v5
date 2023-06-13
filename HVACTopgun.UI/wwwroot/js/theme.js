@@ -6,10 +6,13 @@
     }
 }
 
-// Initialization for ES Users
-import {
-    Carousel,
-    initTE,
-} from "tw-elements";
 
-initTE({ Carousel });
+
+function toggleMobileMenu() {
+    var mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+    } else {
+        mobileMenu.classList.add('hidden');
+    }
+}

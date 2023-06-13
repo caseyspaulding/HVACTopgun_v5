@@ -1,4 +1,9 @@
-﻿<button class="relative inline-flex items-center justify-center p-0.5 mb-1 mr-1 overflow-hidden font-medium rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 focus:ring-cyan-800">
+﻿@page "/test"
+@layout AdminLayout2
+
+<h3>Test</h3>
+
+<button class="relative inline-flex items-center justify-center p-0.5 mb-1 mr-1 overflow-hidden font-medium rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 focus:ring-cyan-800">
     <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-black rounded-md group-hover:bg-opacity-0">
         <span style="display: flex; align-items: center">
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -13,6 +18,34 @@
         </span>
     </span>
 </button>
+
+<div class="relative z-0 flex flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
+    <div class="w-full sm:max-w-xs">
+        <div class="lg:flex hidden content-center gap-8 ">
+
+
+            <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="#pricing" class="text-sm font-semibold leading-6 text-white ">Pricing</a>
+            </button>
+
+            <button class="flex  block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="#features" class="text-sm font-semibold leading-6 text-white ">Features</a>
+            </button>
+            <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="https://suggestionapphvactopgun.azurewebsites.net/" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Suggestions</a>
+            </button>
+            <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
+
+                <a href="#" class="text-sm font-semibold leading-6 text-white ">Company</a>
+            </button>
+
+
+        </div>
+    </div>
+</div>
 
 
 <button class="relative inline-flex items-center justify-center p-0.5 mb-1 mr-1 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-black text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 focus:ring-cyan-800">
@@ -30,3 +63,6 @@
         </span>
     </span>
 </button>
+@code {
+
+}
