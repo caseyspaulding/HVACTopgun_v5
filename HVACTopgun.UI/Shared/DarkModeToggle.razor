@@ -3,19 +3,27 @@
 @inject IJSRuntime JS
 
 <div class="flex justify-end items-center space-x-2">
-    
+
     <label for="toggle" class="w-9 h-5 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out dark:bg-gray-600">
-        
+        <div class="w-4 h-4 rounded-full bg-white shadow-md transform duration-300 ease-in-out dark:translate-x-3"></div>
     </label>
-   
+    
     <input id="toggle" type="checkbox" class="hidden" checked="@_darkMode" @onchange="ToggleTheme" />
 </div>
 
+
 @code {
+    [Parameter]
+    public EventCallback<bool> DarkModeChanged { get; set; }
+
     private bool _darkMode;
     private IJSObjectReference _themeModule = default!;
 
-
+    private async Task ToggleDarkMode()
+    {
+        _darkMode = !_darkMode;
+        await InvokeAsync(StateHasChanged);
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -39,6 +47,8 @@
 
         await localStorage.SetItemAsStringAsync("theme", theme);
         await _themeModule.InvokeVoidAsync("setTheme", theme);
+
+        await DarkModeChanged.InvokeAsync(_darkMode);
     }
 
     

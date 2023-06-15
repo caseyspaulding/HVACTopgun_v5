@@ -6,8 +6,6 @@
     }
 }
 
-
-
 function toggleMobileMenu() {
     var mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenu.classList.contains('hidden')) {

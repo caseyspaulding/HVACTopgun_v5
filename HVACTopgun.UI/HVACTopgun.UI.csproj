@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>ccc67336-da75-404b-bb55-c0dd184a01a5</UserSecretsId>
   </PropertyGroup>
@@ -14,13 +14,13 @@
     <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
     <PackageReference Include="Blazored.SessionStorage" Version="2.3.0" />
     <PackageReference Include="MediatR" Version="12.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.5" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.21.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.7" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.21.4" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -29,44 +29,46 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
     <PackageReference Include="SendGrid" Version="9.28.1" />
-    <PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.BulletChart" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Charts" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.CircularGauge" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Core" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Data" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.DataVizCommon" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Diagram" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.FileManager" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.FileManager.PhysicalFileProvider" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Grid" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.InPlaceEditor" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Kanban" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Layouts" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.LinearGauge" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Lists" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Maps" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.PdfViewer" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.OSX" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.PivotTable" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.ProgressBar" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.QueryBuilder" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.RichTextEditor" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Schedule" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Popups" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Cards" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Inputs" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.SmithChart" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Spinner" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="21.2.9" />
-    <PackageReference Include="Syncfusion.Blazor.TreeMap" Version="21.2.9" />
+    <PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.BulletChart" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Charts" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.CircularGauge" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Core" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Data" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.DataVizCommon" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Diagram" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.FileManager" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.FileManager.PhysicalFileProvider" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.InPlaceEditor" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Kanban" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Layouts" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.LinearGauge" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Lists" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Maps" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewer" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Linux" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.OSX" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.PivotTable" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.ProgressBar" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.QueryBuilder" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.RangeNavigator" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.RichTextEditor" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Schedule" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Popups" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Cards" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Inputs" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.SmithChart" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Spinner" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="21.2.10" />
+    <PackageReference Include="Syncfusion.Blazor.TreeMap" Version="21.2.10" />
    </ItemGroup>
   
    <ItemGroup>

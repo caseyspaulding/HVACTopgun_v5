@@ -3,6 +3,7 @@
 @using DataAccess.Data;
 @using DataAccess.Models
 @using HVACTopGun.UI.Models
+@layout Test2
 
 @inject ICustomerData _db
 
@@ -11,18 +12,20 @@
         <div class="mt-20 mx-auto"> <h3 class="text-center  mx-auto text-white">Customers</h3></div>
 
         <h4>Add New Customer</h4>
+        
         <EditForm Model="@newCustomer" OnValidSubmit="@AddCustomer">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="form-group">
-                <label for="firstName">First Name</label>
-                <InputText id="firstName" class="form-control" @bind-Value="newCustomer.FirstName" />
-                <InputText id="lastName" class="form-control" @bind-Value="newCustomer.LastName" />
+                <label for="firstName" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">First Name</label>
+                <InputText id="firstName" class="form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.FirstName" />
+                <label for="lastName" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Last Name</label>
+                <InputText id="lastName" class="form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.LastName" />
             </div>
 
             <button type="submit" class="rounded-2xl mt-3 mx-auto mb-4 p-3 justify-center bg-gradient-to-r from-emerald-700 to-emerald-400 hover:bg-emerald-200 text-white hover:text-emerald-200 hover:underline font-semibold hover:shadow-emerald-500/50 shadow-xl shadow-sky-500/50">Add Customer</button>
-           
+          
             
               
         </EditForm>
@@ -35,7 +38,7 @@
 
 
 @code {
-    private IEnumerable<CustomerModel> ?customers;
+    private IEnumerable<CustomerModel> customers;
     private DisplayCustomerModel newCustomer = new DisplayCustomerModel();
 
     protected override async Task OnInitializedAsync()

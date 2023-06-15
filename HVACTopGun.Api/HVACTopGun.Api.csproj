@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HVACTopgun.UI\HVACTopgun.UI.csproj" />
+    <ProjectReference Include="..\HVACTopgun.UI\HVACTopGun.UI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,12 @@
-﻿@page "/scheduler-features"
+﻿
+@using HVACTopgun.UI;
 @using Syncfusion.Blazor.Schedule
 @using Syncfusion.Blazor.Calendars
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Data
-@using HVACTopgun_v5.Data
-<PageTitle>Scheduler</PageTitle>
-<h2>Scheduler</h2>
-<br/>
+
+
 <div id = "ControlRegion">
  <SfSchedule TValue="ScheduleData.ResourceData" AllowDragAndDrop="true" ShowQuickInfo="true" EnableAutoRowHeight="true"  Height="650px" @bind-SelectedDate="@CurrentDate">
     <ScheduleGroup ByDate="false" ByGroupID="false" Resources="@Resources"></ScheduleGroup>
@@ -25,15 +24,7 @@
                       </div>
 <br/>
 <div>
-  <h3>Selected Features:</h3>
-    <ul class="ulstyle">
-      <li class="list"> Scheduler Samples - Multiple Resource Grouping</li>
-      <li class="list"> Allow Drag and Drop</li>
-      <li class="list"> Show Tooltip</li>
-      <li class="list"> Adaptive Rows</li>
-      <li class="list"> Show Quick Info</li>
-      <li class="list"> Theme - Tailwind CSS</li>
-    </ul>
+  
 </div>
 <br/>
 <style>
@@ -49,8 +40,8 @@
     min-width:370px;
     }
 </style>
-    @code{
-	public DateTime CurrentDate = new DateTime(2020, 2, 12);
+@code{
+    public DateTime CurrentDate = new DateTime(2020, 2, 12);
     public string[] Resources { get; set; } = { "Projects", "Categories" };
     public List<ResourceData> Projects { get; set; } = new List<ResourceData>
     {
@@ -62,7 +53,7 @@
         new ResourceData { Text = "Development", Id= 1, Color = "#df5286"},
         new ResourceData { Text = "Testing", Id= 2, Color = "#7fa900" }
     };
-    List<ScheduleData.ResourceData> DataSource = new ScheduleData().GetResourceData();
+    List<HVACTopgun.UI.ScheduleData.ResourceData> DataSource = new ScheduleData().GetResourceData();
     public class ResourceData
     {
         public int Id { get; set; }
