@@ -20,6 +20,7 @@ IServiceCollection serviceCollection = builder.Services.AddScoped<IDbConnection>
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<ICustomerData, CustomerData>();
 
+
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);

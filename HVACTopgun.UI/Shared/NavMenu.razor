@@ -51,68 +51,11 @@
             </div>
         </div>
     </nav>
-   
-      
+  
 
 </header>
 
-@* 
-<nav class="bg-black/80 fixed w-full z-20 top-0 left-0 border-b border-sky-500 dark:bg-black/80">
-    <!-- flex container for nav -->
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <!-- Logo -->
-            <a href="#" class="flex items-center">
-                <img @ref="logo" src="/images/logo-dark.png" class="h-11 mr-3" alt="Logo" id="logo" />
-            </a>
-       
-        <!-- Menu Items -->
-        
-        <div class="space-x-4  hidden md:flex md:w-auto md:order-1" id="navbar-sticky">
-            
-                    <a href="#" class=" px-4 text-white md:text-sky-500 md:p-0 md:dark:text-white" aria-current="page">Home</a>
-                
-                    <a href="#" class=" text-white rounded hover:text-sky-500 md:hover:bg-transparent md:hover:text-sky-500 md:p-0 md:dark:hover:text-sky-500 dark:text-white dark:hover:bg-sky-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-               
-                    <a href="#" class=" text-white rounded hover:text-sky-500 md:hover:bg-transparent md:hover:text-sky-500 md:p-0 md:dark:hover:text-sky-500 dark:text-white dark:hover:bg-sky-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-               
-                    <a href="#" class=" text-white rounded hover:text-sky-500 md:hover:bg-transparent md:hover:text-sky-500 md:p-0 md:dark:hover:text-sky-500 dark:text-white dark:hover:bg-sky-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-               
-            <div class="justify-end px-3">
-                <DarkModeToggle></DarkModeToggle>
-            </div>
-        </div>
-        
-        <!-- Hamburger Button -->
-        <button @ref="btn" @onclick="NavToggle" id="btn"
-                class="z-30 md:hidden focus:outline-none hamburger @(isMenuOpen ? "open" : "")">
-            <span class="text-white hamburger-top"></span>
-            <span class="hamburger-middle"></span>
-            <span class="hamburger-bottom"></span>
-        </button>
-    </div>
-    <!-- Mobile Menu -->
-    <div @ref="menu" id="menu" class="fixed inset-0 z-20 @(isMenuOpen ? "flex" : "hidden") 
-    flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 bg-black">
-        <div class="w-full py-3 text-center">
-            
-                <img @ref="logo" src="/images/logo-dark.png" class="mx-auto block" alt="Logo" id="logo" />
-            
-        </div>
-        <div class="w-full py-3 text-center">
-            <a href="#features" class="block hover:text-sky-500">Features</a>
-        </div>
-        <div class="w-full py-3 text-center">
-            <a href="#download" class="block hover:text-sky-500">Download</a>
-        </div>
-        <div class="w-full py-3 text-center">
-            <a href="#faq" class="block hover:text-sky-500">FAQ</a>
-        </div>
-        <div class="w-full py-3 text-center">
-            <a href="#" class="block hover:text-sky-500 hover:shadow-xl" @onclick="LoginClicked">Login</a>
-        </div>
-    </div>
-</nav>
- *@
+
 @code {
     private ElementReference btn;
     private ElementReference menu;
@@ -133,9 +76,7 @@
     private void NavToggle()
     {
         isMenuOpen = !isMenuOpen;
-        
     }
-
 
     private string GetLogoSource()
     {
@@ -155,6 +96,8 @@
         _darkMode = darkMode;
         await InvokeAsync(StateHasChanged);
     }
+
+    
 
     
 }

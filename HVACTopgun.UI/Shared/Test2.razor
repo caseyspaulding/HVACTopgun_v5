@@ -5,8 +5,10 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 
+@page "/test2"
+
 <div class="antialiased bg-gray-50 dark:bg-black">
-    <nav class="border-b border-gray-200 px-4 py-2.5 bg-black border-gray-700 fixed left-0 right-0 top-0 z-50">
+    <nav class="border-b border-gray-200 px-4 py-2.5 bg-black border-gray-700 fixed left-0 right-0 top-0 z-50 shadow-xl">
       <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
           <button
@@ -67,7 +69,6 @@
               </div>
               <input
                 type="text"
-                name="email"
                 id="topbar-search"
                 class="bg-transparent text-gray-900 text-md focus:ring-sky-500 focus:border-sky-500 block w-full pl-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Search.."
@@ -827,20 +828,7 @@
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
                 role="menuitem"
               >
-                <div class="inline-flex items-center">
-                  <svg
-                    aria-hidden="true"
-                    class="h-3.5 w-3.5 rounded-full mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                    id="flag-icon-css-de"
-                    viewBox="0 0 512 512"
-                  >
-                    <path fill="#ffce00" d="M0 341.3h512V512H0z" />
-                    <path d="M0 0h512v170.7H0z" />
-                    <path fill="#d00" d="M0 170.7h512v170.6H0z" />
-                  </svg>
-                  Deutsch
-                </div>
+                
               </a>
             </li>
             <li>

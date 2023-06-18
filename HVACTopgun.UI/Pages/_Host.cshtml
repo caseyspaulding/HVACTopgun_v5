@@ -16,15 +16,15 @@
 	
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
     
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" defer>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" defer>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" defer>
     <link rel="manifest" href="/site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/tailwind.css" />
-    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
-    <script src="/js/custom.js"></script>
+    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript" defer></script>
+    <script src="/js/custom.js" defer></script>
     <!-- AlpineJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.8.1/cdn.min.js" defer></script>
    
@@ -33,7 +33,7 @@
 <!--  END - We recommend to place the above code in head tag of your website html -->
   
 </head>
-<body class="h-full w-full bg-gray-200">
+<body class="h-full w-full bg-gradient-to-l from-gray-400 via-gray-300 to-gray-400">
     <component type="typeof(App)" render-mode="ServerPrerendered" />
 
     <div id="blazor-error-ui">
