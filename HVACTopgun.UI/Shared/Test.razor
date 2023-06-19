@@ -6,6 +6,7 @@
 @inject NavigationManager NavigationManager
 @using HVACTopGun.UI.Shared 
 
+<PageTitle>HVAC TopGun</PageTitle>
 <div class="bg-gradient-to-l from-gray-400 via-gray-300 to-gray-400">
     <nav class="border-b border-sky-400 bg-black lg:border-none ">
         <div class="mx-auto max-w-9xl px-2 sm:px-4 lg:px-8">
@@ -127,7 +128,7 @@
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
                         <ul role="list" class="mx-2 space-y-1">
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/dashboard">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -140,7 +141,7 @@
 
 
                            
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Bookings">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -151,7 +152,7 @@
                                 </NavLink>
                             </li>
 
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Scheduler">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -161,7 +162,7 @@
                                     <span class="ml-3">Schedule</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Inventory">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -171,7 +172,7 @@
                                     <span class="ml-3">Inventory</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Pricebook">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -181,7 +182,7 @@
                                     <span class="ml-3">Pricebook</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Messages">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -191,7 +192,7 @@
                                     <span class="ml-3">Messages</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/FollowUp">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -201,7 +202,7 @@
                                     <span class="ml-3">Follow up</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Reports">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -216,7 +217,7 @@
                     <li>
                         <div class="text-xs font-semibold leading-6 text-gray-400"><hr /></div>
                         <ul role="list" class="mx-2 mt-2 space-y-1">
-                            <li class="hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900 "
                                          href="/Help">
 
@@ -228,7 +229,7 @@
 
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900 "
                                          href="/Help">
 
@@ -243,7 +244,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="mt-auto hover:border hover:border-sky-600">
+                    <li class="mt-auto border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                         <NavLink class="flex gap-x-3 items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                  href="/Settings">
 
@@ -274,7 +275,7 @@
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
                         <ul role="list" class="-mx-2 space-y-1">
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/dashboard">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -285,7 +286,7 @@
                                 </NavLink>
                             </li>
 
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Bookings">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -296,7 +297,7 @@
                                 </NavLink>
                             </li>
 
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Scheduler">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -306,7 +307,7 @@
                                     <span class="ml-3">Schedule</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Inventory">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -316,7 +317,7 @@
                                     <span class="ml-3">Inventory</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Pricebook">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -326,7 +327,7 @@
                                     <span class="ml-3">Pricebook</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Messages">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -336,7 +337,7 @@
                                     <span class="ml-3">Messages</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/FollowUp">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -346,7 +347,7 @@
                                     <span class="ml-3">Follow up</span>
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Reports">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -361,7 +362,7 @@
                     <li>
                         <div class="text-xs font-semibold leading-6 text-gray-400"><hr /></div>
                         <ul role="list" class="-mx-2 mt-2 space-y-1">
-                            <li class="hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900 "
                                          href="/Help">
 
@@ -373,7 +374,7 @@
 
                                 </NavLink>
                             </li>
-                            <li class=" hover:border hover:border-sky-600">
+                            <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900 "
                                          href="/Help">
 
@@ -388,7 +389,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="mt-auto hover:border hover:border-sky-600">
+                    <li class="mt-auto hover:border-b hover:border-sky-600">
                         <NavLink class="flex gap-x-3 items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                  href="/Settings">
                             
@@ -412,7 +413,7 @@
         
         <main class="py-10">
             <div class="px-4 sm:px-6 lg:px-8 z-10">
-                <h1 class="from-black via-gray-500 to-black bg-gradient-to-l bg-clip-text text-transparent py-2 text-3xl font-bold
+                <h1 class="py-2 text-3xl font-bold
                  ">
                     @GetPageTitle()
                 </h1>
