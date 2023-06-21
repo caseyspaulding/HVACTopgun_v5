@@ -18,7 +18,7 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddSyncfusionBlazor();
 IServiceCollection serviceCollection = builder.Services.AddScoped<IDbConnection>(c => new SqlConnection(ConnectionStrings));
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddTransient<ICustomerData, CustomerData>();
+builder.Services.AddTransient<ICustomerDataService, CustomerSqlDataService>();
 
 
 builder.Services.AddMediatR(cfg =>

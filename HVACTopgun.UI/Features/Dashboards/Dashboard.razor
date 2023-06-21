@@ -5,26 +5,60 @@
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Layouts
 
-<div class="h-screen z-0">
-    <SfDashboardLayout Columns="5">
+<div class="">
+    <SfDashboardLayout Columns="4">
         <DashboardLayoutPanels>
-            <DashboardLayoutPanel>
-                <ContentTemplate><div>0</div></ContentTemplate>
+
+            <DashboardLayoutPanel Column="0" Row="0" SizeX="1" SizeY="1">
+                <HeaderTemplate>Revenue</HeaderTemplate>
+                <ContentTemplate>
+                    <HVACTopGun.UI.Pages.GaugeHalf></HVACTopGun.UI.Pages.GaugeHalf>
+                    </ContentTemplate>
             </DashboardLayoutPanel>
-            <DashboardLayoutPanel >
-                <ContentTemplate><div>1</div></ContentTemplate>
+
+            <DashboardLayoutPanel Column="1" Row="0" SizeX="3">
+                <HeaderTemplate>Panel 2</HeaderTemplate>
+                <ContentTemplate>Content of Panel </ContentTemplate>
             </DashboardLayoutPanel>
-            <DashboardLayoutPanel >
-                <ContentTemplate><div>2</div></ContentTemplate>
+
+            <DashboardLayoutPanel Column="0" Row="1">
+                <HeaderTemplate>Panel 3</HeaderTemplate>
+                <ContentTemplate>
+                   
+
+                </ContentTemplate>
             </DashboardLayoutPanel>
-            <DashboardLayoutPanel>
-                <ContentTemplate><div>3</div></ContentTemplate>
+
+            <DashboardLayoutPanel Column="1" Row="1">
+                <HeaderTemplate>Panel 4</HeaderTemplate>
+                <ContentTemplate>Content of Panel </ContentTemplate>
             </DashboardLayoutPanel>
-            <DashboardLayoutPanel Row=3>
-                <ContentTemplate><div>4</div></ContentTemplate>
+
+             <DashboardLayoutPanel Column="2" Row="1">
+                <HeaderTemplate>Panel 5</HeaderTemplate>
+                <ContentTemplate>Content of Panel </ContentTemplate>
             </DashboardLayoutPanel>
+
+            <DashboardLayoutPanel Column="3" Row="1">
+                <HeaderTemplate>Panel 6</HeaderTemplate>
+                <ContentTemplate>Content of Panel </ContentTemplate>
+            </DashboardLayoutPanel>
+            
+
         </DashboardLayoutPanels>
     </SfDashboardLayout>
+
+    <style>
+        .e-panel-header {
+            background-color: white;
+            text-align: left;
+        }
+
+        .e-panel-content {
+            text-align: center;
+            margin-top: -3px;
+        }
+    </style>
 </div>
 
 @code

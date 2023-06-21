@@ -5,13 +5,13 @@
 @using HVACTopGun.UI.Models
 @layout Test
 
-@inject ICustomerData _db
+@inject ICustomerDataService _dataAccess
 
-<div class="content py-20 bg-white">
-    <div class="mt-30">
-        <div class="mt-20 mx-auto"> <h3 class="text-center  mx-auto text-white">Customers</h3></div>
+<div class="content bg-white">
+    
+        <div class="mt-5 mx-auto"></div>
 
-        <h4>Add New Customer</h4>
+        <h4 class="mb-4 text-2xl">Add New Customer</h4>
         
         <EditForm Model="@newCustomer" OnValidSubmit="@AddCustomer">
             <DataAnnotationsValidator />
@@ -19,20 +19,22 @@
 
             <div class="form-group">
                 <label for="firstName" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">First Name</label>
-                <InputText id="firstName" class="form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.FirstName" />
+                <InputText id="firstName" class="border form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.FirstName" />
                 <label for="lastName" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Last Name</label>
-                <InputText id="lastName" class="form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.LastName" />
+                <InputText id="lastName" class="border form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.LastName" />
             </div>
 
-            <button type="submit" class="rounded-2xl mt-3 mx-auto mb-4 p-3 justify-center bg-gradient-to-r from-emerald-700 to-emerald-400 hover:bg-emerald-200 text-white hover:text-emerald-200 hover:underline font-semibold hover:shadow-emerald-500/50 shadow-xl shadow-sky-500/50">Add Customer</button>
-          
+            <button type="submit" class="rounded-2xl mt-3 mx-auto mb-4 p-3 justify-center bg-gradient-to-r from-emerald-700 to-emerald-500 hover:bg-emerald-200 text-white hover:text-emerald-200 hover:underline font-semibold hover:shadow-emerald-500/50 shadow-xl ">Add Customer</button>
             
+         
               
         </EditForm>
+    <h3 class="text-center mx-auto text-white">Customers</h3>
         <div class="md:top-20 md:mx-10 md:px-20">
             <SfGrid DataSource="@customers" />
+
         </div>
-    </div>
+    
 </div>
 
 
@@ -43,7 +45,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        customers = await _db.GetAllCustomers();
+        customers = await _dataAccess.GetAllCustomers();
     }
 
     private async Task AddCustomer()
@@ -53,11 +55,13 @@
             FirstName = newCustomer.FirstName,
             LastName = newCustomer.LastName
         };
-        await _db.AddCustomer(c);
+        await _dataAccess.CreateCustomer(c);
 
         customers?.Append(c);
  
         newCustomer = new DisplayCustomerModel();
         
     }
+
+    
 }

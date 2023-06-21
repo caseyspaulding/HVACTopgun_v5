@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    internal class AppointmentModel
+    public class AppointmentModel
     {
         public int Id { get; set; }
 

@@ -2,17 +2,22 @@
 
 namespace DataAccess.Models
 {
-    internal class TenantModel
+    public class TenantModel
     {
+        /// <summary>
+        /// 
+        /// Represents a tenant in the application.
+        /// 
+        /// </summary>
         public int Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
 
         public string Domain { get; set; } = string.Empty;
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedDateTime { get; set; }
 
-        public DateTime LastUpdatedAt { get; set; }
+        public DateTime LastUpdated { get; set; }
 
         public string Email { get; set; } = string.Empty;
 
@@ -24,7 +29,7 @@ namespace DataAccess.Models
 
         public string State { get; set; } = string.Empty;
 
-        public int ZipCode { get; set; }
+        public string? ZipCode { get; set; }
 
         public string Country { get; set; } = string.Empty;
 
@@ -32,7 +37,7 @@ namespace DataAccess.Models
 
         public bool IsActive { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool Deleted { get; set; }
 
         public SubscriptionType SubscriptionType { get; set; }
 

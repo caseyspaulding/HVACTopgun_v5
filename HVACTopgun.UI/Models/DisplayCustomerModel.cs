@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DataAccess.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace HVACTopGun.UI.Models
 {
-    public class DisplayCustomerModel
+    public class DisplayCustomerModel : ICustomerModel
     {
         public int Id { get; set; }
+
+
 
         [Required]
         [StringLength(15, ErrorMessage = "First name cannot be longer than 15 characters.")]
@@ -20,5 +23,6 @@ namespace HVACTopGun.UI.Models
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public string ZipCode { get; set; } = string.Empty;
+        public int TenantId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
