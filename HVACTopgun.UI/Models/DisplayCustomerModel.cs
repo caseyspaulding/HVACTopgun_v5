@@ -7,8 +7,6 @@ namespace HVACTopGun.UI.Models
     {
         public int Id { get; set; }
 
-
-
         [Required]
         [StringLength(15, ErrorMessage = "First name cannot be longer than 15 characters.")]
         [MinLength(2, ErrorMessage = "First name must be at least 2 characters long.")]

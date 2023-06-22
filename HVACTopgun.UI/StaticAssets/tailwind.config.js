@@ -35,7 +35,7 @@ module.exports = {
         },
         fontFamily: {
             'body': [
-                'nunito', 
+                'nunito',
                 'sans-serif',
                 'system-ui',
                 '-apple-system',
@@ -46,9 +46,7 @@ module.exports = {
                 'Arial',
                 'Noto Sans',
 
-                
             ],
-            
         },
     },
     plugins: [

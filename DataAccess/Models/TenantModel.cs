@@ -5,9 +5,9 @@ namespace DataAccess.Models
     public class TenantModel
     {
         /// <summary>
-        /// 
+        ///
         /// Represents a tenant in the application.
-        /// 
+        ///
         /// </summary>
         public int Id { get; set; }
 
@@ -42,6 +42,5 @@ namespace DataAccess.Models
         public SubscriptionType SubscriptionType { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
-
     }
 }

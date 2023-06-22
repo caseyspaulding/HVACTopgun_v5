@@ -10,4 +10,7 @@ public class CustomerModel : ICustomerModel
     public string City { get; set; } = string.Empty;
     public string State { get; set; } = string.Empty;
     public string ZipCode { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+    public List<AppointmentModel> Appointments { get; set; } = new List<AppointmentModel>();
 }

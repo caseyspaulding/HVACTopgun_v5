@@ -9,37 +9,39 @@
     <SfDashboardLayout Columns="4">
         <DashboardLayoutPanels>
 
-            <DashboardLayoutPanel Column="0" Row="0" SizeX="1" SizeY="1">
-                <HeaderTemplate>Revenue</HeaderTemplate>
+            <DashboardLayoutPanel Column="0" Row="0">
+                <HeaderTemplate>Your Revenue Goal</HeaderTemplate>
                 <ContentTemplate>
                     <HVACTopGun.UI.Pages.GaugeHalf></HVACTopGun.UI.Pages.GaugeHalf>
                     </ContentTemplate>
             </DashboardLayoutPanel>
 
-            <DashboardLayoutPanel Column="1" Row="0" SizeX="3">
+            <DashboardLayoutPanel Column="0" Row="1" SizeX="3">
                 <HeaderTemplate>Panel 2</HeaderTemplate>
-                <ContentTemplate>Content of Panel </ContentTemplate>
+                <ContentTemplate>
+                    <HVACTopGun.UI.Pages.BarChart></HVACTopGun.UI.Pages.BarChart>
+                </ContentTemplate>
             </DashboardLayoutPanel>
 
-            <DashboardLayoutPanel Column="0" Row="1">
-                <HeaderTemplate>Panel 3</HeaderTemplate>
+            <DashboardLayoutPanel Column="1" Row="0">
+                <HeaderTemplate>New Leads</HeaderTemplate>
                 <ContentTemplate>
-                   
+                   <HVACTopGun.UI.Pages.DonutChart></HVACTopGun.UI.Pages.DonutChart>
 
                 </ContentTemplate>
             </DashboardLayoutPanel>
 
-            <DashboardLayoutPanel Column="1" Row="1">
-                <HeaderTemplate>Panel 4</HeaderTemplate>
+            <DashboardLayoutPanel Column="3" Row="0">
+                <HeaderTemplate>New Appts</HeaderTemplate>
                 <ContentTemplate>Content of Panel </ContentTemplate>
             </DashboardLayoutPanel>
 
-             <DashboardLayoutPanel Column="2" Row="1">
-                <HeaderTemplate>Panel 5</HeaderTemplate>
+             <DashboardLayoutPanel Column="4" Row="0">
+                <HeaderTemplate>Website Chat</HeaderTemplate>
                 <ContentTemplate>Content of Panel </ContentTemplate>
             </DashboardLayoutPanel>
 
-            <DashboardLayoutPanel Column="3" Row="1">
+            <DashboardLayoutPanel Column="3" Row="3">
                 <HeaderTemplate>Panel 6</HeaderTemplate>
                 <ContentTemplate>Content of Panel </ContentTemplate>
             </DashboardLayoutPanel>
