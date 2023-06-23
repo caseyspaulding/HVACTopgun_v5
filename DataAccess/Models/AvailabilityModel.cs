@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class AvailabilityModel
+    public class AvailabilityModel : IAvailabilityModel
     {
         public int Id { get; set; }
         public int TenantId { get; set; }

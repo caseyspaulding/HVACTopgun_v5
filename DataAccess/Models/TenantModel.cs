@@ -4,11 +4,7 @@ namespace DataAccess.Models
 {
     public class TenantModel
     {
-        /// <summary>
-        ///
-        /// Represents a tenant in the application.
-        ///
-        /// </summary>
+
         public int Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
