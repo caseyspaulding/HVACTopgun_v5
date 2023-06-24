@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class TechnicianModel
+    public class TechnicianModel : ITechnicianModel
     {
         public int Id { get; set; }
         public int TenantId { get; set; }

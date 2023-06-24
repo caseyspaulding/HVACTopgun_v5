@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class Subscriptions
+    public class Subscriptions : ISubscriptions
     {
         public int SubscriptionId { get; set; }
         public int TenantId { get; set; }

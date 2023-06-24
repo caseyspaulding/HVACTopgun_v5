@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class JobTypeModel
+    public class JobTypeModel : IJobTypeModel
     {
         public int Id { get; set; }
         public string? Name { get; set; }

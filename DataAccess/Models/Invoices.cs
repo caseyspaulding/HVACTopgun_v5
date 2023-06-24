@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    internal class Invoices
+    internal class Invoices : IInvoices
     {
         public int InvoiceId { get; set; }
         public int TenantId { get; set; }

@@ -41,7 +41,7 @@
 
 @code {
     private IEnumerable<CustomerModel> customers;
-    private DisplayCustomerModel newCustomer = new DisplayCustomerModel();
+    private UICustomerModel newCustomer = new UICustomerModel();
 
     protected override async Task OnInitializedAsync()
     {
@@ -59,7 +59,7 @@
 
         customers?.Append(c);
  
-        newCustomer = new DisplayCustomerModel();
+        newCustomer = new UICustomerModel();
         
     }
 

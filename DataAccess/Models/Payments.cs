@@ -2,7 +2,7 @@
 
 namespace DataAccess.Models
 {
-    public class Payments
+    public class Payments : IPayments
     {
         public int PaymentId { get; set; } // primary key
         public int TenantId { get; set; } // foreign key referencing tenants table

@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class Services
+    public class Services : IServices
     {
         public int ServiceID { get; set; }
         public int TenantID { get; set; }

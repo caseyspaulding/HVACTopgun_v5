@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HVACTopGun.UI.Models
 {
-    public class DisplayCustomerModel : ICustomerModel
+    public class UICustomerModel : ICustomerModel
     {
         public int Id { get; set; }
 
@@ -21,6 +21,12 @@ namespace HVACTopGun.UI.Models
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public string ZipCode { get; set; } = string.Empty;
+
         public int TenantId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<AppointmentModel> Appointments { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string Email { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string Phone { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

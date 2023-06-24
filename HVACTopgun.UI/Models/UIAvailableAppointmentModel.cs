@@ -1,18 +1,16 @@
 ﻿namespace HVACTopGun.UI.Models
 {
-    public class DisplayAppointmentModel
+    public class UIAvailableAppointmentModel
     {
         public int Id { get; set; }
 
-        public int TenantId { get; set; }
+        public bool Reserved { get; set; }
 
-        public int AvailableAppointmentId { get; set; }
-
-        public string FullName { get; set; } = string.Empty;
-
-        public string Description { get; set; } = string.Empty;
+        public DateTime StartDate { get; set; }
 
         public DateTime StartTime { get; set; }
+
+        public DateTime EndDate { get; set; }
 
         public DateTime EndTime { get; set; }
 

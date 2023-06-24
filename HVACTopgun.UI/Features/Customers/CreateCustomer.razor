@@ -37,12 +37,12 @@
 
 
 @code {
-    private ICustomerModel customer = new DisplayCustomerModel();
+    private ICustomerModel customer = new UICustomerModel();
 
     private void HandleValidSubmit()
     {
         customerData.CreateCustomer(customer);
-        customer = new DisplayCustomerModel();
+        customer = new UICustomerModel();
     }
 
 

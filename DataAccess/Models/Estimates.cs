@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class Estimates
+    public class Estimates : IEstimates
     {
         public int EstimatesId { get; set; }
         public int TenantId { get; set; }

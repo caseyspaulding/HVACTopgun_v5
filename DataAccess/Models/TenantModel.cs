@@ -2,7 +2,7 @@
 
 namespace DataAccess.Models
 {
-    public class TenantModel
+    public class TenantModel : ITenantModel
     {
 
         public int Id { get; set; }

@@ -1,11 +1,10 @@
 ﻿namespace DataAccess.Models
 {
-    public class PriceBook
+    public class PriceBook : IPriceBook
     {
         public int PriceBookId { get; set; }
         public int TenantId { get; set; }
         public int JobTypeId { get; set; }
-
         public string? ItemName { get; set; }
         public string? ItemDescription { get; set; }
         public decimal ItemPrice { get; set; }

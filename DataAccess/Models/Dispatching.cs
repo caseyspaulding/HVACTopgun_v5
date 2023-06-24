@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class Dispatching
+    public class Dispatching : IDispatching
     {
         public int DispatchId { get; set; }
         public int TenantId { get; set; }
