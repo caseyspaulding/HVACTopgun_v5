@@ -1,4 +1,6 @@
-﻿namespace DataAccess.Models
+﻿using DataAccess.Models.Interfaces;
+
+namespace DataAccess.Models
 {
     public class Services : IServices
     {

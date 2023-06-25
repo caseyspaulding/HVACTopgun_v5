@@ -1,4 +1,5 @@
 ﻿using DataAccess.Models;
+using DataAccess.Models.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace HVACTopGun.UI.Models

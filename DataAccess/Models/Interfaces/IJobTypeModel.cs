@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Models
+﻿namespace DataAccess.Models.Interfaces
 {
     public interface IJobTypeModel
     {

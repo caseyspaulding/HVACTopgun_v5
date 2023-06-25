@@ -1,17 +1,15 @@
-﻿namespace DataAccess.Models
+﻿namespace DataAccess.Models.Interfaces
 {
-    public interface ICustomerModel
+    public interface ITechnicianModel
     {
-        string Address { get; set; }
         List<AppointmentModel> Appointments { get; set; }
-        string City { get; set; }
+        AvailabilityModel? Availability { get; set; }
         string Email { get; set; }
         string FirstName { get; set; }
         int Id { get; set; }
         string LastName { get; set; }
-        string Phone { get; set; }
-        string State { get; set; }
+        string PhoneNumber { get; set; }
+        string Skills { get; set; }
         int TenantId { get; set; }
-        string ZipCode { get; set; }
     }
 }

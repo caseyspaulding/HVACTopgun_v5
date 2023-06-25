@@ -1,5 +1,6 @@
 ﻿using DataAccess.DbAccess;
 using DataAccess.Models;
+using DataAccess.Models.Interfaces;
 
 namespace DataAccess.Data;
 

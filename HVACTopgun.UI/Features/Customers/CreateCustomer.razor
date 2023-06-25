@@ -1,6 +1,7 @@
-﻿@page "/createcustomer"
+﻿@* @page "/createcustomer"
 @layout Test
-@using HVACTopGun.UI.Models
+@    using HVACTopGun.UI.Models;
+    using DataAccess.Models.Interfaces
 @inject ICustomerDataService customerData
 
 <div class="md:container md:mx-auto">
@@ -37,13 +38,9 @@
 
 
 @code {
-    private ICustomerModel customer = new UICustomerModel();
+    
 
-    private void HandleValidSubmit()
-    {
-        customerData.CreateCustomer(customer);
-        customer = new UICustomerModel();
-    }
 
 
 }
+ *@
