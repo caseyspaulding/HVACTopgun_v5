@@ -8,5 +8,6 @@
         string? Password { get; set; }
         int RoleId { get; set; }
         int UserId { get; set; }
+        Task<Users> GetUserFromAuthentication(string tenantId);
     }
 }

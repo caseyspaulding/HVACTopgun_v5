@@ -13,5 +13,6 @@
         string State { get; set; }
         int TenantId { get; set; }
         string ZipCode { get; set; }
+
     }
 }

@@ -1,0 +1,18 @@
+﻿<AuthorizeView Policy="Admin">
+    
+    <Authorized>
+        <span class="text-white">Hello @context.User.Claims.FirstOrDefault(c => c.Type.Contains("givenname"))?.Value </span>
+        <a class="text-white"  href="MicrosoftIdentity/Account/EditProfile">
+            Edit Profile
+        </a>
+        <a class="text-white" href="MicrosoftIdentity/Account/SignOut">Log Out</a>
+    </Authorized>
+    <NotAuthorized>
+        <a class="text-white" href="https://HVACTopGunAuth.b2clogin.com/HVACTopGunAuth.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_signin&client_id=cedcd517-7cd3-415d-95fd-caafaa070890&nonce=defaultNonce&redirect_uri=https%3A%2F%2Flocalhost%3A7266%2Fsignin-oidc&scope=openid&response_type=id_token&prompt=login">Sign In</a>
+        <a class="text-white" href="https://hvactopgunauth.b2clogin.com/HVACTopGunAuth.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_SignUp&client_id=cedcd517-7cd3-415d-95fd-caafaa070890&nonce=defaultNonce&redirect_uri=https%3A%2F%2Flocalhost%3A7266%2Fsignin-oidc&scope=openid&response_type=id_token&prompt=login">Sign Up</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+}
