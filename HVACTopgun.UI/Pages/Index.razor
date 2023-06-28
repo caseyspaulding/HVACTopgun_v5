@@ -1,7 +1,9 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 @using Syncfusion.Blazor.Navigations
 @inject AuthenticationStateProvider AuthState
 @inject NavigationManager Navigation
+
 
 <PageTitle>HVAC TopGun</PageTitle>
 
@@ -395,18 +397,20 @@
 @code {
     private string Username = "Anonymous User";
     private string Picture = "";
+    private TenantModel loggedInTenant = new TenantModel();
+    
 
     protected override async Task OnInitializedAsync()
     {
-        var state = await AuthState.GetAuthenticationStateAsync();
+        
+        var authState = await AuthState.GetAuthenticationStateAsync();
+        string objectId = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("objectidentifier"))?.Value;
 
-        Username = state.User.Identity.Name ?? string.Empty;
 
-        Picture = state.User.Claims
-                    .Where(c => c.Type.Equals("picture"))
-                    .Select(c => c.Value)
-                    .FirstOrDefault() ?? string.Empty;
-
-        await base.OnInitializedAsync();
+        
     }
+
+    
+
+
 }

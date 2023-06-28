@@ -7,8 +7,6 @@
     <Authorized>
   
    
-       
-
        <div>
 
         <NavLink class="flex items-center p-2 hover:underline font-medium text-gray-200 transition duration-75"
@@ -42,15 +40,18 @@
 </AuthorizeView>
 
 @code {
+    private bool isFirstLogin = true;
+
     protected override async Task OnInitializedAsync()
     {
         var authenticationState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authenticationState.User;
 
-        if (user.Identity?.IsAuthenticated == true)
+        if (user.Identity?.IsAuthenticated == true && isFirstLogin)
         {
-            // Redirect to the dashboard after successful login
+            // Redirect to the login page only the first time they log in
             NavigationManager.NavigateTo("/dashboard");
+            isFirstLogin = false;
         }
 
         await base.OnInitializedAsync();

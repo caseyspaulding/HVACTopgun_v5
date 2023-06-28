@@ -1,5 +1,4 @@
-﻿using Blazored.LocalStorage;
-using DataAccess.Data;
+using Blazored.LocalStorage;
 using DataAccess.DbAccess;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Rewrite;
@@ -22,7 +21,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddSyncfusionBlazor();
 IServiceCollection serviceCollection = builder.Services.AddScoped<IDbConnection>(c => new SqlConnection(ConnectionStrings));
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddTransient<ICustomerDataService, CustomerSqlDataService>();
+
 
 //AZURE AD B2C
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
@@ -68,12 +67,12 @@ app.UseRouting();
 app.UseRewriter(
     new RewriteOptions().Add
     (context =>
-{
-    if (context.HttpContext.Request.Path.Value.Contains("/MicrosoftIdentity/Account/SignedOut"))
     {
-        context.HttpContext.Response.Redirect("/");
-    }
-}));
+        if (context.HttpContext.Request.Path.Value.Contains("/MicrosoftIdentity/Account/SignedOut"))
+        {
+            context.HttpContext.Response.Redirect("/");
+        }
+    }));
 
 app.MapControllers();
 app.MapBlazorHub();

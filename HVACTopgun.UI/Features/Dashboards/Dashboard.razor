@@ -3,7 +3,7 @@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Navigations
-
+@using HVACTopGun.UI.Pages.SyncFusion
 @attribute [Authorize]
 
 <div class="">
@@ -13,21 +13,21 @@
             <DashboardLayoutPanel Column="0" Row="0">
                 <HeaderTemplate>Your Revenue Goal</HeaderTemplate>
                 <ContentTemplate>
-                    <HVACTopGun.UI.Pages.GaugeHalf></HVACTopGun.UI.Pages.GaugeHalf>
+                    <GaugeHalf />
                     </ContentTemplate>
             </DashboardLayoutPanel>
 
             <DashboardLayoutPanel Column="0" Row="1" SizeX="3">
                 <HeaderTemplate>Panel 2</HeaderTemplate>
                 <ContentTemplate>
-                    <HVACTopGun.UI.Pages.BarChart></HVACTopGun.UI.Pages.BarChart>
+                    <BarChart></BarChart>
                 </ContentTemplate>
             </DashboardLayoutPanel>
 
             <DashboardLayoutPanel Column="1" Row="0">
                 <HeaderTemplate>New Leads</HeaderTemplate>
                 <ContentTemplate>
-                   <HVACTopGun.UI.Pages.DonutChart></HVACTopGun.UI.Pages.DonutChart>
+                   <DonutChart></DonutChart>
 
                 </ContentTemplate>
             </DashboardLayoutPanel>

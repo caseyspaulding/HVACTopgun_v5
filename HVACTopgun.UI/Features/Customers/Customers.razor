@@ -4,24 +4,23 @@
 @using DataAccess.Models
 @using HVACTopGun.UI.Models
 @layout Test
-
-@inject ICustomerDataService _dataAccess
+@inject ITenantSqlDataService _tenantSqlDataService
 
 <div class="content bg-white">
     
         <div class="mt-5 mx-auto"></div>
 
-        <h4 class="mb-4 text-2xl">Add New Customer</h4>
+        <h4 class="mb-4 text-2xl">Add New Tenant</h4>
         
-        <EditForm Model="@newCustomer" OnValidSubmit="@AddCustomer">
+        <EditForm Model="@newTenant" OnValidSubmit="@AddTenant">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="form-group">
                 <label for="firstName" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">First Name</label>
-                <InputText id="firstName" class="border form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.FirstName" />
+                <InputText id="firstName" class="border form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newTenant.FirstName" />
                 <label for="lastName" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Last Name</label>
-                <InputText id="lastName" class="border form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newCustomer.LastName" />
+                <InputText id="lastName" class="border form-control block mb-2 text-sm font-medium text-gray-900 dark:text-white" @bind-Value="newTenant.LastName" />
             </div>
 
             <button type="submit" class="rounded-2xl mt-3 mx-auto mb-4 p-3 justify-center bg-gradient-to-r from-emerald-700 to-emerald-500 hover:bg-emerald-200 text-white hover:text-emerald-200 hover:underline font-semibold hover:shadow-emerald-500/50 shadow-xl ">Add Customer</button>
@@ -31,7 +30,7 @@
         </EditForm>
     <h3 class="text-center mx-auto text-white">Customers</h3>
         <div class="md:top-20 md:mx-10 md:px-20">
-            <SfGrid DataSource="@customers" />
+            <SfGrid DataSource="@tenant" />
 
         </div>
     
@@ -40,26 +39,21 @@
 
 
 @code {
-    private IEnumerable<CustomerModel> customers;
-    private UICustomerModel newCustomer = new UICustomerModel();
+    private IEnumerable<TenantModel> tenant;
+    private UITenantModel newTenant = new UITenantModel();
 
-    protected override async Task OnInitializedAsync()
+    private async Task AddTenant()
     {
-        customers = await _dataAccess.GetAllCustomers();
-    }
-
-    private async Task AddCustomer()
-    {
-        CustomerModel c = new CustomerModel
+        TenantModel t = new TenantModel
         {
-            FirstName = newCustomer.FirstName,
-            LastName = newCustomer.LastName
+            FirstName = newTenant.FirstName,
+            LastName = newTenant.LastName
         };
-        await _dataAccess.CreateCustomer(c);
+        await _tenantSqlDataService.CreateTenant(t);
 
-        customers?.Append(c);
+        tenant?.Append(t);
  
-        newCustomer = new UICustomerModel();
+        newTenant = new UITenantModel();
         
     }
 
