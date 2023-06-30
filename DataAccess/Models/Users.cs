@@ -1,22 +1,20 @@
-﻿using DataAccess.Models.Interfaces;
-
-namespace DataAccess.Models
+﻿namespace DataAccess.Models
 {
-    public class Users : IUsers
+    public class Users
     {
 
         public int UserId { get; set; }
-        public int TenantId { get; set; }
+        public int TenantID { get; set; }
+        public int AzureAD_ObjectID { get; set; }
+        public string? UserName { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string? EmailAddress { get; set; }
-        public int RoleId { get; set; }
-        public string? Password { get; set; }
+        public string? Email { get; set; }
+        public int Role { get; set; }
+        public string? PhoneNumber { get; set; }
 
-        public Task<Users> GetUserFromAuthentication(string tenantId)
-        {
-            throw new NotImplementedException();
-        }
+
+
     }
 
 }

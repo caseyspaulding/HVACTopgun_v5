@@ -62,8 +62,26 @@
     <Folder Include="dbo\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\People.sql" />
     <Build Include="dbo\Tables\Tenants.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\Customers.sql" />
+    <Build Include="dbo\Tables\Services.sql" />
+    <Build Include="dbo\Tables\Appointments.sql" />
+    <Build Include="dbo\Tables\Technicians.sql" />
+    <Build Include="dbo\Tables\Availability.sql" />
+    <Build Include="dbo\Tables\Invoices.sql" />
+    <Build Include="dbo\Tables\JobTypes.sql" />
+    <Build Include="dbo\Tables\PriceBook.sql" />
+    <Build Include="dbo\Tables\Inventory.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\Subscriptions.sql" />
+    <Build Include="dbo\Tables\Estimates.sql" />
+    <Build Include="dbo\Tables\HVACCompanies.sql" />
+    <Build Include="dbo\Tables\ChatBotConversations.sql" />
+    <Build Include="dbo\Tables\CustomerBilling.sql" />
+    <Build Include="dbo\Tables\CustomerHistory.sql" />
+    <Build Include="dbo\Tables\Payments.sql" />
+    <Build Include="dbo\Tables\AvailableAppointment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database_TG.publish.xml" />

@@ -9,14 +9,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="~/" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="HVACTopgun.UI.styles.css" rel="stylesheet" />
-    <link href="https://cdn.syncfusion.com/blazor/21.1.35/styles/tailwind.css" rel="stylesheet" />
-	<link href="css/syncfusion-blazor-icons.css" rel="stylesheet" defer />
-    <link href="css/syncfusion-extended-icons.css" rel="stylesheet" defer />
-    <link href="~/css/bootstrap/bootstrap.min.css"/>
-    <link href="~/css/open-iconic/" />
-
+    <link href="css/styles.css" rel="stylesheet" defer />
+    <link href="HVACTopgun.UI.styles.css" rel="stylesheet" defer />
+    <link href="css/tailwind_syncfusion.min.css" rel="stylesheet" defer />
+	<link href="css/syncfusion-blazor-icons.css" rel="stylesheet" async />
+    <link href="css/syncfusion-extended-icons.css" rel="stylesheet" async />
     <link rel="icon" type="image/png" href="favicon.ico"/>
     
 	
@@ -25,12 +22,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" defer>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" defer>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" defer>
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="/site.webmanifest" >
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <meta name="Transform your HVAC business with TopGun - the ultimate software solution. Streamline your operations, 
-                    optimize scheduling, manage payments, and exceed customer expectations. Boost efficiency, maximize growth, 
-                    and stay ahead of the competition with our powerful HVAC software. Sign up now for a free trial!">
+    <meta name="description" content="Manage your HVAC business with ease. Simplify and Manage Your HVAC Business Effortlessly: Online Scheduling, Estimates, Dispatching, and Payments Made Easy. Boost efficiency, maximize growth,
+                    and stay ahead of the competition with our powerful HVAC software.">
     <!-- Open Graph Meta Tags -->
     <meta property="og:image" content="https://hvactopgun.com/images/social_card.jpg"/>
     <meta property="og:image:secure_url" content="https://hvactopgun.com/images/social_card.jpg"/>
@@ -64,11 +60,11 @@
         <environment include="Development">
             An unhandled exception has occurred. See browser dev tools for details.
         </environment>
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+     @*    <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a> *@
     </div>
-    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
-    <script src="_content/Syncfusion.Blazor/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
+  <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript" defer></script>
+   
     <script src="_framework/blazor.server.js"></script>
 	 <script>
         function navToggle() {
@@ -110,6 +106,11 @@
                     inline: "nearest"
                 });
             }
+        }
+    </script>
+    <script>
+        Blazor.defaultReconnectionHandler._reconnectCallback = function (d) {
+            document.location.reload();
         }
     </script>
 </body>

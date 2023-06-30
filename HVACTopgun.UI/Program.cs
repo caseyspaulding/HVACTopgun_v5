@@ -21,7 +21,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddSyncfusionBlazor();
 IServiceCollection serviceCollection = builder.Services.AddScoped<IDbConnection>(c => new SqlConnection(ConnectionStrings));
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-
+builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
 
 //AZURE AD B2C
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)

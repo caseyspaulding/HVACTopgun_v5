@@ -14,3 +14,10 @@ function toggleMobileMenu() {
         mobileMenu.classList.add('hidden');
     }
 }
+
+function loadscript () {
+    var script = document.createElement('script');
+    script.src = '_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js';
+    script.type = 'text/javascript';
+    document.body.appendChild(script);
+}
