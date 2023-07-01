@@ -1,11 +1,11 @@
-﻿using DataAccess.Models.Interfaces;
+﻿
 
 namespace DataAccess.Models
 {
-    public class Estimates : IEstimates
+    public class Estimates
     {
         public int EstimatesId { get; set; }
-        public int TenantId { get; set; }
+        public int TenantID { get; set; }
         public int CustomerId { get; set; }
         public int JobTypeId { get; set; }
         public int HVACCompanyId { get; set; }
@@ -18,5 +18,7 @@ namespace DataAccess.Models
         public string? JobTypeName { get; set; }
         public string? CustomerName { get; set; }
         public int Pricing { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
     }
 }

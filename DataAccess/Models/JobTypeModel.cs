@@ -1,8 +1,8 @@
-﻿using DataAccess.Models.Interfaces;
+﻿
 
 namespace DataAccess.Models
 {
-    public class JobTypeModel : IJobTypeModel
+    public class JobTypeModel
     {
         public int Id { get; set; }
         public string? Name { get; set; }

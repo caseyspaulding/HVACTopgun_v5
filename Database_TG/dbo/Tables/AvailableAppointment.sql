@@ -9,6 +9,8 @@
     [EndTime] TIME NOT NULL,
     [CreatedAt] DATETIME NOT NULL,
     [UpdatedAt] DATETIME NOT NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
     CONSTRAINT FK_AvailableAppointmentModel_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
     
 )

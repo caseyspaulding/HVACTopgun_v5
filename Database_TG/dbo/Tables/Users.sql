@@ -8,5 +8,8 @@
     [Email] NVARCHAR(100) NULL, 
     [FirstName] NVARCHAR(50) NULL, 
     [LastName] NVARCHAR(50) NULL, 
-    [PhoneNumber] NVARCHAR(20) NULL
+    [PhoneNumber] NVARCHAR(20) NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
+    CONSTRAINT FK_Users_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )

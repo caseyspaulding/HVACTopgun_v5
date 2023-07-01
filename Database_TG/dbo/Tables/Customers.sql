@@ -5,7 +5,9 @@
     [FirstName] NCHAR(50) NULL, 
     [LastName] NCHAR(50) NULL, 
     [Email] NCHAR(50) NULL, 
-   
+    
+    [DateDeleted] DATETIME2 NULL , 
+  
     [CreatedDateTime] DATETIME2 NOT NULL DEFAULT GETDATE(), 
     [LastUpdated] DATETIME2 NULL DEFAULT GETDATE(), 
     

@@ -12,7 +12,9 @@
     [ItemBrand] NVARCHAR(100) NULL,
     [ItemModel] NVARCHAR(100) NULL,
     [ItemSerialNumber] NVARCHAR(100) NULL,
-    [ItemColor] NVARCHAR(100) NULL
+    [ItemColor] NVARCHAR(100) NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
     
     CONSTRAINT FK_Inventory_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )

@@ -14,5 +14,7 @@
     [JobTypeName] NVARCHAR(100) NULL,
     [CustomerName] NVARCHAR(100) NULL,
     [Pricing] INT NOT NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
     CONSTRAINT FK_Estimates_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )

@@ -16,7 +16,10 @@
     
     [TimeZone] NVARCHAR(50) NULL, 
     [IsActive] BIT NOT NULL DEFAULT 1, 
-    [Deleted] BIT NULL DEFAULT 0, 
+    
     [SubscriptionType] INT NULL, 
-    [PaymentStatus] INT NULL
+    [PaymentStatus] INT NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
+    
 )

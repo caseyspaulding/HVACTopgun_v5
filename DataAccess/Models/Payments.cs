@@ -1,12 +1,12 @@
 ﻿using DataAccess.Enums;
-using DataAccess.Models.Interfaces;
+
 
 namespace DataAccess.Models
 {
-    public class Payments : IPayments
+    public class Payments
     {
         public int PaymentId { get; set; } // primary key
-        public int TenantId { get; set; } // foreign key referencing tenants table
+        public int TenantID { get; set; } // foreign key referencing tenants table
         public int CustomerId { get; set; } // foreign key referencing customers table
         public int JobTypeId { get; set; } // foreign key referencing jobtypes table
         public int HVACCompanyId { get; set; } // foreign key referencing hvaccompanies table
@@ -19,6 +19,8 @@ namespace DataAccess.Models
         public string? JobTypeName { get; set; }
         public string? CustomerName { get; set; }
         public double Amount { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
     }

@@ -82,6 +82,18 @@
     <Build Include="dbo\Tables\CustomerHistory.sql" />
     <Build Include="dbo\Tables\Payments.sql" />
     <Build Include="dbo\Tables\AvailableAppointment.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertTenant.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertUser.sql" />
+    <Build Include="dbo\Stored Procedures\spUserExists.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAllTenants.sql" />
+    <Build Include="dbo\Stored Procedures\spGetTenant.sql" />
+    <Build Include="dbo\Stored Procedures\spAddTenant.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateTenant.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteTenant.sql" />
+    <Build Include="dbo\Stored Procedures\spSoftDeleteTenant.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateUser.sql" />
+    <Build Include="dbo\Stored Procedures\spAddUser.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUserById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database_TG.publish.xml" />

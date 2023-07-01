@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class Users
+    public class UserModel
     {
 
         public int UserId { get; set; }
@@ -12,6 +12,8 @@
         public string? Email { get; set; }
         public int Role { get; set; }
         public string? PhoneNumber { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
 
 
 

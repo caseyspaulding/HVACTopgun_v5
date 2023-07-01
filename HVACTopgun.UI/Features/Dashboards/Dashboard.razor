@@ -1,10 +1,13 @@
 ﻿@page "/dashboard"
 @layout Test 
+@using HVACTopGun.UI.Helpers;
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Navigations
 @using HVACTopGun.UI.Pages.SyncFusion
 @inject IJSRuntime JSRuntime
+@inject UserService UserService
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @attribute [Authorize]
 
 <div class="">
@@ -67,5 +70,14 @@
 
 @code
 {
-    
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            // The user is logged in.
+            // This is where we will call our service to create the user and tenant.
+            await UserService.CreateUserAndTenant();
+        }
+    }
 }

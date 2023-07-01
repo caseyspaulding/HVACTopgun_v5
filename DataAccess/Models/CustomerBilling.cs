@@ -1,12 +1,12 @@
 ﻿using DataAccess.Enums;
-using DataAccess.Models.Interfaces;
+
 
 namespace DataAccess.Models
 {
-    public class CustomerBilling : ICustomerBilling
+    public class CustomerBilling
     {
         public int BillingId { get; set; }
-        public int TenantId { get; set; }
+        public int TenantID { get; set; }
         public int CustomerId { get; set; }
         public string? BillingAddress { get; set; }
         public string? BillingCity { get; set; }
@@ -16,5 +16,7 @@ namespace DataAccess.Models
         public string? BillingLastName { get; set; }
         public string? BillingEmail { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
     }
 }

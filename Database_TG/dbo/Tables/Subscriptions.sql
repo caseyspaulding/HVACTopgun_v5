@@ -13,5 +13,7 @@
     [CustomerState] NVARCHAR(50) NULL,
     [CustomerZipCode] NVARCHAR(20) NULL,
     [CustomerFirstName] NVARCHAR(50) NULL,
-    [CustomerLastName] NVARCHAR(50) NULL
+    [CustomerLastName] NVARCHAR(50) NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
 )

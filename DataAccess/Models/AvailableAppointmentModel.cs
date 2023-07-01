@@ -1,12 +1,12 @@
-﻿using DataAccess.Models.Interfaces;
+﻿
 
 namespace DataAccess.Models
 {
-    public class AvailableAppointmentModel : IAvailableAppointmentModel
+    public class AvailableAppointmentModel
     {
         public int Id { get; set; }
 
-        public int TenantId { get; set; }
+        public int TenantID { get; set; }
 
         public bool Reserved { get; set; }
 
@@ -21,5 +21,7 @@ namespace DataAccess.Models
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
     }
 }

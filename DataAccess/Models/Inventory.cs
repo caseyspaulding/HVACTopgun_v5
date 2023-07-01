@@ -1,11 +1,10 @@
-﻿using DataAccess.Models.Interfaces;
-
+﻿
 namespace DataAccess.Models
 {
-    public class Inventory : IInventory
+    public class Inventory
     {
         public int InventoryId { get; set; }
-        public int TenantId { get; set; }
+        public int TenantID { get; set; }
         public string? ItemName { get; set; }
         public string? ItemDescription { get; set; }
         public int ItemQuantity { get; set; }
@@ -17,6 +16,8 @@ namespace DataAccess.Models
         public string? ItemModel { get; set; }
         public string? ItemSerialNumber { get; set; }
         public string? ItemColor { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
 
     }
 }

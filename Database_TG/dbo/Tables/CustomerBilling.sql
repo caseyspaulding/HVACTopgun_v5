@@ -11,5 +11,7 @@
     [BillingLastName] NVARCHAR(50) NULL,
     [BillingEmail] NVARCHAR(100) NULL,
     [PaymentMethod] NVARCHAR(50) NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
     CONSTRAINT FK_CustomerBilling_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )

@@ -10,7 +10,10 @@
     [IsTaxable] BIT NOT NULL,
     [IsDiscountable] BIT NOT NULL,
     [IsOptional] BIT NOT NULL,
-    [IsDeleted] BIT NOT NULL,
+    
     [CreatedDate] DATETIME NOT NULL,
-    [ModifiedDate] DATETIME NULL
+    [ModifiedDate] DATETIME NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
+    CONSTRAINT FK_PriceBook_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )

@@ -1,8 +1,8 @@
-﻿using DataAccess.Models.Interfaces;
+﻿
 
 namespace DataAccess.Models
 {
-    internal class HVACCompanies : IHVACCompanies
+    internal class HVACCompanies
     {
         public int HVACCompanyId { get; set; }
         public int TenantID { get; set; } // foreign key referencing tenants table
@@ -17,6 +17,8 @@ namespace DataAccess.Models
         public string? CompanyWebsite { get; set; }
         public string? CompanyDescription { get; set; }
         public string? CompanyLogo { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
 
 
     }

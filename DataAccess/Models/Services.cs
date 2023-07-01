@@ -1,8 +1,8 @@
-﻿using DataAccess.Models.Interfaces;
+﻿
 
 namespace DataAccess.Models
 {
-    public class Services : IServices
+    public class Services
     {
         public int ServiceID { get; set; }
         public int TenantID { get; set; }
@@ -20,6 +20,8 @@ namespace DataAccess.Models
         public string? ServicePriceIcon { get; set; }
         public string? ServicePriceImage { get; set; }
         public string? ServiceDuration { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
 
 
     }

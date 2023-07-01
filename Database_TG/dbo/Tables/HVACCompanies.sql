@@ -13,5 +13,7 @@
     [CompanyWebsite] NVARCHAR(100) NULL,
     [CompanyDescription] NVARCHAR(MAX) NULL,
     [CompanyLogo] NVARCHAR(100) NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
     CONSTRAINT FK_HVACCompanies_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )

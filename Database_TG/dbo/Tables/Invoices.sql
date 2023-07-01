@@ -14,6 +14,9 @@
     [JobTypeName] NVARCHAR(100) NULL,
     [CustomerName] NVARCHAR(100) NULL,
     [Pricing] FLOAT NOT NULL,
-    [Taxes] FLOAT NOT NULL
+    [Taxes] FLOAT NOT NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
+    CONSTRAINT FK_Invoices_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )
 

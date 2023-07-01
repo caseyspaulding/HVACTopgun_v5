@@ -1,11 +1,11 @@
-﻿using DataAccess.Models.Interfaces;
+﻿
 
 namespace DataAccess.Models
 {
-    internal class Invoices : IInvoices
+    internal class Invoices
     {
         public int InvoiceId { get; set; }
-        public int TenantId { get; set; }
+        public int TenantID { get; set; }
         public int CustomerId { get; set; }
         public int JobTypeId { get; set; }
         public int HVACCompanyId { get; set; }
@@ -19,5 +19,7 @@ namespace DataAccess.Models
         public string? CustomerName { get; set; }
         public double Pricing { get; set; }
         public double Taxes { get; set; }
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
     }
 }

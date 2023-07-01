@@ -1,8 +1,8 @@
-﻿using DataAccess.Models.Interfaces;
+﻿
 
 namespace DataAccess.Models
 {
-    public class Roles : IRoles
+    public class Roles
     {
         public int RoleId { get; set; }
         public string? RoleName { get; set; }

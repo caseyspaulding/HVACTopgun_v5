@@ -1,10 +1,10 @@
 ﻿using DataAccess.Enums;
-using DataAccess.Models.Interfaces;
 
 namespace HVACTopGun.UI.Models
 {
-    public class UITenantModel : ITenantModel
+    public class UITenantModel
     {
+
         public string TenantId { get; set; } = string.Empty;
 
         public string FirstName { get; set; } = string.Empty;
@@ -42,7 +42,5 @@ namespace HVACTopGun.UI.Models
         public SubscriptionType SubscriptionType { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
-        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

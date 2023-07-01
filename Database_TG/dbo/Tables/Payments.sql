@@ -15,5 +15,8 @@
     [CustomerName] NVARCHAR(50) NULL,
     [Amount] FLOAT NOT NULL,
     [PaymentStatus] NVARCHAR(50) NULL,
-    [PaymentMethod] NVARCHAR(50) NULL
+    [PaymentMethod] NVARCHAR(50) NULL,
+    [Deleted] BIT NOT NULL DEFAULT 0, 
+    [DateDeleted] DATETIME2 NULL , 
+    CONSTRAINT FK_Payments_TenantID FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 )

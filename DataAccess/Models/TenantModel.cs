@@ -1,12 +1,12 @@
 ﻿using DataAccess.Enums;
-using DataAccess.Models.Interfaces;
+
 
 namespace DataAccess.Models
 {
-    public class TenantModel : ITenantModel
+    public class TenantModel
     {
 
-        public string TenantId { get; set; } = string.Empty;
+        public string TenantID { get; set; } = string.Empty;
 
         public string FirstName { get; set; } = string.Empty;
 
@@ -30,7 +30,7 @@ namespace DataAccess.Models
 
         public string State { get; set; } = string.Empty;
 
-        public string? ZipCode { get; set; }
+        public string? ZipCode { get; set; } = string.Empty;
 
         public string Country { get; set; } = string.Empty;
 
@@ -38,7 +38,9 @@ namespace DataAccess.Models
 
         public bool IsActive { get; set; }
 
-        public bool Deleted { get; set; }
+
+        public bool Deleted { get; set; } = false;
+        public DateTime DateDeleted { get; set; }
 
         public SubscriptionType SubscriptionType { get; set; }
 
