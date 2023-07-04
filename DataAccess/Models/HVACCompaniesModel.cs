@@ -2,7 +2,7 @@
 
 namespace DataAccess.Models
 {
-    internal class HVACCompanies
+    internal class HVACCompaniesModel
     {
         public int HVACCompanyId { get; set; }
         public int TenantID { get; set; } // foreign key referencing tenants table

@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spAddUser]
-	  @UserId INT,
+	@UserId INT,
     @TenantID INT,
     @UserName NVARCHAR(50),
     @Email NVARCHAR(100),
@@ -12,6 +12,6 @@
     @AzureAD_ObjectID NVARCHAR(50)
 AS
 BEGIN
-    INSERT INTO dbo.Users (TenantID, UserName, Email, FirstName, LastName, PhoneNumber, Deleted, DateDeleted, Role, AzureAD_ObjectID)
+    INSERT INTO dbo.Users (TenantID, UserName, Email, FirstName, LastName, PhoneNumber, Deleted, DateDeleted, [Role], AzureAD_ObjectID)
     VALUES (@TenantID, @UserName, @Email, @FirstName, @LastName, @PhoneNumber, @Deleted, @DateDeleted, @Role, @AzureAD_ObjectID);
 END

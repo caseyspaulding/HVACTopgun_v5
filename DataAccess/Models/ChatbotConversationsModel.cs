@@ -2,7 +2,7 @@
 
 namespace DataAccess.Models
 {
-    public class ChatbotConversations
+    public class ChatbotConversationsModel
     {
         public int Id { get; set; }
         public int TenantID { get; set; }

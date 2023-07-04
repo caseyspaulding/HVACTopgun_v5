@@ -3,7 +3,7 @@
 
 namespace DataAccess.Models
 {
-    public class CustomerBilling
+    public class CustomerBillingModel
     {
         public int BillingId { get; set; }
         public int TenantID { get; set; }

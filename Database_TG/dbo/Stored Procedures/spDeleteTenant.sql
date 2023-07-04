@@ -72,17 +72,9 @@ BEGIN
         DateDeleted = GETDATE()
         WHERE TenantID = @TenantId;
 
-        UPDATE Subscriptions
-        SET Deleted = 1,
-        DateDeleted = GETDATE()
-        WHERE TenantID = @TenantId;
+        
 
         UPDATE [Services]
-        SET Deleted = 1,
-        DateDeleted = GETDATE()
-        WHERE TenantID = @TenantId;
-
-        UPDATE Subscriptions
         SET Deleted = 1,
         DateDeleted = GETDATE()
         WHERE TenantID = @TenantId;

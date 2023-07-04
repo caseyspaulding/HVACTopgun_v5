@@ -2,7 +2,7 @@
 
 namespace DataAccess.Models
 {
-    public class PriceBook
+    public class PriceBookModel
     {
         public int PriceBookId { get; set; }
         public int TenantID { get; set; }

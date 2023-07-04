@@ -1,12 +1,12 @@
 ﻿using DataAccess.Enums;
-
+using System.Data.SqlTypes;
 
 namespace DataAccess.Models
 {
     public class TenantModel
     {
 
-        public string TenantID { get; set; } = string.Empty;
+        public int TenantID { get; set; }
 
         public string FirstName { get; set; } = string.Empty;
 
@@ -30,7 +30,7 @@ namespace DataAccess.Models
 
         public string State { get; set; } = string.Empty;
 
-        public string? ZipCode { get; set; } = string.Empty;
+        public string ZipCode { get; set; } = string.Empty;
 
         public string Country { get; set; } = string.Empty;
 
@@ -38,14 +38,31 @@ namespace DataAccess.Models
 
         public bool IsActive { get; set; }
 
-
         public bool Deleted { get; set; } = false;
+
         public DateTime DateDeleted { get; set; }
 
-        public SubscriptionType SubscriptionType { get; set; }
+        public string? SubscriptionType { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
 
+        private DateTime? trialExpirationDate;
+
+        public DateTime? TrialExpirationDate
+        {
+            get { return trialExpirationDate; }
+            set { trialExpirationDate = ValidateTrialExpirationDate(value); }
+        }
+
+        private DateTime? ValidateTrialExpirationDate(DateTime? value)
+        {
+            if (value.HasValue && (value.Value < SqlDateTime.MinValue.Value || value.Value > SqlDateTime.MaxValue.Value))
+            {
+                return null; // Set it to null or handle it accordingly
+            }
+
+            return value;
+        }
 
     }
 }

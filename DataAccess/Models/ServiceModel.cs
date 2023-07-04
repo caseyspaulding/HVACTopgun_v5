@@ -2,7 +2,7 @@
 
 namespace DataAccess.Models
 {
-    public class Services
+    public class ServiceModel
     {
         public int ServiceID { get; set; }
         public int TenantID { get; set; }

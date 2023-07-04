@@ -2,7 +2,7 @@
 
 namespace DataAccess.Models
 {
-    public class Roles
+    public class RolesModel
     {
         public int RoleId { get; set; }
         public string? RoleName { get; set; }

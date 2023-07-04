@@ -12,8 +12,9 @@
     @TimeZone NVARCHAR(50),
     @IsActive BIT,
     @Deleted BIT,
-    @SubscriptionType INT,
-    @PaymentStatus INT
+    @SubscriptionType NVARCHAR(20),
+    @PaymentStatus INT,
+    @TrialExpirationDate DATETIME2
 AS
 BEGIN
     INSERT INTO Tenants (
@@ -23,15 +24,16 @@ BEGIN
         Domain,
         Email,
         PhoneNumber,
-        Address,
+        [Address],
         City,
-        State,
+        [State],
         ZipCode,
         TimeZone,
         IsActive,
         Deleted,
         SubscriptionType,
-        PaymentStatus
+        PaymentStatus,
+        TrialExpirationDate
     )
     VALUES (
         @FirstName,
@@ -48,6 +50,7 @@ BEGIN
         @IsActive,
         @Deleted,
         @SubscriptionType,
-        @PaymentStatus
+        @PaymentStatus,
+        @TrialExpirationDate
     )
 END

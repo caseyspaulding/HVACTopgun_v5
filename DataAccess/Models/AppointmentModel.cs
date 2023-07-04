@@ -5,8 +5,9 @@ namespace DataAccess.Models
 {
     public class AppointmentModel
     {
-        public int AppointmentId { get; set; }
+        public int AppointmentID { get; set; }
         public int TenantID { get; set; }
+        public int UserID { get; set; }
         public string? Subject { get; set; }
         public string? Description { get; set; }
         public DateTime StartTime { get; set; }
@@ -33,7 +34,7 @@ namespace DataAccess.Models
         public TechnicianModel? Technician { get; set; }  // Navigation property to Technician entity
         public int CustomerId { get; set; }  // Foreign key to Customer entity
         public CustomerModel? Customer { get; set; }   // Navigation property to Customer entity
-        public int ServiceId { get; set; }
+        public int ServiceID { get; set; }
         public bool Deleted { get; set; } = false;
         public DateTime DateDeleted { get; set; }
         public int JobTypeId { get; set; } // Foreign key to JobTypes table

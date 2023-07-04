@@ -1,30 +1,31 @@
-﻿using DataAccess.Models;
+﻿using DataAccess.Data;
 using Microsoft.AspNetCore.Components.Authorization;
+using System.Security.Claims;
 
 namespace HVACTopGun.UI.Helpers
 {
     public static class AuthenticationStateProviderHelpers
     {
-        public static async Task<TenantModel> GetTenantFromAuth(
+        public static async Task<int?> GetTenantIdFromAuth(
             this AuthenticationStateProvider provider,
-            ITenantDataService tenantSqlData)
+            ITenantDataService tenantDataService)
         {
             var authState = await provider.GetAuthenticationStateAsync();
-            string objectId = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("objectidentifier"))?.Value;
+            var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
 
             if (string.IsNullOrEmpty(objectId))
             {
                 throw new InvalidOperationException("Unable to find ObjectIdentifier claim.");
             }
 
-            var tenant = await tenantSqlData.GetTenantFromAuthentication(objectId);
+            var tenantId = await tenantDataService.GetTenantIdByObjectId(objectId);
 
-            if (tenant == null)
+            if (tenantId == null)
             {
                 throw new InvalidOperationException($"Unable to find tenant for ObjectIdentifier: {objectId}");
             }
 
-            return tenant;
+            return tenantId; // Return the int? directly
         }
     }
 }

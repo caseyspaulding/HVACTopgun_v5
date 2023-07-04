@@ -1,10 +1,11 @@
 ﻿using DataAccess.DbAccess;
 using DataAccess.Models;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DataAccess.Data;
 
-public class TenantDataService
+public class TenantDataService : ITenantDataService
 {
     private readonly ISqlDataAccess _dataAccess;
 
@@ -12,6 +13,42 @@ public class TenantDataService
     {
         this._dataAccess = dataAccess;
     }
+
+    public async Task<int?> GetTenantIdByObjectId(string objectId)
+    {
+        var parameters = new { ObjectId = objectId };
+        var result = await _dataAccess.LoadData<int?, dynamic>("spGetTenantIdByObjectId", parameters);
+        return result.FirstOrDefault();
+    }
+
+
+
+    public async Task<int> GetLastCreatedTenantId()
+    {
+        try
+        {
+            var result = await _dataAccess.LoadData<TenantModel, dynamic>("dbo.spGetAllTenants", new { });
+            var lastTenant = result.OrderByDescending(t => t.TenantID).FirstOrDefault();
+
+            if (lastTenant == null)
+            {
+                throw new Exception("No tenants found in the database.");
+            }
+
+            return lastTenant.TenantID;
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine($"Error occurred while retrieving last created TenantID: {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error occurred while retrieving last created TenantID: {ex.Message}");
+            throw;
+        }
+    }
+
 
     public Task<IEnumerable<TenantModel>> GetAllTenants()
     {
@@ -25,7 +62,24 @@ public class TenantDataService
             new { Id = id });
         return results.FirstOrDefault();
     }
-
+    public async Task<TenantModel?> GetTenantByBusinessName(string businessName)
+    {
+        try
+        {
+            var results = await _dataAccess.LoadData<TenantModel, dynamic>("dbo.spGetTenantByBusinessName", new { CompanyName = businessName });
+            return results.FirstOrDefault();
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine($"Error occurred while retrieving tenant: {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error occurred while retrieving tenant: {ex.Message}");
+            throw;
+        }
+    }
     // insert, update, delete
     public async Task CreateTenant(TenantModel tenant)
     {
@@ -48,7 +102,8 @@ public class TenantDataService
                                    tenant.IsActive,
                                    tenant.Deleted,
                                    tenant.SubscriptionType,
-                                   tenant.PaymentStatus
+                                   tenant.PaymentStatus,
+                                   tenant.TrialExpirationDate
                                });
         }
         catch (SqlException ex)
@@ -66,7 +121,24 @@ public class TenantDataService
         }
 
     }
-
+    public async Task<UserModel?> GetUserById(int id)
+    {
+        try
+        {
+            var results = await _dataAccess.LoadData<UserModel, dynamic>("dbo.spGetUserById", new { Id = id });
+            return results.FirstOrDefault();
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+            throw;
+        }
+    }
     public async Task DeleteTenant(int id)
     {
         try

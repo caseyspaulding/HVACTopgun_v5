@@ -74,7 +74,6 @@
     <Build Include="dbo\Tables\PriceBook.sql" />
     <Build Include="dbo\Tables\Inventory.sql" />
     <Build Include="dbo\Tables\Roles.sql" />
-    <Build Include="dbo\Tables\Subscriptions.sql" />
     <Build Include="dbo\Tables\Estimates.sql" />
     <Build Include="dbo\Tables\HVACCompanies.sql" />
     <Build Include="dbo\Tables\ChatBotConversations.sql" />
@@ -82,8 +81,6 @@
     <Build Include="dbo\Tables\CustomerHistory.sql" />
     <Build Include="dbo\Tables\Payments.sql" />
     <Build Include="dbo\Tables\AvailableAppointment.sql" />
-    <Build Include="dbo\Stored Procedures\spInsertTenant.sql" />
-    <Build Include="dbo\Stored Procedures\spInsertUser.sql" />
     <Build Include="dbo\Stored Procedures\spUserExists.sql" />
     <Build Include="dbo\Stored Procedures\spGetAllTenants.sql" />
     <Build Include="dbo\Stored Procedures\spGetTenant.sql" />
@@ -94,6 +91,12 @@
     <Build Include="dbo\Stored Procedures\spUpdateUser.sql" />
     <Build Include="dbo\Stored Procedures\spAddUser.sql" />
     <Build Include="dbo\Stored Procedures\spGetUserById.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUserByObjectId.sql" />
+    <Build Include="dbo\Stored Procedures\spGetTenantByBusinessName.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Add_UserRole.sql" />
+    <Build Include="dbo\Tables\TenantSubscriptions.sql" />
+    <Build Include="dbo\Tables\Subscriptions.sql" />
+    <Build Include="dbo\Stored Procedures\spGetTenantIdByObjectId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database_TG.publish.xml" />

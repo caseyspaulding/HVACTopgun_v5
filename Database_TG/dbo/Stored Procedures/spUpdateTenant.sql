@@ -14,7 +14,7 @@
     @TimeZone NVARCHAR(50),
     @IsActive BIT,
     @Deleted BIT,
-    @SubscriptionType INT,
+    @SubscriptionType NVARCHAR(20),
     @PaymentStatus INT
 AS
 BEGIN
@@ -27,9 +27,9 @@ BEGIN
         LastUpdated = @LastUpdated,
         Email = @Email,
         PhoneNumber = @PhoneNumber,
-        Address = @Address,
+        [Address] = @Address,
         City = @City,
-        State = @State,
+        [State] = @State,
         ZipCode = @ZipCode,
         TimeZone = @TimeZone,
         IsActive = @IsActive,

@@ -1,7 +1,7 @@
 ﻿
 namespace DataAccess.Models
 {
-    public class Inventory
+    public class InventoryModel
     {
         public int InventoryId { get; set; }
         public int TenantID { get; set; }

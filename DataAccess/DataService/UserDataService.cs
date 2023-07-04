@@ -4,9 +4,11 @@ using System.Data.SqlClient;
 
 namespace DataAccess.DataService
 {
-    public class UserDataService
+    public class UserDataService : IUserDataService
     {
         private readonly ISqlDataAccess _dataAccess;
+
+
 
         public UserDataService(ISqlDataAccess dataAccess)
         {
@@ -44,7 +46,26 @@ namespace DataAccess.DataService
             }
         }
 
-        public async Task<UserModel> GetUserById(int id)
+        public async Task<UserModel?> GetUserByObjectId(string azureObjectId)
+        {
+            try
+            {
+                var results = await _dataAccess.LoadData<UserModel, dynamic>("dbo.spGetUserByObjectId", new { AzureAD_ObjectID = azureObjectId });
+                return results.FirstOrDefault();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<UserModel?> GetUserById(int id)
         {
             try
             {

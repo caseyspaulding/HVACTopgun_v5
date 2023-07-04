@@ -1,15 +1,20 @@
 ﻿@page "/dashboard"
+@using HVACTopGun.UI.Pages
 @layout Test 
-@using HVACTopGun.UI.Helpers;
-@using Syncfusion.Blazor.Charts
-@using Syncfusion.Blazor.Grids
-@using Syncfusion.Blazor.Navigations
-@using HVACTopGun.UI.Pages.SyncFusion
 @inject IJSRuntime JSRuntime
-@inject UserService UserService
+@inject ITenantDataService TenantDataService
+@inject IUserDataService UserDataService
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@attribute [Authorize]
+@inject AuthClaimsModel authClaimsModel
 
+@attribute [Authorize]
+<div>
+    <p>Hello, @FirstName!</p>
+    <p>Company: @CompanyName</p>
+
+</div>
+
+ 
 <div class="">
     <SfDashboardLayout Columns="4">
         <DashboardLayoutPanels>
@@ -17,21 +22,21 @@
             <DashboardLayoutPanel Column="0" Row="0">
                 <HeaderTemplate>Your Revenue Goal</HeaderTemplate>
                 <ContentTemplate>
-                    <GaugeHalf />
+                    <GaugeHalf/>
                     </ContentTemplate>
             </DashboardLayoutPanel>
 
             <DashboardLayoutPanel Column="0" Row="1" SizeX="3">
                 <HeaderTemplate>Panel 2</HeaderTemplate>
                 <ContentTemplate>
-                    <BarChart></BarChart>
+                    <BarChart/>
                 </ContentTemplate>
             </DashboardLayoutPanel>
 
             <DashboardLayoutPanel Column="1" Row="0">
                 <HeaderTemplate>New Leads</HeaderTemplate>
                 <ContentTemplate>
-                   <DonutChart></DonutChart>
+                   <DonutChart/>
 
                 </ContentTemplate>
             </DashboardLayoutPanel>
@@ -70,14 +75,21 @@
 
 @code
 {
+
+    private ClaimsPrincipal User { get; set; }
+    private string FirstName { get; set; }
+    private string CompanyName { get; set; }
+    private int? tenantId;
+
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        if (authState.User.Identity.IsAuthenticated)
-        {
-            // The user is logged in.
-            // This is where we will call our service to create the user and tenant.
-            await UserService.CreateUserAndTenant();
-        }
+        var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
+        var tenantId = await TenantDataService.GetTenantIdByObjectId(objectId);
+        User = authState.User;
+        
+        FirstName = User.FindFirstValue("extension_FirstName");
+        CompanyName = User.FindFirstValue("extension_CompanyName");
+        
     }
 }
