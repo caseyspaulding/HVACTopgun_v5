@@ -33,6 +33,7 @@ builder.Services.AddScoped<IUserDataService, UserDataService>();
 builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
 builder.Services.AddScoped<IAuthorizationHandler, SubscriptionAuthorizationHandler>();
 builder.Services.AddScoped<AuthClaimsModel>();
+builder.Services.AddScoped<IRoleDataService, RoleDataService>();
 
 //builder.Services.AddScoped<IRoleDataService, RoleDataService>();
 
@@ -109,10 +110,22 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                             FirstName = objAuthClaims.FirstName,
                             LastName = objAuthClaims.LastName,
                             Email = objAuthClaims.Email,
-                            Role = "Admin"
+                            Role = "Owner"
                         };
 
                         await userDataService.CreateUser(newUser);
+                        var createdUser = await userDataService.GetUserByObjectId(objAuthClaims.ObjectId);
+
+                        if (createdUser != null)
+                        {
+                            var roleDataService = ctxt.HttpContext.RequestServices.GetRequiredService<IRoleDataService>();
+                            var ownerRole = await roleDataService.GetRolesByNames(new List<string> { "Owner" });
+
+                            if (ownerRole.Any())
+                            {
+                                await roleDataService.AssignUserRole(createdUser.UserId, ownerRole.First().RoleId);
+                            }
+                        }
                     }
                 }
             }

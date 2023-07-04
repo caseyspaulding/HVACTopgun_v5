@@ -1,7 +1,10 @@
-﻿namespace DataAccess.DataService
+﻿using DataAccess.Models;
+
+namespace DataAccess.DataService
 {
     public interface IRoleDataService
     {
-        Task AddUserRole(int userId, int roleId);
+        Task AssignUserRole(int userId, int roleId);
+        Task<IEnumerable<RolesModel>> GetRolesByNames(IEnumerable<string> roleNames);
     }
 }

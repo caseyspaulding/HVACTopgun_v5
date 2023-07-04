@@ -97,6 +97,8 @@
     <Build Include="dbo\Tables\TenantSubscriptions.sql" />
     <Build Include="dbo\Tables\Subscriptions.sql" />
     <Build Include="dbo\Stored Procedures\spGetTenantIdByObjectId.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRoleByName.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database_TG.publish.xml" />
