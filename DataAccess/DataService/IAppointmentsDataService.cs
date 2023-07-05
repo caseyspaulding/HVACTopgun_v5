@@ -4,9 +4,9 @@ namespace DataAccess.DataService
 {
     public interface IAppointmentsDataService
     {
-        Task CreateAppointment(AppointmentModel appointment);
-        Task DeleteAppointment(int id);
-        Task<AppointmentModel?> GetAppointmentById(int id);
-        Task UpdateAppointment(AppointmentModel appointment);
+        Task CreateAppointment(AppointmentModel appointment, int tenantId);
+        Task DeleteAppointment(int appointmentId, int tenantId);
+        Task<AppointmentModel?> GetAppointmentById(int id, int tenantId);
+        Task UpdateAppointment(AppointmentModel appointment, int tenantId);
     }
 }

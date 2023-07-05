@@ -13,89 +13,15 @@ namespace DataAccess.DataService
             _dataAccess = dataAccess;
         }
 
-        public async Task CreateAppointment(AppointmentModel appointment)
+        public async Task CreateAppointment(AppointmentModel appointment, int tenantId)
         {
+
             try
             {
                 await _dataAccess.SaveData("dbo.spAddAppointment", new
                 {
-                    appointment.AppointmentId,
-                    appointment.TenantID,
-                    appointment.UserId,
-                    appointment.Subject,
-                    appointment.Description,
-                    appointment.StartTime,
-                    appointment.EndTime,
-                    appointment.TechnicianName,
-                    appointment.CustomerName,
-                    appointment.Location,
-                    appointment.Status,
-                    appointment.IsAllDay,
-                    appointment.RecurrenceId,
-                    appointment.RecurrenceRule,
-                    appointment.RecurrenceException,
-                    appointment.IsReadonly,
-                    appointment.IsBlock,
-                    appointment.CssClass,
-                    appointment.AvailableAppointmentId,
-                    appointment.TenantName,
-                    appointment.CategoryColor,
-                    appointment.StartTimeZone,
-                    appointment.EndTimeZone,
-                    appointment.CreatedAt,
-                    appointment.UpdatedAt,
-                    appointment.TechnicianId,
-                    appointment.Technician,
-                    appointment.CustomerId,
-                    appointment.Customer,
-                    appointment.ServiceId,
-                    appointment.Deleted,
-                    appointment.DateDeleted,
-                    appointment.JobTypeId,
-                    appointment.JobType
 
-
-                });
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"Error occurred while creating user: {ex.Message}");
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error occurred while creating user: {ex.Message}");
-                throw;
-            }
-        }
-
-        public async Task<AppointmentModel?> GetAppointmentById(int id)
-        {
-            try
-            {
-                var results = await _dataAccess.LoadData<AppointmentModel, dynamic>("dbo.spGetAppointmentById", new { Id = id });
-                return results.FirstOrDefault();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
-                throw;
-            }
-        }
-
-        public async Task UpdateAppointment(AppointmentModel appointment)
-        {
-            try
-            {
-                await _dataAccess.SaveData("dbo.spUpdateAppointment", new
-                {
-                    appointment.AppointmentId,
-                    appointment.TenantID,
+                    TenantId = tenantId,
                     appointment.UserId,
                     appointment.Subject,
                     appointment.Description,
@@ -128,8 +54,82 @@ namespace DataAccess.DataService
                     appointment.DateDeleted,
                     appointment.JobTypeId,
                     appointment.JobType,
-                    OriginalUpdatedAt = appointment.UpdatedAt,
-                    NewUpdatedAt = DateTime.UtcNow
+
+
+                });
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error occurred while creating user: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred while creating user: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<AppointmentModel?> GetAppointmentById(int id, int tenantId)
+        {
+            try
+            {
+                var results = await _dataAccess.LoadData<AppointmentModel, dynamic>("dbo.spGetAppointmentById", new { Id = id });
+                return results.FirstOrDefault();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task UpdateAppointment(AppointmentModel appointment, int tenantId)
+        {
+            try
+            {
+                await _dataAccess.SaveData("dbo.spUpdateAppointment", new
+                {
+                    appointment.AppointmentId,
+                    TenantId = tenantId,
+                    appointment.UserId,
+                    appointment.Subject,
+                    appointment.Description,
+                    appointment.StartTime,
+                    appointment.EndTime,
+                    appointment.TechnicianName,
+                    appointment.CustomerName,
+                    appointment.Location,
+                    appointment.Status,
+                    appointment.IsAllDay,
+                    appointment.RecurrenceId,
+                    appointment.RecurrenceRule,
+                    appointment.RecurrenceException,
+                    appointment.IsReadonly,
+                    appointment.IsBlock,
+                    appointment.CssClass,
+                    appointment.AvailableAppointmentId,
+                    appointment.TenantName,
+                    appointment.CategoryColor,
+                    appointment.StartTimeZone,
+                    appointment.EndTimeZone,
+                    appointment.CreatedAt,
+                    UpdatedAt = DateTime.UtcNow,
+                    appointment.TechnicianId,
+                    appointment.Technician,
+                    appointment.CustomerId,
+                    appointment.Customer,
+                    appointment.ServiceId,
+                    appointment.Deleted,
+                    appointment.DateDeleted,
+                    appointment.JobTypeId,
+                    appointment.JobType,
+
 
                 });
             }
@@ -145,11 +145,11 @@ namespace DataAccess.DataService
             }
         }
 
-        public async Task DeleteAppointment(int id)
+        public async Task DeleteAppointment(int appointmentId, int tenantId)
         {
             try
             {
-                await _dataAccess.SaveData("dbo.spDeleteAppointment", new { Id = id });
+                await _dataAccess.SaveData("dbo.spSoftDeleteAppointmentModel", new { AppointmentId = appointmentId, TenantID = tenantId });
             }
             catch (SqlException ex)
             {

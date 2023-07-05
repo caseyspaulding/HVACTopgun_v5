@@ -1,7 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spAddAppointmentModel]
-	
-    @AppointmentID INT,
-    @TenantID INT,
+@TenantID INT,
     @UserID INT,
     @Subject NVARCHAR(50),
     @Description NVARCHAR(MAX),
@@ -33,36 +31,8 @@
     @JobTypeId INT
 AS
 BEGIN
-    UPDATE Appointments
-    SET TenantID = @TenantID,
-        UserID = @UserID,
-        Subject = @Subject,
-        Description = @Description,
-        StartTime = @StartTime,
-        EndTime = @EndTime,
-        TechnicianName = @TechnicianName,
-        CustomerName = @CustomerName,
-        Location = @Location,
-        Status = @Status,
-        IsAllDay = @IsAllDay,
-        RecurrenceID = @RecurrenceID,
-        RecurrenceRule = @RecurrenceRule,
-        RecurrenceException = @RecurrenceException,
-        IsReadonly = @IsReadonly,
-        IsBlock = @IsBlock,
-        CssClass = @CssClass,
-        AvailableAppointmentId = @AvailableAppointmentId,
-        TenantName = @TenantName,
-        CategoryColor = @CategoryColor,
-        StartTimeZone = @StartTimeZone,
-        EndTimeZone = @EndTimeZone,
-        CreatedAt = @CreatedAt,
-        UpdatedAt = @UpdatedAt,
-        TechnicianId = @TechnicianId,
-        CustomerId = @CustomerId,
-        ServiceID = @ServiceID,
-        Deleted = @Deleted,
-        DateDeleted = @DateDeleted,
-        JobTypeId = @JobTypeId
-    WHERE AppointmentID = @AppointmentID AND TenantID = @TenantID
+    INSERT INTO Appointments (
+        TenantID, UserID, Subject, Description, StartTime, EndTime, TechnicianName, CustomerName, Location, Status, IsAllDay, RecurrenceID, RecurrenceRule, RecurrenceException, IsReadonly, IsBlock, CssClass, AvailableAppointmentId, TenantName, CategoryColor, StartTimeZone, EndTimeZone, CreatedAt, UpdatedAt, TechnicianId, CustomerId, ServiceID, Deleted, DateDeleted, JobTypeId)
+    VALUES (
+        @TenantID, @UserID, @Subject, @Description, @StartTime, @EndTime, @TechnicianName, @CustomerName, @Location, @Status, @IsAllDay, @RecurrenceID, @RecurrenceRule, @RecurrenceException, @IsReadonly, @IsBlock, @CssClass, @AvailableAppointmentId, @TenantName, @CategoryColor, @StartTimeZone, @EndTimeZone, @CreatedAt, @UpdatedAt, @TechnicianId, @CustomerId, @ServiceID, @Deleted, @DateDeleted, @JobTypeId)
 END
