@@ -4,7 +4,7 @@ namespace DataAccess.Models
 {
     public class ChatbotConversationsModel
     {
-        public int Id { get; set; }
+        public int ChatbotConversationsId { get; set; }
         public int TenantID { get; set; }
         public int CustomerId { get; set; }
         public string? ConversationId { get; set; }

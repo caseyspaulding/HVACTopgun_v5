@@ -5,9 +5,9 @@ namespace DataAccess.Models
 {
     public class AppointmentModel
     {
-        public int AppointmentID { get; set; }
+        public int AppointmentId { get; set; }
         public int TenantID { get; set; }
-        public int UserID { get; set; }
+        public int UserId { get; set; }
         public string? Subject { get; set; }
         public string? Description { get; set; }
         public DateTime StartTime { get; set; }
@@ -17,7 +17,7 @@ namespace DataAccess.Models
         public string? Location { get; set; }
         public JobStatus Status { get; set; }
         public bool IsAllDay { get; set; }
-        public int? RecurrenceID { get; set; }
+        public int? RecurrenceId { get; set; }
         public string? RecurrenceRule { get; set; }
         public string? RecurrenceException { get; set; }
         public bool IsReadonly { get; set; }
@@ -34,7 +34,7 @@ namespace DataAccess.Models
         public TechnicianModel? Technician { get; set; }  // Navigation property to Technician entity
         public int CustomerId { get; set; }  // Foreign key to Customer entity
         public CustomerModel? Customer { get; set; }   // Navigation property to Customer entity
-        public int ServiceID { get; set; }
+        public int ServiceId { get; set; }
         public bool Deleted { get; set; } = false;
         public DateTime DateDeleted { get; set; }
         public int JobTypeId { get; set; } // Foreign key to JobTypes table

@@ -84,4 +84,67 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="SubscriptionType" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="929d1bae-5a70-4de0-a77d-a03e217246a0" ChangeDateTime="07/05/2023 09:53:45">
+    <Property Name="ElementName" Value="[dbo].[JobTypes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[JobTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JobTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cee9f97b-6e63-4ed3-8264-e4892a21d477" ChangeDateTime="07/05/2023 10:13:54">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[AppointmentID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AppointmentId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="75805908-e64c-42e8-856c-001da5765bcc" ChangeDateTime="07/05/2023 10:14:01">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[CustomerID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CustomerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e18bb371-516e-4cd2-b908-f75d37b4f889" ChangeDateTime="07/05/2023 10:14:05">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[ServiceID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ServiceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="acf93ae3-89ba-47f2-88ea-ccc13bbdb20f" ChangeDateTime="07/05/2023 10:14:18">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[UserID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2462a163-bccb-4f3a-b52e-1fc3aae5af03" ChangeDateTime="07/05/2023 10:14:51">
+    <Property Name="ElementName" Value="[dbo].[Customers].[CustomerID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Customers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CustomerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a7a7209e-e457-4c50-8379-60795c4e018b" ChangeDateTime="07/05/2023 10:16:27">
+    <Property Name="ElementName" Value="[dbo].[Services].[ServiceID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Services]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ServiceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="78cfe409-1a22-4b57-b451-633befba7dad" ChangeDateTime="07/05/2023 10:17:23">
+    <Property Name="ElementName" Value="[dbo].[AvailableAppointmentModel].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AvailableAppointmentModel]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AvailableAppointmentId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7ad869a5-e42b-406d-a181-1c2e196816e3" ChangeDateTime="07/05/2023 10:17:44">
+    <Property Name="ElementName" Value="[dbo].[ChatbotConversations].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChatbotConversations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ChatBotConversationsId" />
+  </Operation>
 </Operations>

@@ -4,7 +4,7 @@ namespace DataAccess.Models
 {
     public class AvailabilityModel
     {
-        public int Id { get; set; }
+        public int AvailabilityId { get; set; }
         public int TenantID { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }

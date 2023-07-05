@@ -4,7 +4,7 @@ namespace DataAccess.Models
 {
     public class ServiceModel
     {
-        public int ServiceID { get; set; }
+        public int ServiceId { get; set; }
         public int TenantID { get; set; }
         public string? ServiceName { get; set; }
         public string? ServiceDescription { get; set; }

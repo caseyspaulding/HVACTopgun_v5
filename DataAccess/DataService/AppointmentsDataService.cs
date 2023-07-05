@@ -1,6 +1,6 @@
 ﻿using DataAccess.DbAccess;
 using DataAccess.Models;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace DataAccess.DataService
 {
@@ -19,9 +19,9 @@ namespace DataAccess.DataService
             {
                 await _dataAccess.SaveData("dbo.spAddAppointment", new
                 {
-                    appointment.AppointmentID,
+                    appointment.AppointmentId,
                     appointment.TenantID,
-                    appointment.UserID,
+                    appointment.UserId,
                     appointment.Subject,
                     appointment.Description,
                     appointment.StartTime,
@@ -31,7 +31,7 @@ namespace DataAccess.DataService
                     appointment.Location,
                     appointment.Status,
                     appointment.IsAllDay,
-                    appointment.RecurrenceID,
+                    appointment.RecurrenceId,
                     appointment.RecurrenceRule,
                     appointment.RecurrenceException,
                     appointment.IsReadonly,
@@ -48,7 +48,7 @@ namespace DataAccess.DataService
                     appointment.Technician,
                     appointment.CustomerId,
                     appointment.Customer,
-                    appointment.ServiceID,
+                    appointment.ServiceId,
                     appointment.Deleted,
                     appointment.DateDeleted,
                     appointment.JobTypeId,
@@ -94,9 +94,9 @@ namespace DataAccess.DataService
             {
                 await _dataAccess.SaveData("dbo.spUpdateAppointment", new
                 {
-                    appointment.AppointmentID,
+                    appointment.AppointmentId,
                     appointment.TenantID,
-                    appointment.UserID,
+                    appointment.UserId,
                     appointment.Subject,
                     appointment.Description,
                     appointment.StartTime,
@@ -106,7 +106,7 @@ namespace DataAccess.DataService
                     appointment.Location,
                     appointment.Status,
                     appointment.IsAllDay,
-                    appointment.RecurrenceID,
+                    appointment.RecurrenceId,
                     appointment.RecurrenceRule,
                     appointment.RecurrenceException,
                     appointment.IsReadonly,
@@ -123,11 +123,13 @@ namespace DataAccess.DataService
                     appointment.Technician,
                     appointment.CustomerId,
                     appointment.Customer,
-                    appointment.ServiceID,
+                    appointment.ServiceId,
                     appointment.Deleted,
                     appointment.DateDeleted,
                     appointment.JobTypeId,
-                    appointment.JobType
+                    appointment.JobType,
+                    OriginalUpdatedAt = appointment.UpdatedAt,
+                    NewUpdatedAt = DateTime.UtcNow
 
                 });
             }

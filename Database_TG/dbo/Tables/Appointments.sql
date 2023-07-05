@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Appointments]
 (
-	[AppointmentID] INT NOT NULL PRIMARY KEY IDENTITY,
+	[AppointmentId] INT NOT NULL PRIMARY KEY IDENTITY,
     [TenantID] INT FOREIGN KEY REFERENCES Tenants([TenantID]), -- If associated with a tenant
-    [CustomerID] INT FOREIGN KEY REFERENCES Customers([CustomerID]), -- If associated with a customer
-    [ServiceID] INT FOREIGN KEY REFERENCES Services([ServiceID]), -- If associated with a service
-    [UserID] INT FOREIGN KEY REFERENCES Users([UserID]), -- If associated with a User (like a staff member)
+    [CustomerId] INT FOREIGN KEY REFERENCES Customers([CustomerId]), -- If associated with a customer
+    [ServiceId] INT FOREIGN KEY REFERENCES [Services]([ServiceId]), -- If associated with a service
+    [UserId] INT FOREIGN KEY REFERENCES Users([UserId]), -- If associated with a User (like a staff member)
     [Subject] NVARCHAR(100) NULL,
     [Description] NVARCHAR(100) NULL,
     [StartTime] DATETIME2 NOT NULL,

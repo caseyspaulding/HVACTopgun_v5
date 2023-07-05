@@ -4,7 +4,7 @@ namespace DataAccess.Models
 {
     public class AvailableAppointmentModel
     {
-        public int Id { get; set; }
+        public int AvailableAppointmentId { get; set; }
 
         public int TenantID { get; set; }
 

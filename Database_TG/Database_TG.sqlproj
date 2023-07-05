@@ -99,6 +99,10 @@
     <Build Include="dbo\Stored Procedures\spGetTenantIdByObjectId.sql" />
     <Build Include="dbo\Stored Procedures\spGetRoleByName.sql" />
     <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAllAppointmentModels.sql" />
+    <Build Include="dbo\Stored Procedures\spAddAppointmentModel.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateAppointmentModel.sql" />
+    <Build Include="dbo\Stored Procedures\spSoftDeleteAppointmentModel.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database_TG.publish.xml" />

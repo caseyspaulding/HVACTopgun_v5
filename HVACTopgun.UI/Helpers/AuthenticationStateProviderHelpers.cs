@@ -25,7 +25,7 @@ namespace HVACTopGun.UI.Helpers
                 throw new InvalidOperationException($"Unable to find tenant for ObjectIdentifier: {objectId}");
             }
 
-            return tenantId; // Return the int? directly
+            return tenantId; // Return the int directly
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Customers]
 (
-	[CustomerID] INT NOT NULL PRIMARY KEY IDENTITY, 
+	[CustomerId] INT NOT NULL PRIMARY KEY IDENTITY, 
     [TenantID] INT FOREIGN KEY REFERENCES Tenants([TenantID]), 
     [FirstName] NCHAR(50) NULL, 
     [LastName] NCHAR(50) NULL, 

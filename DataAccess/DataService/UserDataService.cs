@@ -1,6 +1,6 @@
 ﻿using DataAccess.DbAccess;
 using DataAccess.Models;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace DataAccess.DataService
 {

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[ChatbotConversations]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [ChatBotConversationsId] INT NOT NULL PRIMARY KEY IDENTITY,
    [TenantID] INT FOREIGN KEY REFERENCES Tenants([TenantID]),
     [CustomerId] INT NOT NULL,
     [ConversationId] NVARCHAR(100) NULL,
