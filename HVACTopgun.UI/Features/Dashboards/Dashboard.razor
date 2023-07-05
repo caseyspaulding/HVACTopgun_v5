@@ -5,7 +5,10 @@
 @inject IUserDataService UserDataService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject AuthClaimsModel authClaimsModel
-
+@using Syncfusion.Blazor.CircularGauge
+@using Syncfusion.Blazor.Layouts
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor
 @attribute [Authorize]
 <div>
     <p>Hello, @FirstName!</p>
@@ -15,13 +18,36 @@
 
  
 <div class="">
-    <SfDashboardLayout Columns="4">
+    <SfDashboardLayout ID="DashBoard" @ref="DashboardLayout" AllowResizing="true" AllowFloating="true" Columns="4">
         <DashboardLayoutPanels>
-
+            <DashboardLayoutEvents Created="Created" OnResizeStop="@ResizingHandler" OnWindowResize="@ResizingWindow" Resizing="ResizingHandler"></DashboardLayoutEvents>
             <DashboardLayoutPanel Column="0" Row="0">
                 <HeaderTemplate>Your Revenue Goal</HeaderTemplate>
                 <ContentTemplate>
-                    <Gauge/>
+                    @if (IsInitialRender)
+                {
+                     <SfCircularGauge ID="GaugeOne" @ref="GaugeOne" Background="transparent" Height="100%" Width="100%">
+                        <CircularGaugeAxes>
+                            <CircularGaugeAxis Radius="80%" StartAngle="230" EndAngle="130">
+                                <CircularGaugeAxisLabelStyle Offset="-1">
+                                    <CircularGaugeAxisLabelFont FontFamily="inherit"></CircularGaugeAxisLabelFont>
+                                </CircularGaugeAxisLabelStyle>
+                                <CircularGaugeAxisLineStyle Width="8" Color="#E0E0E0" />
+                                <CircularGaugeAxisMajorTicks Offset="5" />
+                                <CircularGaugeAxisMinorTicks Offset="5" />
+                                <CircularGaugePointers>
+                                    <CircularGaugePointer Value=60 Radius="60%" PointerWidth="7" Color="#c06c84">
+                                        <CircularGaugePointerAnimation Duration="500" />
+                                        <CircularGaugeCap Radius="8" Color="#c06c84">
+                                            <CircularGaugeCapBorder Width="0" />
+                                        </CircularGaugeCap>
+                                        <CircularGaugeNeedleTail Length="0%" />
+                                    </CircularGaugePointer>
+                                </CircularGaugePointers>
+                            </CircularGaugeAxis>
+                        </CircularGaugeAxes>
+                    </SfCircularGauge>
+                }
                     </ContentTemplate>
             </DashboardLayoutPanel>
 
@@ -42,12 +68,87 @@
 
             <DashboardLayoutPanel Column="3" Row="0">
                 <HeaderTemplate>New Appts</HeaderTemplate>
-                <ContentTemplate> </ContentTemplate>
+                <ContentTemplate>@if (IsInitialRender)
+                {
+                     <SfCircularGauge Background="transparent" ID="GaugeThree" @ref="GaugeThree" Width="100%" Height="100%">
+                            <CircularGaugeTitleStyle FontFamily="inherit"></CircularGaugeTitleStyle>
+                            <CircularGaugeAxes>
+                                <CircularGaugeAxis StartAngle="200" EndAngle="160" Minimum="1" Maximum="100" Radius="80%">
+                                    <CircularGaugeAxisLineStyle Width="0" />
+                                    <CircularGaugeAxisLabelStyle>
+                                        <CircularGaugeAxisLabelFont Size="0px" FontFamily="inherit" />
+                                    </CircularGaugeAxisLabelStyle>
+                                    <CircularGaugeAxisMajorTicks Height="0" />
+                                    <CircularGaugeAxisMinorTicks Height="0" />
+                                    <CircularGaugeRanges>
+                                        <CircularGaugeRange Start="1" End="100" Radius="90%" StartWidth="30" EndWidth="30" Color="#E0E0E0" RoundedCornerRadius="20" />
+                                    </CircularGaugeRanges>
+                                    <CircularGaugePointers>
+                                        <CircularGaugePointer Value="60" RoundedCornerRadius="20" Type="PointerType.RangeBar" Radius="90%" Color="#e5ce20" PointerWidth="30">
+                                            <CircularGaugePointerAnimation Enable="false" />
+                                            <CircularGaugePointerBorder Width="0" />
+                                        </CircularGaugePointer>
+                                    </CircularGaugePointers>
+                                    <CircularGaugeAnnotations>
+                                        <CircularGaugeAnnotation Radius="0%" Angle="0" ZIndex="1">
+                                            <ContentTemplate>
+                                                <div class="annotationText">60/100</div>
+                                            </ContentTemplate>
+                                        </CircularGaugeAnnotation>
+                                    </CircularGaugeAnnotations>
+                                </CircularGaugeAxis>
+                            </CircularGaugeAxes>
+                    </SfCircularGauge>
+                } </ContentTemplate>
             </DashboardLayoutPanel>
 
              <DashboardLayoutPanel Column="4" Row="0">
                 <HeaderTemplate>Website Chat</HeaderTemplate>
-                <ContentTemplate>Content of Panel </ContentTemplate>
+                <ContentTemplate>
+                    @if (IsInitialRender)
+                    {
+
+                        <SfCircularGauge Background="transparent"  ID="GaugeTwo" @ref="GaugeTwo" Width="100%" Height="100%" MoveToCenter="true">
+                           
+                                <CircularGaugeAxes>
+                                    <CircularGaugeAxis Radius="80%" StartAngle="210" EndAngle="150" Minimum="0" Maximum="8">
+                                        <CircularGaugeAxisLabelStyle Offset="10">
+                                            <CircularGaugeAxisLabelFont FontFamily="inherit"></CircularGaugeAxisLabelFont>
+                                        </CircularGaugeAxisLabelStyle>
+                                        <CircularGaugeAxisLineStyle Width="0" />
+                                        <CircularGaugeAxisMajorTicks Width="0" Interval="1" />
+                                        <CircularGaugeAxisMinorTicks Width="0" />
+                                        <CircularGaugePointers>
+                                            <CircularGaugePointer NeedleStartWidth="10" NeedleEndWidth="5" Value="6.2" Radius="85%" Color="#E63B86" PointerWidth="10">
+                                                <LinearGradient StartValue="0%" EndValue="100%">
+                                                    <ColorStops>
+                                                        <ColorStop Opacity="0.2" Offset="0%" Color="#9e40dc" />
+                                                        <ColorStop Opacity="0.5" Offset="70%" Color="#9e40dc" />
+                                                    </ColorStops>
+                                                </LinearGradient>
+                                                <CircularGaugePointerAnimation Enable="false" />
+                                                <CircularGaugeCap Radius="0">
+                                                    <CircularGaugeCapBorder Width="0" />
+                                                </CircularGaugeCap>
+                                                <CircularGaugeNeedleTail Length="0%" />
+                                            </CircularGaugePointer>
+                                        </CircularGaugePointers>
+                                        <CircularGaugeRanges>
+                                            <CircularGaugeRange Color="#E63B86" Start="0" End="6.2" StartWidth="22" EndWidth="22">
+                                                <LinearGradient StartValue="0%" EndValue="100%">
+                                                    <ColorStops>
+                                                        <ColorStop Opacity="1" Offset="0%" Color="#9e40dc" />
+                                                        <ColorStop Opacity="1" Offset="70%" Color="#d93c95" />
+                                                    </ColorStops>
+                                                </LinearGradient>
+                                            </CircularGaugeRange>
+                                            <CircularGaugeRange Color="#E0E0E0" Start="6.2" End="8" StartWidth="22" EndWidth="22" />
+                                        </CircularGaugeRanges>
+                                    </CircularGaugeAxis>
+                                </CircularGaugeAxes>
+                            </SfCircularGauge>
+                    }
+                </ContentTemplate>
             </DashboardLayoutPanel>
 
             <DashboardLayoutPanel Column="3" Row="3">
@@ -60,10 +161,14 @@
     </SfDashboardLayout>
 
     <style>
-        .e-panel-header {
-            background-color: white;
-            text-align: left;
+        .annotationText {
+            font-size: 35px;
+            width: 120px;
+            text-align: center;
+            margin-top: -30px;
+            margin-left: -55px
         }
+        
 
         .e-panel-content {
             text-align: center;
@@ -74,11 +179,49 @@
 
 @code
 {
+    SfCircularGauge GaugeOne;
+    SfCircularGauge GaugeTwo;
+    SfCircularGauge GaugeThree;
+    SfDashboardLayout DashboardLayout;
+    public bool IsInitialRender { get; set; }
+    public double[] CellSpacing = { 10, 10 };
 
     private ClaimsPrincipal User { get; set; }
     private string FirstName { get; set; }
     private string CompanyName { get; set; }
     private int? tenantId;
+
+    public async void Created(Object args)
+    {
+        IsInitialRender = true;
+    }
+
+    public async Task ResizingWindow(Syncfusion.Blazor.Layouts.ResizeArgs args)
+    {
+        await DashboardLayout.RefreshAsync();
+        await GaugeOne.RefreshAsync();
+        await GaugeTwo.RefreshAsync();
+        await GaugeThree.RefreshAsync();
+    }
+    public async Task ResizingHandler(Syncfusion.Blazor.Layouts.ResizeArgs args)
+    {
+        if (args.Id == "LayoutOne")
+        {
+            await Task.Delay(100);
+            GaugeOne.RefreshAsync();
+        }
+        else if (args.Id == "LayoutTwo")
+        {
+            await Task.Delay(100);
+            GaugeTwo.RefreshAsync();
+        }
+        else if (args.Id == "LayoutThree")
+        {
+            await Task.Delay(100);
+            GaugeThree.RefreshAsync();
+        }
+    }
+
 
     protected override async Task OnInitializedAsync()
     {
