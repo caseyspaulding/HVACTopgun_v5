@@ -12,10 +12,11 @@
                         <span class="hamburger-bottom"></span>
 
                     </button>
-
+                    <NavLink href="https://www.hvactopgun.com">
                     <div class="flex-shrink-0 @(isMenuOpen ? "pl-6" : "")">
-                        <img class="block h-10 w-30 pl-2" src="images/logo-dark.png" alt="HVAC TopGun Logo">
+                            <img class="block h-10 w-30 pl-2" src="/images/topgun_logobigblack.jpg" alt="HVAC TopGun Logo">
                     </div>
+                    </NavLink>
                 </div>
             </div>
          
@@ -23,7 +24,7 @@
                 <div class="flex items-center">
                     <div class="lg:flex hidden content-center gap-8 ">
                         <div class="px-2 mx-1">
-                            <button class="hover:bg-zinc-900 hover:underline">
+                            <button class="hover:underline">
                             <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                      href="#features">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -36,8 +37,8 @@
                        
                         
                         <div class="px-2 mx-1">
-                            <button class="hover:bg-zinc-900 hover:underline">
-                                <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
+                            <button class="hover:underline">
+                                <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75"
                                          href="/Pricing">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
@@ -71,7 +72,7 @@
         <div class="items-center px-5 space-y-1 px-2 pb-3 pt-2 ">
 
             <ul role="list" class="mx-2 space-y-1">
-                <li class="hover:bg-zinc-900 hover:underline">
+                <li class="hover:underline">
                        <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                              href="#features">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -81,7 +82,7 @@
                         </NavLink>
                     </li>
               
-                <li class="hover:bg-zinc-900 hover:underline">
+                <li class="hover:underline">
                                 <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
                                          href="/Pricing">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

@@ -1,0 +1,22 @@
+﻿@page "/home/error/{message}"
+@using Microsoft.AspNetCore.WebUtilities
+@using System.Net;
+
+<h3>Error</h3>
+
+@if (!string.IsNullOrWhiteSpace(Message))
+{
+    <p>@Message</p>
+}
+else
+{
+    <p>An unknown error occurred.</p>
+}
+
+
+@code {
+    [Parameter]
+    public string message { get; set; }
+
+    public string Message => string.IsNullOrEmpty(message) ? null : WebUtility.UrlDecode(message);
+}

@@ -3,8 +3,12 @@
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.JSInterop
 @inject IJSRuntime JSRuntime
+@inject ITenantDataService TenantDataService
+@inject IUserDataService UserDataService
 @inject NavigationManager NavigationManager
 @using HVACTopGun.UI.Shared 
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthClaimsModel authClaimsModel
 
 <PageTitle>HVAC TopGun</PageTitle>
 
@@ -23,11 +27,11 @@
 
 
 
-
+                    <NavLink href="https://www.hvactopgun.com">
                     <div class="flex-shrink-0 @(isMenuOpen ? "pl-6" : "")">
-                        <img class="block h-10 w-30 pl-2" src="images/logo-dark.png" alt="HVAC TopGun Logo">
+                            <img class="block h-10 w-30 pl-2" src="/images/topgun_logobigblack.jpg" alt="HVAC TopGun Logo">
                     </div>
-
+                    </NavLink>
                 </div>
 
                 <div class="hidden lg:flex lg:justify-center  ">
@@ -107,16 +111,26 @@
         <div class="flex items-center px-5 py-5">
             <div class="flex-shrink-0">
                 <img class="h-10 w-10 rounded-full"
-                     src="/images/profilepicsm .png"
+                     src="/images/user_dark_blue.png"
                      alt="">
             </div>
-            <div class="ml-3">
-                <div class="text-base font-medium text-white">Casey </div>
+            <div class="ml-3 mr-5">
+                <div class="text-base font-medium text-white">@FirstName<br/>
+                    @CompanyName</div>
 
             </div>
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-sky-300 hover:bg-opacity-75">Your Profile</a>
+           
 
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:text-sky-300 hover:bg-blur-75">Sign out</a>
+            <div class="ml-9">
+                <NavLink class="flex items-center p-1 hover:underline font-medium text-gray-200 transition duration-75"
+                         href="MicrosoftIdentity/Account/SignOut">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                    </svg>
+
+                    <span class="ml-2">Log Out</span>
+                </NavLink>
+            </div>
         </div>
 
     </div>
@@ -153,7 +167,7 @@
 
                         <li class="border-opacity-0 hover:border-b hover:border-sky-600 hover:bg-zinc-900">
                             <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
-                                     href="/Scheduler">
+                                     href="/scheduler">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                                 </svg>
@@ -422,6 +436,10 @@
 </div>
 
 @code {
+    private ClaimsPrincipal User { get; set; }
+    private string FirstName { get; set; }
+    private string CompanyName { get; set; }
+    private int? tenantId;
     private SlideIn slideincomponent;
     private string menuClass2 => isMenuOpen ? "flex" : "hidden";
     private string dropdownClass => isDropdownOpen ? "block" : "hidden";
@@ -440,7 +458,17 @@
 
     
 
-   
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
+        tenantId = await TenantDataService.GetTenantIdByObjectId(objectId); // Assign the value to the class-level tenantId property
+        User = authState.User;
+
+        FirstName = User.FindFirstValue("extension_FirstName");
+        CompanyName = User.FindFirstValue("extension_CompanyName");
+
+    }
 
     private void HandleMobileNavToggled()
     {

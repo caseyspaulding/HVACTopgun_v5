@@ -85,6 +85,12 @@
 	  <Folder Include="Features\Customers\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Update="wwwroot\error.html">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
 	<Target Name="CheckForNpm" BeforeTargets="BuildCSS">
 		<Exec Command="npm -v" ContinueOnError="true">
 			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />

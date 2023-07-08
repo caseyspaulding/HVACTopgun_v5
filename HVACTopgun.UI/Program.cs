@@ -3,9 +3,11 @@ using DataAccess.Data;
 using DataAccess.DataService;
 using DataAccess.DbAccess;
 using DataAccess.Models;
+using HVACTopGun.UI.DataAdaptors;
 using HVACTopGun.UI.Helpers;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Web;
@@ -13,6 +15,7 @@ using Microsoft.Identity.Web.UI;
 using Syncfusion.Blazor;
 using System.Data;
 using System.Security.Claims;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var ConnectionStrings = builder.Configuration["DefaultConnection"];
@@ -34,8 +37,7 @@ builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
 builder.Services.AddScoped<IAuthorizationHandler, SubscriptionAuthorizationHandler>();
 builder.Services.AddScoped<AuthClaimsModel>();
 builder.Services.AddScoped<IRoleDataService, RoleDataService>();
-
-//builder.Services.AddScoped<IRoleDataService, RoleDataService>();
+builder.Services.AddScoped<AppointmentsDataAdapter>();
 
 //builder.Services.AddAuthorization(options =>
 //{
@@ -59,6 +61,44 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
             },
             OnAuthenticationFailed = async ctxt =>
             {
+                Console.WriteLine(ctxt.Exception.Message); // Output the error message to the console for debugging
+
+                if (ctxt.Exception.Message.Contains("MicrosoftIdentity/Account/Error"))
+                {
+                    // If the user clicked the cancel button, redirect to home page
+                    ctxt.HandleResponse();
+                    ctxt.Response.Redirect("/");
+                }
+                else if (ctxt.Exception.Message.Contains("AADB2C90091"))
+                {
+                    // If the user clicked the cancel button, redirect to home page
+                    ctxt.HandleResponse();
+                    ctxt.Response.Redirect("/");
+                }
+                else if (ctxt.Exception.Message.Contains("AADB2C90118"))
+                {
+                    // If the user clicked the reset password link, redirect to the reset password route  
+                    ctxt.HandleResponse();
+                    ctxt.Response.Redirect("/Account/ResetPassword");
+                }
+                else if (ctxt.Exception.Message.Contains("Error"))
+                {
+                    // If the user clicked the reset password link, redirect to the reset password route  
+                    ctxt.HandleResponse();
+                    ctxt.Response.Redirect("/Account/ResetPassword");
+                }
+                else if (ctxt.Exception.Message.Contains("access_denied"))
+                {
+                    // If the user clicked the cancel button, redirect to home page
+                    ctxt.HandleResponse();
+                    ctxt.Response.Redirect("/");
+                }
+                else
+                {
+                    // In case of any other exception, redirect to an error page
+                    ctxt.HandleResponse();
+                    ctxt.Response.Redirect($"/Home/Error?message={Uri.EscapeDataString(ctxt.Exception.Message)}");
+                }
 
                 await Task.Yield();
             },
@@ -128,6 +168,12 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                         }
                     }
                 }
+            },
+            OnRemoteFailure = context =>
+            {
+                context.HandleResponse();
+                context.Response.Redirect("/Home/Error?message=" + Uri.EscapeDataString(context.Failure.Message));
+                return Task.CompletedTask;
             }
         };
     });
@@ -153,10 +199,36 @@ builder.Services.AddMediatR(cfg =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler(errorApp =>
+    {
+        errorApp.Run(async context =>
+        {
+            var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+            var exception = exceptionHandlerPathFeature?.Error;
+
+            if (exception is Exception ex && ex.Message.Contains("state is null or empty"))
+            {
+                context.Response.StatusCode = 500; // or another status code that makes sense for your application
+                context.Response.ContentType = "text/html";
+
+                await context.Response.SendFileAsync(Path.Combine(app.Environment.ContentRootPath, "wwwroot", "error.html"));
+            }
+            else
+            {
+                // Handle other exceptions or provide a generic error response
+                // context.Response.StatusCode = 500;
+                // context.Response.ContentType = "text/plain";
+                // await context.Response.WriteAsync("An error occurred.");
+            }
+        });
+    });
+
     app.UseHsts();
 }
 
@@ -183,5 +255,6 @@ app.UseRewriter(
 app.MapControllers();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
 
 app.Run();

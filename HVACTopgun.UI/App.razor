@@ -1,4 +1,5 @@
-﻿<CascadingAuthenticationState>
+﻿@using HVACTopGun.UI.Shared
+<CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
@@ -16,7 +17,9 @@
         <NotFound>
             <PageTitle>Not found</PageTitle>
             <LayoutView Layout="@typeof(MainLayout)">
-                <p role="alert">Sorry, there's nothing at this address.</p>
+                
+                  <Error/>
+           
             </LayoutView>
         </NotFound>
     </Router>

@@ -1,0 +1,752 @@
+﻿<!DOCTYPE html>
+<html class="h-full bg-white" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="https://hvactopgun.com/css/styles.css" rel="stylesheet" type="text/css" data-preload="true" />
+
+    <link href="https://hvactopgun.com/css/tailwind.min.css" rel="stylesheet" type="text/css" data-preload="true" />
+
+    <link rel="icon" type="image/png" href="https://www.hvactopgun.com/favicon.ico" />
+    <style>
+        html {
+            height: 100%;
+            background: white;
+        }
+
+        body {
+            height: 100%;
+        }
+        /* CSS overrides for Azure AD B2C injected elements */
+
+        /* Azure AD B2C Tailwind-inspired Styles */
+
+        /* #api - The main container */
+        #api {
+            text-align: left;
+        }
+
+            #api button, #api .buttons {
+                text-align display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .heading h1 {
+            margin-top: 2rem; /* mt-8 */
+            margin: 1rem 0rem; /* Adjust according to your needs */
+            font-size: 2rem; /* Equivalent to text-2xl in Tailwind */
+            font-weight: 700; /* Equivalent to font-bold in Tailwind */
+            line-height: 1.1; /* Equivalent to leading-9 in Tailwind */
+            color: #1A202C; /* Equivalent to text-gray-900 in Tailwind */
+            letter-spacing: -0.025em; /* Equivalent to tracking-tight in Tailwind */
+        }
+
+        .divider {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 2em; /* Adjust as needed */
+            margin: 1rem auto;
+        }
+
+            .divider::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                height: 1px; /* Adjust as needed */
+                background: #d1d5db; /* Border-gray-200 */
+            }
+
+            .divider h2 {
+                background: #fff; /* Background-white */
+                color: #1f2937; /* Text-gray-900 */
+                padding: 0 1rem; /* Px-6 */
+                z-index: 1;
+            }
+
+        .intro {
+            
+        }
+        .attrEntry label {
+          display: none;
+        }
+
+        a#createAccount {
+            font-size: 1.5rem; /* text-2xl */
+            color: #1F2937; /* text-gray-800 */
+        }
+
+        a#createAccount {
+            display: block;
+            font-weight: bold; /* font-bold */
+        }
+
+
+
+        /* .buttons and .buttons #next - Sign-in button */
+        /* .buttons - Container for sign-in button */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 1.25rem; /* mt-5 */
+        }
+
+        /* #next - Sign-in button */
+        #next {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: #0ea5e9; /* bg-blue-500 */
+            color: #F9FAFB; /* text-white */
+            padding: 0.5rem 1rem; /* p-2 px-4 */
+            border: none;
+            border-radius: 0.25rem; /* rounded */
+            cursor: pointer;
+            font-size: 1rem; /* text-base */
+            font-weight: 500; /* font-semibold */
+            line-height: 1.5rem; /* leading-6 */
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+        }
+
+            #next:hover {
+                background-color: #0284c7; /* bg-blue-600 */
+            }
+
+            #next:focus {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.5); /* Creates a noticeable effect when button is focused */
+            }
+
+a.helpLink.tiny {
+  display: none;
+}
+        /* Style for .options div */
+        .options {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .options > div {
+                margin-top: 1rem; /* mt-4 */
+            }
+
+        /* Google Sign-In Button */
+        #GoogleExchange {
+            background-color: #EA4335; /* Google's brand color, or you can use bg-red-500 for similar */
+            color: #F9FAFB; /* text-white */
+            border: none;
+            border-radius: 0.25rem; /* rounded */
+            cursor: pointer;
+            padding: 0.5rem 1rem; /* p-2 px-4 */
+            font-weight: bold; /* font-bold */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; /* Takes up full width of parent div */
+        }
+
+            #GoogleExchange:hover {
+                background-color: #DC2626; /* Hover effect, you can use bg-red-600 for similar */
+            }
+
+            #GoogleExchange:focus {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(234, 67, 53, 0.5); /* Creates a noticeable effect when button is focused */
+            }
+
+        /* Hide email and password labels */
+        label[for='email'], label[for='password'] {
+            display: none;
+        }
+        /* Style the email input field */
+        input[type='email']#email {
+            display: block;
+            width: 100%;
+            border: none;
+            padding: 0.5rem 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0.25rem;
+            outline: none;
+            color: #4a5568; /* equivalent to text-gray-600 */
+            margin: 1rem 0
+        }
+
+            /* Style the placeholder of the email input field */
+            input[type='email']#email::placeholder {
+                color: #9CA3AF; /* equivalent to text-gray-400 */
+            }
+
+            /* Style the focus state of the email input field */
+            input[type='email']#email:focus {
+                outline: none;
+                box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset;
+            }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset;
+        }
+
+        }
+
+        /* If you're not using a CSS preprocessor, use the following syntax for placeholder: */
+        input[type='email']#email::placeholder {
+            color: #9CA3AF; /* equivalent to text-gray-400 */
+        }
+        /* Style the password input field */
+        input[type='password']#password {
+            display: block;
+            width: 100%;
+            border: none;
+            padding: 0.5rem 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0.25rem;
+            outline: none;
+            color: #4a5568; /* equivalent to text-gray-600 */
+            margin: 1rem 0
+        }
+
+            /* Style the placeholder of the password input field */
+            input[type='password']#password::placeholder {
+                color: #9CA3AF; /* equivalent to text-gray-400 */
+            }
+
+            /* Style the focus state of the password input field */
+            input[type='password']#password:focus {
+                outline: none;
+                box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+            }
+
+            input[type='password']#extension_FirstName {
+    /* Your styles for the input field here */
+    /* For example: */
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+}
+
+input[type='password']#extension_FirstName::placeholder {
+    /* Your styles for the placeholder of the input field here */
+    /* For example: */
+    color: #9CA3AF; /* equivalent to text-gray-400 */
+}
+
+input[type='password']#extension_FirstName:focus {
+    /* Your styles for the focus state of the input field here */
+    /* For example: */
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+}
+
+/* LAST NAME TEXT BOX */
+input#extension_LastName {
+    /* Your styles for the input field here */
+    /* For example: */
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+}
+
+input#extension_LastName::placeholder {
+    /* Your styles for the placeholder of the input field here */
+    /* For example: */
+    color: #9CA3AF; /* equivalent to text-gray-400 */
+}
+
+input#extension_LastName:focus {
+    /* Your styles for the focus state of the input field here */
+    /* For example: */
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+}
+
+input#extension_FirstName[type='text'] {
+    /* Your styles for the input field here */
+    /* For example: */
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+}
+
+input#extension_FirstName[type='text']::placeholder {
+    /* Your styles for the placeholder of the input field here */
+    /* For example: */
+    color: #9CA3AF; /* equivalent to text-gray-400 */
+}
+
+input#extension_FirstName[type='text']:focus {
+    /* Your styles for the focus state of the input field here */
+    /* For example: */
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+}
+input#reenterPassword[type='password'] {
+    /* Your styles for the input field here */
+    /* For example: */
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+}
+
+input#reenterPassword[type='password']::placeholder {
+    /* Your styles for the placeholder of the input field here */
+    /* For example: */
+    color: #9CA3AF; /* equivalent to text-gray-400 */
+}
+
+input#reenterPassword[type='password']:focus {
+    /* Your styles for the focus state of the input field here */
+    /* For example: */
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+}
+input#extension_FirstName[type='text'] {
+    /* Your styles for the input field here */
+    /* For example: */
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+}
+
+input#extension_FirstName[type='text']::placeholder {
+    /* Your styles for the placeholder of the input field here */
+    /* For example: */
+    color: #9CA3AF; /* equivalent to text-gray-400 */
+}
+
+input#extension_FirstName[type='text']:focus {
+    /* Your styles for the focus state of the input field here */
+    /* For example: */
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+}
+input#extension_CompanyName[type='text'] {
+    /* Your styles for the input field here */
+    /* For example: */
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+}
+
+input#extension_CompanyName[type='text']::placeholder {
+    /* Your styles for the placeholder of the input field here */
+    /* For example: */
+    color: #9CA3AF; /* equivalent to text-gray-400 */
+}
+
+input#extension_CompanyName[type='text']:focus {
+    /* Your styles for the focus state of the input field here */
+    /* For example: */
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+}
+
+ /* Styling the button */
+  a#createAccount {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #0ea5e9; /* bg-blue-500 */
+    color: #F9FAFB; /* text-white */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+
+  /* Hover state */
+  a#createAccount:hover {
+    background-color: #0284c7;
+  }
+  /* Styling the button */
+  button#cancel {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc; /* Placeholder color */
+    color: #333; /* Placeholder color */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+  .intro{
+      display: none;
+  }
+  /* Style the emailVerificationCode input field */
+  input#emailVerificationCode.textInput[type='text'] {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+  }
+
+  /* Style the placeholder of the emailVerificationCode input field */
+  input#emailVerificationCode.textInput[type='text']::placeholder {
+    color: #9ca3af; /* equivalent to text-gray-400 */
+  }
+
+  /* Style the focus state of the emailVerificationCode input field */
+  input#emailVerificationCode.textInput[type='text']:focus {
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+  }
+  /* Hover state */
+  button#cancel:hover {
+    background-color: #999; /* Placeholder hover color */
+    color: #fff; /* Placeholder hover color */
+  }
+    /* CSS overrides for Azure AD B2C injected elements */
+
+  /* Styling the sendCode button */
+  button.sendCode {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #0ea5e9; /* bg-blue-500 */
+    color: #f9fafb; /* text-white */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+   /* Style the newPassword input field */
+  input#newPassword.textInput[type='password'] {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    outline: none;
+    color: #4a5568; /* equivalent to text-gray-600 */
+    margin: 1rem 0;
+  }
+
+  /* Style the placeholder of the newPassword input field */
+  input#newPassword.textInput[type='password']::placeholder {
+    color: #9ca3af; /* equivalent to text-gray-400 */
+  }
+
+  /* Style the focus state of the newPassword input field */
+  input#newPassword.textInput[type='password']:focus {
+    outline: none;
+    box-shadow: 0 0 10px #0ea5e9, 0 0 0 0.125rem #0ea5e9 inset; /* equivalent to ring-2 ring-inset ring-indigo-600 */
+  }
+  /* Hover state for the sendCode button */
+  button.sendCode:hover {
+    background-color: #0284c7; /* Placeholder hover color */
+  }
+   /* Styling the changeClaims button */
+  button.changeClaims {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #0ea5e9; /* bg-blue-500 */
+    color: #f9fafb; /* text-white */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+
+  /* Hover state for the changeClaims button */
+  button.changeClaims:hover {
+    background-color: #0284c7; /* Placeholder hover color */
+  }
+  /* Styling the sendNewCode button */
+  button.sendNewCode {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #0ea5e9; /* bg-blue-500 */
+    color: #f9fafb; /* text-white */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+
+   /* Style the create button */
+  button#continue {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #0ea5e9; /* bg-blue-500 */
+    color: #f9fafb; /* text-white */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+   /* Style the cancel button */
+  button#cancel {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #e53e3e; /* bg-red-500 */
+    color: #f9fafb; /* text-white */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+
+  button#cancel:hover {
+    background-color: #c53030; /* hover color */
+  }
+
+  button#continue:hover {
+    background-color: #0284c7;
+  }
+
+  /* Hover state for the sendNewCode button */
+  button.sendNewCode:hover {
+    background-color: #0284c7; /* Placeholder hover color */
+  }
+    /* Styling the verifyCode button */
+  button.verifyCode {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #0ea5e9; /* bg-blue-500 */
+    color: #f9fafb; /* text-white */
+    padding: 0.5rem 1rem; /* p-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-semibold */
+    line-height: 1.5rem; /* leading-6 */
+    margin: 1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+  }
+
+  /* Hover state for the verifyCode button */
+  button.verifyCode:hover {
+    background-color: #0284c7; /* Placeholder hover color */
+  }
+
+        a#createAccount {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: #0ea5e9; /* bg-blue-500 */
+            color: #F9FAFB; /* text-white */
+            padding: 0.5rem 1rem; /* p-2 px-4 */
+            border: none;
+            border-radius: 0.25rem; /* rounded */
+            cursor: pointer;
+            font-size: 1rem; /* text-base */
+            font-weight: 500; /* font-semibold */
+            line-height: 1.5rem; /* leading-6 */
+            margin-top: 1rem;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and focus states */
+        }
+
+            a#createAccount:hover {
+                background-color: #0284c7;
+            }
+
+        a#forgotPassword {
+            position: absolute;
+            bottom: 40px;
+            /* add 'left' or 'right' properties
+                       depending on where you want it horizontally. */
+            color: grey; /* Change the color of the text to grey */
+            font-size: 12px;
+        }
+
+            a#forgotPassword:hover {
+                color: #0284c7; /* Change the color of the text to blue on hover */
+                text-decoration: underline; /* Adds underline on hover */
+            }
+             /* Preloader animation */
+  /* .preloader {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    border: 4px solid rgba(0, 0, 0, 0.2);
+    border-left-color: #0ea5e9; /* Choose your desired color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } */
+
+    </style>
+   
+
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Manage your HVAC business with ease. Simplify and Manage Your HVAC Business Effortlessly: Online Scheduling, Estimates, Dispatching, and Payments Made Easy. Boost efficiency, maximize growth,
+                    and stay ahead of the competition with our powerful HVAC software.">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:image" content="https://hvactopgun.com/images/social_card.jpg" />
+    <meta property="og:image:secure_url" content="https://hvactopgun.com/images/social_card.jpg" />
+    <meta property="og:image:alt" content="Transform your HVAC business with TopGun - the ultimate software solution. Streamline your operations,
+                    optimize scheduling, manage payments, and exceed customer expectations. Boost efficiency, maximize growth,
+                    and stay ahead of the competition with our powerful HVAC software. Sign up now for a free trial!">
+    <meta property="og:url" content="https://hvactopgun.com/images/social_card.jpg" />
+    <meta property="og:title" content="HVAC TopGun" />
+    <meta property="og:description"
+          content="Transform your HVAC business with TopGun - the ultimate software solution. Streamline your operations,
+                    optimize scheduling, manage payments, and exceed customer expectations. Boost efficiency, maximize growth,
+                    and stay ahead of the competition with our powerful HVAC software. Sign up now for a free trial!" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@@hvactopgun" />
+    <meta name="twitter:creator" content="@@caseyspaulding_" />
+    <meta name="twitter:image" content="https://hvactopgun.com/images/social_card.jpg">
+    <meta name="twitter:image:alt" content="Transform your HVAC business with TopGun - the ultimate software solution. Streamline your operations,
+                    optimize scheduling, manage payments, and exceed customer expectations. Boost efficiency, maximize growth,
+                    and stay ahead of the competition with our powerful HVAC software. Sign up now for a free trial!">
+    <title>HVAC TopGun</title>
+
+</head>
+
+<body class="h-full">
+  
+    <div class="flex min-h-full">
+        <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+            <div class="mx-auto w-full max-w-sm lg:w-96">
+                <div class="mb-10">
+                    <img class="h-12 w-auto" src="https://www.hvactopgun.com/images/topgun_logobigwhite.jpg" alt="HVAC TopGun">
+
+                </div>
+
+                <div class="">
+                    <div>
+                        <!-- Azure AD B2C Code -->
+                        <div id="api">
+                        </div>
+                        <!-- End Azure AD B2C Code -->
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="relative hidden w-0 flex-1 lg:block">
+            <img class="absolute inset-0 h-full w-full object-cover" src="https://www.hvactopgun.com/images/darkbggeo.jpg" alt="">
+        </div>
+
+    </div>
+   <!--  <script>
+    window.addEventListener('load', function() {
+      var preloader = document.querySelector('.preloader');
+      preloader.style.display = 'none';
+    });
+  </script> -->
+</body>
+
+</html>
