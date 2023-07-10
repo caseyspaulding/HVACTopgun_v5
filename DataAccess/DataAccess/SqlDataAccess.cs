@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
+
 namespace DataAccess.DbAccess;
 
 public class SqlDataAccess : ISqlDataAccess
@@ -26,14 +27,21 @@ public class SqlDataAccess : ISqlDataAccess
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task SaveData<T>(
-        string storedProcedure,
-        T parameters,
-        string connectionId = "DefaultConnection")
+    public async Task SaveData<T>(string storedProcedure, T parameters, string connectionId = "DefaultConnection")
     {
-        using IDbConnection connection = new SqlConnection(_config.GetConnectionString(connectionId));
+        try
+        {
+            using IDbConnection connection = new SqlConnection(_config.GetConnectionString(connectionId));
+            await connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+        }
+        catch (Exception ex)
+        {
+            // Log the exception using your preferred logging framework (e.g., Serilog, NLog, etc.)
+            // Example using Console.WriteLine:
+            Console.WriteLine($"Error executing stored procedure '{storedProcedure}': {ex.Message}");
 
-        await connection.ExecuteAsync(storedProcedure, parameters,
-            commandType: CommandType.StoredProcedure);
+            // You can choose to rethrow the exception or handle it as necessary based on your application's requirements.
+            throw;
+        }
     }
 }

@@ -8,12 +8,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="nlog.config" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
 		<PackageReference Include="Blazored.SessionStorage" Version="2.3.0" />
 		<PackageReference Include="BuildBundlerMinifierPlus" Version="5.3.0" />
-		<PackageReference Include="MediatR" Version="12.0.1" />
+		<PackageReference Include="MediatR" Version="12.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" Version="6.0.19" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.8" />
@@ -33,9 +37,8 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Identity.Web" Version="2.12.4" />
 		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.12.4" />
+		<PackageReference Include="NLog" Version="5.2.2" />
 		<PackageReference Include="SendGrid" Version="9.28.1" />
-		<PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="22.1.37" />
-		<PackageReference Include="Syncfusion.Blazor.BulletChart" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.Charts" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.CircularGauge" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.Core" Version="22.1.37" />
@@ -65,7 +68,6 @@
 		<PackageReference Include="Syncfusion.Blazor.Popups" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.Cards" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.Inputs" Version="22.1.37" />
-		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.Navigations" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.Notifications" Version="22.1.37" />
 		<PackageReference Include="Syncfusion.Blazor.DropDowns" Version="22.1.37" />
@@ -82,7 +84,63 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\Customers\" />
+	  <Folder Include="Features\Bookings\DataAdapters\" />
+	  <Folder Include="Features\Bookings\Models\" />
+	  <Folder Include="Features\Bookings\Services\" />
+	  <Folder Include="Features\Customers\DataAdapters\" />
+	  <Folder Include="Features\Customers\Models\" />
+	  <Folder Include="Features\Customers\Services\" />
+	  <Folder Include="Features\Customers\UI\" />
+	  <Folder Include="Features\Dashboards\DataAdapters\" />
+	  <Folder Include="Features\Dashboards\Models\" />
+	  <Folder Include="Features\Dashboards\Services\" />
+	  <Folder Include="Features\Dashboards\UI\" />
+	  <Folder Include="Features\Documentation\DataAdapters\" />
+	  <Folder Include="Features\Documentation\Models\" />
+	  <Folder Include="Features\Documentation\Services\" />
+	  <Folder Include="Features\Documentation\UI\" />
+	  <Folder Include="Features\Employees\Models\" />
+	  <Folder Include="Features\Employees\Services\" />
+	  <Folder Include="Features\Employees\UI\" />
+	  <Folder Include="Features\FollowUp\DataAdapters\" />
+	  <Folder Include="Features\FollowUp\Models\" />
+	  <Folder Include="Features\FollowUp\Services\" />
+	  <Folder Include="Features\FollowUp\UI\" />
+	  <Folder Include="Features\Help\DataAdapters\" />
+	  <Folder Include="Features\Help\Models\" />
+	  <Folder Include="Features\Help\Services\" />
+	  <Folder Include="Features\Help\UI\" />
+	  <Folder Include="Features\Inventory\DataAdapters\" />
+	  <Folder Include="Features\Inventory\Models\" />
+	  <Folder Include="Features\Inventory\Services\" />
+	  <Folder Include="Features\Inventory\UI\" />
+	  <Folder Include="Features\Messages\DataAdapters\" />
+	  <Folder Include="Features\Messages\Models\" />
+	  <Folder Include="Features\Messages\Services\" />
+	  <Folder Include="Features\Messages\UI\" />
+	  <Folder Include="Features\AIChatBot\" />
+	  <Folder Include="Features\Roles\DataAdapters\" />
+	  <Folder Include="Features\Roles\Models\" />
+	  <Folder Include="Features\Roles\Services\" />
+	  <Folder Include="Features\Roles\UI\" />
+	  <Folder Include="Features\Pricebook\DataAdapters\" />
+	  <Folder Include="Features\Pricebook\Models\" />
+	  <Folder Include="Features\Pricebook\Services\" />
+	  <Folder Include="Features\Pricebook\UI\" />
+	  <Folder Include="Features\Reports\DataAdapters\" />
+	  <Folder Include="Features\Reports\Models\" />
+	  <Folder Include="Features\Reports\Services\" />
+	  <Folder Include="Features\Reports\UI\" />
+	  <Folder Include="Features\Tenants\DataAdapters\" />
+	  <Folder Include="Features\Tenants\Services\" />
+	  <Folder Include="Features\Tenants\UI\" />
+	  <Folder Include="Features\Users\DataAdapters\" />
+	  <Folder Include="Features\Users\Services\" />
+	  <Folder Include="Features\Users\UI\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="nlog.config" />
 	</ItemGroup>
 
 	<ItemGroup>

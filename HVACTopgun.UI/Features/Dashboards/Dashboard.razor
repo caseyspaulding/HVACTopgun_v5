@@ -10,6 +10,7 @@
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor
 @attribute [Authorize]
+
 <div>
     <p>Hello, @FirstName!</p>
     <p>Company: @CompanyName</p>
@@ -249,17 +250,17 @@
         if (args.Id == "LayoutOne")
         {
             await Task.Delay(100);
-            GaugeOne.RefreshAsync();
+           
         }
         else if (args.Id == "LayoutTwo")
         {
             await Task.Delay(100);
-            GaugeTwo.RefreshAsync();
+           
         }
         else if (args.Id == "LayoutThree")
         {
             await Task.Delay(100);
-            GaugeThree.RefreshAsync();
+           
         }
     }
 
@@ -270,7 +271,6 @@
         var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
         tenantId = await TenantDataService.GetTenantIdByObjectId(objectId); // Assign the value to the class-level tenantId property
         User = authState.User;
-
         FirstName = User.FindFirstValue("extension_FirstName");
         CompanyName = User.FindFirstValue("extension_CompanyName");
 

@@ -7,7 +7,8 @@ namespace DataAccess.DataService
         Task CreateUser(UserModel user);
         Task DeleteUser(int id);
         Task<UserModel?> GetUserById(int id);
-        Task<UserModel?> GetUserByObjectId(string azureObjectId);
+        Task<UserModel> GetUserByObjectId(string objectId);
+        Task<int?> GetUserIdByObjectId(string azureObjectId);
         Task UpdateUser(UserModel user);
     }
 }

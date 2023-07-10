@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spUpdateAppointmentModel]
-	@AppointmentID INT,
+    @Id INT,
     @TenantID INT,
     @UserID INT,
     @Subject NVARCHAR(50),
@@ -22,13 +22,13 @@
     @CategoryColor NVARCHAR(10),
     @StartTimeZone NVARCHAR(50),
     @EndTimeZone NVARCHAR(50),
-    @CreatedAt DATETIME,
+    
     @UpdatedAt DATETIME,
     @TechnicianId INT,
     @CustomerId INT,
     @ServiceID INT,
     @Deleted BIT,
-    @DateDeleted DATETIME,
+    
     @JobTypeId INT
 AS
 BEGIN
@@ -55,13 +55,13 @@ BEGIN
         CategoryColor = @CategoryColor,
         StartTimeZone = @StartTimeZone,
         EndTimeZone = @EndTimeZone,
-        CreatedAt = @CreatedAt,
+        
         UpdatedAt = @UpdatedAt,
         TechnicianId = @TechnicianId,
         CustomerId = @CustomerId,
         ServiceID = @ServiceID,
         Deleted = @Deleted,
-        DateDeleted = @DateDeleted,
+        
         JobTypeId = @JobTypeId
-    WHERE AppointmentID = @AppointmentID AND TenantID = @TenantID
+    WHERE Id = @Id AND TenantID = @TenantID
 END

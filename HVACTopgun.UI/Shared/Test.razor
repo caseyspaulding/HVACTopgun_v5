@@ -29,7 +29,7 @@
 
                     <NavLink href="https://www.hvactopgun.com">
                     <div class="flex-shrink-0 @(isMenuOpen ? "pl-6" : "")">
-                            <img class="block h-10 w-30 pl-2" src="/images/topgun_logobigblack.jpg" alt="HVAC TopGun Logo">
+                            <img class="block h-9 pl-2" src="/images/topgun_logosmallwhite2.jpg" alt="HVAC TopGun Logo">
                     </div>
                     </NavLink>
                 </div>
@@ -281,7 +281,7 @@
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="block flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
-            <img class="h-12 w-auto" src="/images/logo-dark.png" alt="HVAC TopGun">
+            <img class="h-9 w-auto" src="/images/topgun_logosmallwhite2.jpg" alt="HVAC TopGun">
         </div>
         <!-- Sidebar  -->
         <nav class="flex flex-1 flex-col">
@@ -549,12 +549,7 @@
         isMenuOpen = !isMenuOpen;
     }
 
-    private string GetLogoSource()
-    {
-        string logoFileName = _darkMode ? "logo-light.png" : "logo-dark.png";
-        string logoSource = $"images/{logoFileName}";
-        return logoSource;
-    }
+   
 
     private void toggleMobileMenu()
     {

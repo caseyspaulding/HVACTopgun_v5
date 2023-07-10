@@ -3,12 +3,14 @@ using DataAccess.Data;
 using DataAccess.DataService;
 using DataAccess.DbAccess;
 using DataAccess.Models;
-using HVACTopGun.UI.DataAdaptors;
+using HVACTopGun.UI.Features.Scheduler.AutoMapper;
+using HVACTopGun.UI.Features.Scheduler.DataAdapters;
 using HVACTopGun.UI.Helpers;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Rewrite;
+
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
@@ -37,6 +39,9 @@ builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
 builder.Services.AddScoped<IAuthorizationHandler, SubscriptionAuthorizationHandler>();
 builder.Services.AddScoped<AuthClaimsModel>();
 builder.Services.AddScoped<IRoleDataService, RoleDataService>();
+
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(AppointmentMapper));
 builder.Services.AddScoped<AppointmentsDataAdapter>();
 
 //builder.Services.AddAuthorization(options =>

@@ -103,6 +103,7 @@
     <Build Include="dbo\Stored Procedures\spAddAppointmentModel.sql" />
     <Build Include="dbo\Stored Procedures\spUpdateAppointmentModel.sql" />
     <Build Include="dbo\Stored Procedures\spSoftDeleteAppointmentModel.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAppointmentById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database_TG.publish.xml" />

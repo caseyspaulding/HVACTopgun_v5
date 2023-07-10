@@ -14,7 +14,7 @@
                     </button>
                     <NavLink href="https://www.hvactopgun.com">
                     <div class="flex-shrink-0 @(isMenuOpen ? "pl-6" : "")">
-                            <img class="block h-10 w-30 pl-2" src="/images/topgun_logobigblack.jpg" alt="HVAC TopGun Logo">
+                            <img class="block h-9 pl-2" src="/images/topgun_logosmallwhite2.jpg" alt="HVAC TopGun Logo">
                     </div>
                     </NavLink>
                 </div>
@@ -144,7 +144,7 @@
 
     private string GetLogoSource()
     {
-        string logoFileName = _darkMode ? "logo-dark.png" : "logo-light.png";
+        string logoFileName = _darkMode ? "topgun_logosmallwhite2.jpg" : "topgun_logosmallBlack.jpg";
         string logoSource = $"images/{logoFileName}";
         return logoSource;
     }

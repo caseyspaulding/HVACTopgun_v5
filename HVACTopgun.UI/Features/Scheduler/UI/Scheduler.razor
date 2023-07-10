@@ -1,0 +1,99 @@
+﻿@page "/Scheduler"
+@layout Test
+@using Microsoft.AspNetCore.Http.HttpResults;
+@using HVACTopGun.UI.Features.Scheduler.DataAdapters
+@using Syncfusion.Blazor.Schedule.Internal;
+
+@inject ITenantDataService TenantDataService
+@inject IAppointmentsDataService appointmentDataService
+@inject IUserDataService UserDataService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthClaimsModel authClaimsModel
+@using DataAccess.DbAccess
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Components.Authorization;
+@using Microsoft.Extensions.DependencyInjection;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Identity;
+
+@using Syncfusion.Blazor.Schedule
+
+
+<SfSchedule TValue="AppointmentModel" Width="100%" Height="600px" @bind-SelectedDate="@CurrentDate">
+
+    <ScheduleEvents TValue="AppointmentModel" ActionCompleted="OnActionCompleted"></ScheduleEvents>
+    <ScheduleEventSettings DataSource="@DataSource" AllowEditing="true" AllowAdding="true" AllowDeleting="true">
+        
+
+    </ScheduleEventSettings>
+      
+    <ScheduleViews>
+        <ScheduleView Option="View.Day"></ScheduleView>
+        <ScheduleView Option="View.Week"></ScheduleView>
+        <ScheduleView Option="View.WorkWeek"></ScheduleView>
+        <ScheduleView Option="View.Month"></ScheduleView>
+        <ScheduleView Option="View.Agenda"></ScheduleView>
+    </ScheduleViews>
+    
+
+    <ScheduleEventSettings TValue="AppointmentModel" >
+        
+    </ScheduleEventSettings>
+</SfSchedule>
+
+@code {
+    private ClaimsPrincipal User { get; set; }
+    private string FirstName { get; set; }
+    private string CompanyName { get; set; }
+    private int? tenantId;
+    private int userId;
+
+
+    DateTime CurrentDate { get; set; } = DateTime.UtcNow;
+
+    List<AppointmentModel> DataSource { get; set; } = new List<AppointmentModel>();
+    ScheduleEventSettings<AppointmentModel> AppointmentSettings { get; set; }
+
+    public List<AppointmentModel> appointments { get; set; } = new List<AppointmentModel>();
+    public TenantModel tenantModel;
+    
+    
+    public AppointmentModel appointment = new AppointmentModel();
+    public AppointmentModel SelectedAppointment { get; set; } = new AppointmentModel();
+
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
+        tenantId = await TenantDataService.GetTenantIdByObjectId(objectId); // Assign the value to the class-level tenantId property
+        User = authState.User;
+        FirstName = User.FindFirstValue("extension_FirstName");
+        CompanyName = User.FindFirstValue("extension_CompanyName"); 
+        userId = await UserDataService.GetUserIdByObjectId(objectId) ?? 0; 
+    }
+
+    public async Task OnActionCompleted(Syncfusion.Blazor.Schedule.ActionEventArgs<AppointmentModel> args)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
+        
+
+        if (args.ActionType == ActionType.EventCreate)
+        {
+            var newAppointment = args.AddedRecords.First();
+            await appointmentDataService.CreateAppointment(newAppointment, tenantId ?? 0, userId);
+        }
+        if (args.ActionType == ActionType.EventChange)
+        {
+            await appointmentDataService.UpdateAppointment(appointment, tenantId ?? 0);
+        }
+
+        if (args.ActionType == ActionType.EventRemove)
+        {
+            int appointmentId = appointment.Id; // Assuming the appointment object has an "Id" property
+            await appointmentDataService.DeleteAppointment(appointmentId, tenantId ?? 0);
+        }
+    }
+}

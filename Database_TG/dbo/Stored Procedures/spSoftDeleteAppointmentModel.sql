@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[spSoftDeleteAppointmentModel]
-	 @AppointmentID INT,
+	 @Id INT,
     @TenantID INT
 AS
 BEGIN
     UPDATE Appointments
     SET Deleted = 1,
         DateDeleted = GETDATE()
-    WHERE AppointmentID = @AppointmentID AND TenantID = @TenantID
+    WHERE Id = @Id AND TenantID = @TenantID
 END

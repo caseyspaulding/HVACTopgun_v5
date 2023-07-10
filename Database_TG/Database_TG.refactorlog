@@ -147,4 +147,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ChatBotConversationsId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a011b192-7115-4231-845b-b0767ded7aff" ChangeDateTime="07/09/2023 19:38:14">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[AppointmentId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
 </Operations>

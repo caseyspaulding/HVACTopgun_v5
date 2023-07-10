@@ -45,13 +45,31 @@ namespace DataAccess.DataService
                 throw;
             }
         }
-
-        public async Task<UserModel?> GetUserByObjectId(string azureObjectId)
+        public async Task<UserModel> GetUserByObjectId(string objectId)
+        {
+            try
+            {
+                var results = await _dataAccess.LoadData<UserModel, dynamic>("dbo.spGetUserByObjectId", new { AzureAD_ObjectID = objectId });
+                return results.FirstOrDefault();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred while retrieving user: {ex.Message}");
+                throw;
+            }
+        }
+        public async Task<int?> GetUserIdByObjectId(string azureObjectId)
         {
             try
             {
                 var results = await _dataAccess.LoadData<UserModel, dynamic>("dbo.spGetUserByObjectId", new { AzureAD_ObjectID = azureObjectId });
-                return results.FirstOrDefault();
+                var user = results.FirstOrDefault();
+                return user?.UserId;
             }
             catch (SqlException ex)
             {
