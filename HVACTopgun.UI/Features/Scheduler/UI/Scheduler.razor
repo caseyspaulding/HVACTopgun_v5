@@ -19,7 +19,11 @@
 @using Syncfusion.Blazor.Schedule
 
 
-<SfSchedule TValue="AppointmentModel" Width="100%" Height="600px" @bind-SelectedDate="@CurrentDate">
+<SfSchedule TValue="AppointmentModel" 
+    
+    Width="100%" Height="600px"
+          
+    @bind-SelectedDate="@CurrentDate">
 
     <ScheduleEvents TValue="AppointmentModel" ActionCompleted="OnActionCompleted"></ScheduleEvents>
     <ScheduleEventSettings DataSource="@DataSource" AllowEditing="true" AllowAdding="true" AllowDeleting="true">
@@ -72,6 +76,8 @@
         FirstName = User.FindFirstValue("extension_FirstName");
         CompanyName = User.FindFirstValue("extension_CompanyName"); 
         userId = await UserDataService.GetUserIdByObjectId(objectId) ?? 0; 
+        var allappointments = await appointmentDataService.GetAllAppointments(tenantId ?? 0);
+        DataSource = allappointments;
     }
 
     public async Task OnActionCompleted(Syncfusion.Blazor.Schedule.ActionEventArgs<AppointmentModel> args)
@@ -84,7 +90,14 @@
         {
             var newAppointment = args.AddedRecords.First();
             await appointmentDataService.CreateAppointment(newAppointment, tenantId ?? 0, userId);
+            var allappointments = await appointmentDataService.GetAllAppointments(tenantId ?? 0);
+            DataSource = allappointments;
+            // Refresh the Scheduler component
+            StateHasChanged();
         }
+
+        
+
         if (args.ActionType == ActionType.EventChange)
         {
             await appointmentDataService.UpdateAppointment(appointment, tenantId ?? 0);
