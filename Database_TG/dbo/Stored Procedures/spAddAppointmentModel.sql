@@ -29,9 +29,9 @@
 AS
 BEGIN
     INSERT INTO Appointments (
-       
         TenantID, UserID, Subject, Description, StartTime, EndTime, TechnicianName, CustomerName, Location, Status, IsAllDay, RecurrenceID, RecurrenceRule, RecurrenceException, IsReadonly, IsBlock, CssClass, AvailableAppointmentId, TenantName, CategoryColor, StartTimeZone, EndTimeZone, TechnicianId, CustomerId, ServiceId, Deleted, JobTypeId)
     VALUES (
-       
-        @TenantID, @UserID, @Subject, @Description, @StartTime, @EndTime, @TechnicianName, @CustomerName, @Location, @Status, @IsAllDay, @RecurrenceID, @RecurrenceRule, @RecurrenceException, @IsReadonly, @IsBlock, @CssClass, @AvailableAppointmentId, @TenantName, @CategoryColor, @StartTimeZone, @EndTimeZone, @TechnicianId, @CustomerId, @ServiceId, @Deleted, @JobTypeId)
+        @TenantID, @UserID, @Subject, @Description, @StartTime, @EndTime, @TechnicianName, @CustomerName, @Location, @Status, @IsAllDay, @RecurrenceID, @RecurrenceRule, @RecurrenceException, @IsReadonly, @IsBlock, @CssClass, @AvailableAppointmentId, @TenantName, @CategoryColor, @StartTimeZone, @EndTimeZone, @TechnicianId, @CustomerId, @ServiceId, @Deleted, @JobTypeId);
+
+    SELECT SCOPE_IDENTITY() AS NewID;
 END

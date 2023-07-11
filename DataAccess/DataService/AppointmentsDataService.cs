@@ -22,7 +22,7 @@ namespace DataAccess.DataService
                 {
                     Console.WriteLine(appointment.StartTime.GetType());
                     Console.WriteLine($"StartTime: {appointment.StartTime}, EndTime: {appointment.EndTime}");
-                    await _dataAccess.SaveData("dbo.spAddAppointmentModel", new
+                    int newAppointmentId = await _dataAccess.InsertDataReturnId("dbo.spAddAppointmentModel", new
                     {
 
                         TenantId = tenantId,
@@ -86,7 +86,8 @@ namespace DataAccess.DataService
             try
             {
                 var results = await _dataAccess.LoadData<AppointmentModel, dynamic>("dbo.spGetAllAppointmentModels", new { TenantId = tenantId });
-
+                // Log the results
+                Console.WriteLine(JsonConvert.SerializeObject(results));
                 return results.ToList();
 
             }

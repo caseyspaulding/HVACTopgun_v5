@@ -44,4 +44,17 @@ public class SqlDataAccess : ISqlDataAccess
             throw;
         }
     }
+    public async Task<int> InsertDataReturnId<T>(string storedProcedure, T parameters, string connectionId = "DefaultConnection")
+    {
+        try
+        {
+            using IDbConnection connection = new SqlConnection(_config.GetConnectionString(connectionId));
+            return await connection.ExecuteScalarAsync<int>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error executing stored procedure '{storedProcedure}': {ex.Message}");
+            throw;
+        }
+    }
 }

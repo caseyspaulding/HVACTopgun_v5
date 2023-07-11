@@ -9,8 +9,8 @@ namespace DataAccess.Models
         public int UserId { get; set; }
         public string? Subject { get; set; }
         public string? Description { get; set; }
-        public DateTime StartTime { get; set; } = DateTime.MinValue;
-        public DateTime EndTime { get; set; } = DateTime.MinValue;
+        public DateTime? StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
         public string? TechnicianName { get; set; }
         public string? CustomerName { get; set; }
         public string? Location { get; set; }
@@ -27,13 +27,13 @@ namespace DataAccess.Models
         public string? CategoryColor { get; set; }
         public string? StartTimeZone { get; set; }
         public string? EndTimeZone { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.MinValue;
-        public DateTime? UpdatedAt { get; set; } = DateTime.MinValue;
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public int? TechnicianId { get; set; }
         public int? CustomerId { get; set; }
         public int? ServiceId { get; set; }
         public bool? Deleted { get; set; }
-        public DateTime? DateDeleted { get; set; } = DateTime.MinValue;
+        public DateTime? DateDeleted { get; set; }
         public int? JobTypeId { get; set; }
     }
 }
