@@ -1,5 +1,6 @@
-﻿using DataAccess.Enums;
-using DataAccess.Models;
+﻿using HVACTopGun.Domain.Features.Appointments;
+using HVACTopGun.Domain.Features.Customers;
+using HVACTopGun.Domain.Features.Technicians;
 
 namespace HVACTopGun.UI.Features.Scheduler.Models
 {
@@ -15,7 +16,7 @@ namespace HVACTopGun.UI.Features.Scheduler.Models
         public string? TechnicianName { get; set; }
         public string? CustomerName { get; set; }
         public string? Location { get; set; }
-        public JobStatus Status { get; set; }
+        public JobStatusEnum Status { get; set; }
         public bool IsAllDay { get; set; }
         public int? RecurrenceId { get; set; }
         public string? RecurrenceRule { get; set; }

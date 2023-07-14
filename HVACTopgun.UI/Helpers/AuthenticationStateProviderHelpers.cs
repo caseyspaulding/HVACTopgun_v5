@@ -1,4 +1,4 @@
-﻿using DataAccess.Data;
+﻿using HVACTopGun.DataAccess.Features.Tenants;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 
@@ -8,7 +8,7 @@ namespace HVACTopGun.UI.Helpers
     {
         public static async Task<int?> GetTenantIdFromAuth(
             this AuthenticationStateProvider provider,
-            ITenantDataService tenantDataService)
+            ITenantRepository tenantDataService)
         {
             var authState = await provider.GetAuthenticationStateAsync();
             var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");

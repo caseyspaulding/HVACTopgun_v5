@@ -1,0 +1,8 @@
+﻿namespace HVACTopGun.Domain.Features.Users
+{
+    public class UserRoleModel
+    {
+        public int UserID { get; set; }
+        public int RoleID { get; set; }
+    }
+}

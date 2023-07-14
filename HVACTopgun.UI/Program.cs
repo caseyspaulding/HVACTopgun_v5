@@ -1,23 +1,24 @@
+using AutoMapper;
 using Blazored.LocalStorage;
-using DataAccess.Data;
-using DataAccess.DataService;
-using DataAccess.DbAccess;
-using DataAccess.Models;
+using HVACTopGun.Application.Common.Mappings;
+using HVACTopGun.Application.Features.Auth;
+using HVACTopGun.Application.Features.Tenants;
+using HVACTopGun.Application.Features.Users;
+using HVACTopGun.DataAccess;
+using HVACTopGun.DataAccess.Features.Roles;
+using HVACTopGun.Domain.Features.Auth;
+using HVACTopGun.Services.Extensions;
 using HVACTopGun.UI.Features.Scheduler.AutoMapper;
-using HVACTopGun.UI.Features.Scheduler.DataAdapters;
 using HVACTopGun.UI.Helpers;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Rewrite;
-
-using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Syncfusion.Blazor;
-using System.Data;
 using System.Security.Claims;
-
+using UserService = HVACTopGun.Application.Features.Users.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 var ConnectionStrings = builder.Configuration["DefaultConnection"];
@@ -30,27 +31,29 @@ builder.Services.AddServerSideBlazor().AddMicrosoftIdentityConsentHandler();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddMemoryCache();
 builder.Services.AddSyncfusionBlazor();
-IServiceCollection serviceCollection = builder.Services.AddScoped<IDbConnection>(c => new SqlConnection(ConnectionStrings));
-builder.Services.AddScoped<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddScoped<ITenantDataService, TenantDataService>();
-builder.Services.AddScoped<IAppointmentsDataService, AppointmentsDataService>();
-builder.Services.AddScoped<IUserDataService, UserDataService>();
 builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
-builder.Services.AddScoped<IAuthorizationHandler, SubscriptionAuthorizationHandler>();
-builder.Services.AddScoped<AuthClaimsModel>();
-builder.Services.AddScoped<IRoleDataService, RoleDataService>();
 
+// Register Services
+builder.Services.AddScoped<ITenantService, TenantService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+builder.Services.AddScoped<AuthClaimsModel>();
+
+builder.Services.AddScoped<IAuthorizationHandler, SubscriptionAuthorizationHandler>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(AppointmentMapper));
-builder.Services.AddScoped<AppointmentsDataAdapter>();
-
-//builder.Services.AddAuthorization(options =>
-//{
-//    options.AddPolicy("SubscriptionPolicy", policy =>
-//        policy.Requirements.Add(new SubscriptionRequirement()));
-//});
 
 
+// Add Service Layer
+builder.Services.AddServicesLayer();
+
+// Call the Data Access setup method to register Data Access services
+DataAccessSetup.AddDataAccessServices(builder.Services);
+
+// Configure authentication, authorization, and other middleware
 
 //AZURE AD B2C
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
@@ -109,8 +112,8 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
             },
             OnTicketReceived = async ctxt =>
             {
-                var tenantDataService = ctxt.HttpContext.RequestServices.GetRequiredService<ITenantDataService>();
-                var userDataService = ctxt.HttpContext.RequestServices.GetRequiredService<IUserDataService>();
+                var tenantDataService = ctxt.HttpContext.RequestServices.GetRequiredService<ITenantService>();
+                var userDataService = ctxt.HttpContext.RequestServices.GetRequiredService<IUserService>();
 
                 if (ctxt.Principal.Identity is ClaimsIdentity identity)
                 {
@@ -132,7 +135,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                     if (user == null)
                     {
                         // Create new tenant
-                        var newTenant = new TenantModel
+                        var newTenant = new TenantDto
                         {
                             FirstName = objAuthClaims.FirstName,
                             LastName = objAuthClaims.LastName,
@@ -148,7 +151,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                         var newTenantId = await tenantDataService.GetLastCreatedTenantId();
 
                         // Create new user with the tenant's ID
-                        var newUser = new UserModel
+                        var newUser = new UserDto
                         {
                             TenantID = newTenantId,
                             AzureAD_ObjectID = objAuthClaims.ObjectId,
@@ -163,7 +166,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
                         if (createdUser != null)
                         {
-                            var roleDataService = ctxt.HttpContext.RequestServices.GetRequiredService<IRoleDataService>();
+                            var roleDataService = ctxt.HttpContext.RequestServices.GetRequiredService<IRoleRepository>();
                             var ownerRole = await roleDataService.GetRolesByNames(new List<string> { "Owner" });
 
                             if (ownerRole.Any())

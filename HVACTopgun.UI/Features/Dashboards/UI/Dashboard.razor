@@ -1,0 +1,259 @@
+﻿@page "/dashboard"
+@layout Test2
+@inject IJSRuntime JSRuntime
+@inject ITenantService TenantDataService
+@inject IUserService UserDataService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IAuthService AuthService
+@using HVACTopGun.Application.Features.Auth;
+@using HVACTopGun.Application.Features.Tenants;
+@using HVACTopGun.Application.Features.Users;
+@using HVACTopGun.Domain.Features.Auth;
+@using HVACTopGun.UI.Features.Scheduler.UI
+@using Syncfusion.Blazor.CircularGauge
+@using Syncfusion.Blazor.Layouts
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor
+@attribute [Authorize]
+@using HVACTopGun.UI.Features.Scheduler
+<div>
+    <p>Hello, @FirstName!</p>
+    <p>Company: @CompanyName</p>
+
+</div>
+
+ 
+<div class="">
+    <SfDashboardLayout ID="DashBoard" @ref="DashboardLayout" AllowResizing="true" AllowFloating="true" Columns="4">
+        <DashboardLayoutPanels>
+            <DashboardLayoutEvents Created="Created" OnResizeStop="@ResizingHandler" OnWindowResize="@ResizingWindow" Resizing="ResizingHandler"></DashboardLayoutEvents>
+            <DashboardLayoutPanel Column="0" Row="0">
+                <HeaderTemplate>
+                    <div class="flex items-center text-base font-medium text-gray-900 transition duration-75 border-opacity-0 hover:border-b hover:border-sky-600">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                        
+                    </svg>
+                        <span class="ml-2">Upcoming Jobs</span>
+                  </div>
+                        
+                </HeaderTemplate>
+                <ContentTemplate>
+                    
+                    </ContentTemplate>
+            </DashboardLayoutPanel>
+
+            <DashboardLayoutPanel Column="0" Row="1" SizeX="3">
+                <HeaderTemplate>Panel 2</HeaderTemplate>
+                <ContentTemplate>
+                    <BarChart/>
+                </ContentTemplate>
+            </DashboardLayoutPanel>
+
+            <DashboardLayoutPanel Column="1" Row="0">
+                <HeaderTemplate>
+                    <div class="flex items-center text-base font-medium text-gray-900 transition duration-75 border-opacity-0 hover:border-b hover:border-sky-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+
+                        </svg>
+                        <span class="ml-2">Open Estimates</span>
+                    </div>
+                </HeaderTemplate>
+                <ContentTemplate>
+                   <DonutChart/>
+
+                </ContentTemplate>
+            </DashboardLayoutPanel>
+
+            <DashboardLayoutPanel Column="3" Row="0">
+                <HeaderTemplate>
+                    <div class="flex items-center text-base font-medium text-gray-900 transition duration-75 border-opacity-0 hover:border-b hover:border-sky-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+
+                        </svg>
+                        <span class="ml-2">Todays Stats</span>
+                    </div>
+                </HeaderTemplate>
+                <ContentTemplate>@if (IsInitialRender)
+                {
+                     <SfCircularGauge Background="transparent" ID="GaugeThree" @ref="GaugeThree" Width="100%" Height="100%">
+                            <CircularGaugeTitleStyle FontFamily="inherit"></CircularGaugeTitleStyle>
+                            <CircularGaugeAxes>
+                                <CircularGaugeAxis StartAngle="200" EndAngle="160" Minimum="1" Maximum="100" Radius="80%">
+                                    <CircularGaugeAxisLineStyle Width="0" />
+                                    <CircularGaugeAxisLabelStyle>
+                                        <CircularGaugeAxisLabelFont Size="0px" FontFamily="inherit" />
+                                    </CircularGaugeAxisLabelStyle>
+                                    <CircularGaugeAxisMajorTicks Height="0" />
+                                    <CircularGaugeAxisMinorTicks Height="0" />
+                                    <CircularGaugeRanges>
+                                        <CircularGaugeRange Start="1" End="100" Radius="90%" StartWidth="30" EndWidth="30" Color="#E0E0E0" RoundedCornerRadius="20" />
+                                    </CircularGaugeRanges>
+                                    <CircularGaugePointers>
+                                        <CircularGaugePointer Value="60" RoundedCornerRadius="20" Type="PointerType.RangeBar" Radius="90%" Color="#e5ce20" PointerWidth="30">
+                                            <CircularGaugePointerAnimation Enable="false" />
+                                            <CircularGaugePointerBorder Width="0" />
+                                        </CircularGaugePointer>
+                                    </CircularGaugePointers>
+                                    <CircularGaugeAnnotations>
+                                        <CircularGaugeAnnotation Radius="0%" Angle="0" ZIndex="1">
+                                            <ContentTemplate>
+                                                <div class="annotationText">60/100</div>
+                                            </ContentTemplate>
+                                        </CircularGaugeAnnotation>
+                                    </CircularGaugeAnnotations>
+                                </CircularGaugeAxis>
+                            </CircularGaugeAxes>
+                    </SfCircularGauge>
+                } </ContentTemplate>
+            </DashboardLayoutPanel>
+
+             <DashboardLayoutPanel Column="4" Row="0">
+                <HeaderTemplate>
+                    <div class="flex items-center text-base font-medium text-gray-900 transition duration-75 border-opacity-0 hover:border-b hover:border-sky-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+
+                        </svg>
+                        <span class="ml-2">Open Invoices</span>
+                    </div>
+                </HeaderTemplate>
+                <ContentTemplate>
+                    @if (IsInitialRender)
+                    {
+
+                        <SfCircularGauge Background="transparent"  ID="GaugeTwo" @ref="GaugeTwo" Width="100%" Height="100%" MoveToCenter="true">
+                           
+                                <CircularGaugeAxes>
+                                    <CircularGaugeAxis Radius="80%" StartAngle="210" EndAngle="150" Minimum="0" Maximum="8">
+                                        <CircularGaugeAxisLabelStyle Offset="10">
+                                            <CircularGaugeAxisLabelFont FontFamily="inherit"></CircularGaugeAxisLabelFont>
+                                        </CircularGaugeAxisLabelStyle>
+                                        <CircularGaugeAxisLineStyle Width="0" />
+                                        <CircularGaugeAxisMajorTicks Width="0" Interval="1" />
+                                        <CircularGaugeAxisMinorTicks Width="0" />
+                                        <CircularGaugePointers>
+                                            <CircularGaugePointer NeedleStartWidth="10" NeedleEndWidth="5" Value="6.2" Radius="85%" Color="#E63B86" PointerWidth="10">
+                                                <LinearGradient StartValue="0%" EndValue="100%">
+                                                    <ColorStops>
+                                                        <ColorStop Opacity="0.2" Offset="0%" Color="#9e40dc" />
+                                                        <ColorStop Opacity="0.5" Offset="70%" Color="#9e40dc" />
+                                                    </ColorStops>
+                                                </LinearGradient>
+                                                <CircularGaugePointerAnimation Enable="false" />
+                                                <CircularGaugeCap Radius="0">
+                                                    <CircularGaugeCapBorder Width="0" />
+                                                </CircularGaugeCap>
+                                                <CircularGaugeNeedleTail Length="0%" />
+                                            </CircularGaugePointer>
+                                        </CircularGaugePointers>
+                                        <CircularGaugeRanges>
+                                            <CircularGaugeRange Color="#E63B86" Start="0" End="6.2" StartWidth="22" EndWidth="22">
+                                                <LinearGradient StartValue="0%" EndValue="100%">
+                                                    <ColorStops>
+                                                        <ColorStop Opacity="1" Offset="0%" Color="#9e40dc" />
+                                                        <ColorStop Opacity="1" Offset="70%" Color="#d93c95" />
+                                                    </ColorStops>
+                                                </LinearGradient>
+                                            </CircularGaugeRange>
+                                            <CircularGaugeRange Color="#E0E0E0" Start="6.2" End="8" StartWidth="22" EndWidth="22" />
+                                        </CircularGaugeRanges>
+                                    </CircularGaugeAxis>
+                                </CircularGaugeAxes>
+                            </SfCircularGauge>
+                    }
+                </ContentTemplate>
+            </DashboardLayoutPanel>
+
+            <DashboardLayoutPanel Column="3" Row="3">
+                <HeaderTemplate>
+                    <div class="flex items-center text-base font-medium text-gray-900 transition duration-75 border-opacity-0 hover:border-b hover:border-sky-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+
+                        </svg>
+                        <span class="ml-2">Todays Stats</span>
+                    </div>
+                </HeaderTemplate>
+                <ContentTemplate>Content of Panel </ContentTemplate>
+            </DashboardLayoutPanel>
+            
+
+        </DashboardLayoutPanels>
+    </SfDashboardLayout>
+
+    <style>
+        .annotationText {
+            font-size: 35px;
+            width: 120px;
+            text-align: center;
+            margin-top: -30px;
+            margin-left: -55px
+        }
+        
+
+        .e-panel-content {
+            text-align: center;
+            margin-top: -3px;
+        }
+    </style>
+</div>
+
+@code
+{
+    SfCircularGauge GaugeOne;
+    SfCircularGauge GaugeTwo;
+    SfCircularGauge GaugeThree;
+    SfDashboardLayout DashboardLayout;
+    public bool IsInitialRender { get; set; }
+    public double[] CellSpacing = { 10, 10 };
+
+    private ClaimsPrincipal User { get; set; }
+    private string FirstName { get; set; }
+    private string CompanyName { get; set; }
+    private int? tenantId;
+
+    public async void Created(Object args)
+    {
+        IsInitialRender = true;
+    }
+
+    public async Task ResizingWindow(Syncfusion.Blazor.Layouts.ResizeArgs args)
+    {
+        await DashboardLayout.RefreshAsync();
+        
+        await GaugeTwo.RefreshAsync();
+        await GaugeThree.RefreshAsync();
+    }
+    public async Task ResizingHandler(Syncfusion.Blazor.Layouts.ResizeArgs args)
+    {
+        if (args.Id == "LayoutOne")
+        {
+            await Task.Delay(100);
+           
+        }
+        else if (args.Id == "LayoutTwo")
+        {
+            await Task.Delay(100);
+           
+        }
+        else if (args.Id == "LayoutThree")
+        {
+            await Task.Delay(100);
+           
+        }
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
+        tenantId = await TenantDataService.GetTenantIdByObjectId(objectId); // Assign the value to the class-level tenantId property
+        User = authState.User;
+        FirstName = User.FindFirstValue("extension_FirstName");
+        CompanyName = User.FindFirstValue("extension_CompanyName");
+    }
+}

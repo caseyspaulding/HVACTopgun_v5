@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DataAccess.Models;
+using HVACTopGun.Domain.Features.Appointments;
 using HVACTopGun.UI.Features.Scheduler.Models;
 
 namespace HVACTopGun.UI.Features.Scheduler.AutoMapper

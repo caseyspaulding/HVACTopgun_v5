@@ -1,14 +1,14 @@
 ﻿// SubscriptionAuthorizationHandler.cs
-using DataAccess.Data;
-using Microsoft.AspNetCore.Authorization;
 
+using HVACTopGun.DataAccess.Features.Tenants;
+using Microsoft.AspNetCore.Authorization;
 namespace HVACTopGun.UI.Helpers
 {
     public class SubscriptionAuthorizationHandler : AuthorizationHandler<SubscriptionRequirement>
     {
-        private readonly ITenantDataService _tenantDataService;
+        private readonly ITenantRepository _tenantDataService;
 
-        public SubscriptionAuthorizationHandler(ITenantDataService tenantDataService)
+        public SubscriptionAuthorizationHandler(ITenantRepository tenantDataService)
         {
             _tenantDataService = tenantDataService;
         }

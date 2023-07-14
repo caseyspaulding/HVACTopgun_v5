@@ -15,9 +15,14 @@ function toggleMobileMenu() {
     }
 }
 
-function loadscript () {
+function loadscript() {
     var script = document.createElement('script');
     script.src = '_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js';
     script.type = 'text/javascript';
     document.body.appendChild(script);
+}
+
+window.toggleDrawer = () => {
+    const drawer = document.querySelector('.relative.bg-white.h-full.transform.transition-transform.duration-300.ease-in-out');
+    drawer.style.transform = drawer.style.transform === 'translateX(0)' ? 'translateX(-100%)' : 'translateX(0)';
 }

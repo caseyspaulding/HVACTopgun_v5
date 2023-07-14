@@ -1,4 +1,4 @@
-﻿using DataAccess.Enums;
+﻿using HVACTopGun.Domain.Features.Payments;
 using System.Data.SqlTypes;
 
 namespace HVACTopGun.UI.Features.Tenants.Models
@@ -44,7 +44,7 @@ namespace HVACTopGun.UI.Features.Tenants.Models
 
         public string? SubscriptionType { get; set; }
 
-        public PaymentStatus PaymentStatus { get; set; }
+        public PaymentStatusModel PaymentStatus { get; set; }
 
         private DateTime? trialExpirationDate;
 

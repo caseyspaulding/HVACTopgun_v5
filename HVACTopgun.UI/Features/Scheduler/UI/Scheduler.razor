@@ -1,28 +1,29 @@
 ﻿@page "/Scheduler"
-@layout Test
-@using Microsoft.AspNetCore.Http.HttpResults;
-@using HVACTopGun.UI.Features.Scheduler.DataAdapters
-@using Syncfusion.Blazor.Schedule.Internal;
-
-@inject ITenantDataService TenantDataService
-@inject IAppointmentsDataService appointmentDataService
-@inject IUserDataService UserDataService
+@layout Test2
+@using HVACTopGun.Application.Features.Tenants;
+@using HVACTopGun.Application.Features.Users;
+@using HVACTopGun.DataAccess.Features.Appointments;
+@using HVACTopGun.Domain.Entities
+@using HVACTopGun.Domain.Features.Appointments;
+@using HVACTopGun.Domain.Features.Auth;
+@using HVACTopGun.Domain.Features.Tenants;
+@using Microsoft.AspNetCore.Http.HttpResults
+@using Syncfusion.Blazor.Schedule.Internal
+@inject ITenantService TenantDataService
+@inject IAppointmentService appointmentDataService
+@inject IUserService UserDataService
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inject AuthClaimsModel authClaimsModel
-@using DataAccess.DbAccess
-@using System.Security.Claims;
-@using Microsoft.AspNetCore.Components.Authorization;
-@using Microsoft.Extensions.DependencyInjection;
-@using Microsoft.AspNetCore.Components;
-@using Microsoft.AspNetCore.Identity;
-
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.Extensions.DependencyInjection
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Identity
 @using Syncfusion.Blazor.Schedule
+@inject AuthClaimsModel authClaimsModel
 
 <SfSchedule TValue="AppointmentModel"
             Width="100%" Height="600px"
 @bind-SelectedDate="@CurrentDate">
-    
-
     <ScheduleViews>
         <ScheduleView Option="View.Day"></ScheduleView>
         <ScheduleView Option="View.Week"></ScheduleView>
@@ -54,12 +55,12 @@
 
     public List<AppointmentModel> allappointments { get; set; } = new List<AppointmentModel>();
     public TenantModel tenantModel;
-    
-    
+
+
     public AppointmentModel appointment = new AppointmentModel();
     public AppointmentModel SelectedAppointment { get; set; } = new AppointmentModel();
 
-    
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -68,8 +69,8 @@
         tenantId = await TenantDataService.GetTenantIdByObjectId(objectId); // Assign the value to the class-level tenantId property
         User = authState.User;
         FirstName = User.FindFirstValue("extension_FirstName");
-        CompanyName = User.FindFirstValue("extension_CompanyName"); 
-        userId = await UserDataService.GetUserIdByObjectId(objectId) ?? 0; 
+        CompanyName = User.FindFirstValue("extension_CompanyName");
+        userId = await UserDataService.GetUserIdByObjectId(objectId) ?? 0;
         var allappointments = await appointmentDataService.GetAllAppointments(tenantId ?? 0);
         DataSource = allappointments;
     }
