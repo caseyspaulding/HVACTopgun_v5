@@ -490,9 +490,10 @@
         await InvokeAsync(StateHasChanged);
     }
 
+
     private string GetPageTitle()
     {
-        var pageTitle = "Dashboard"; // Set a default title
+        var pageTitle = "HVAC TopGun"; // Set a default title
         var currentUri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
         var pageName = currentUri.Segments.LastOrDefault()?.Trim('/') ?? string.Empty;
 
@@ -505,11 +506,11 @@
             case "Scheduler":
                 pageTitle = "Schedule";
                 break;
-            case "Appointments":
-                pageTitle = "Appointments";
+            case "Bookings":
+                pageTitle = "Job Bookings";
                 break;
-            case "Customers":
-                pageTitle = "Customers";
+            case "Inventory":
+                pageTitle = "Inventory";
                 break;
             case "Messages":
                 pageTitle = "Messages";
@@ -520,8 +521,8 @@
             case "Pricebook":
                 pageTitle = "Pricebook";
                 break;
-            case "manual":
-                pageTitle = "Manual";
+            case "Docs":
+                pageTitle = "Documentation";
                 break;
 
             case "Help":
@@ -538,6 +539,7 @@
 
         return pageTitle;
     }
+
 
     private async Task ToggleDarkMode(bool darkMode)
     {
