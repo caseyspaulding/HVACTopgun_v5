@@ -21,6 +21,7 @@
 @using Syncfusion.Blazor.Schedule
 @inject AuthClaimsModel authClaimsModel
 
+<div class="h-full">
 <SfSchedule TValue="AppointmentModel"
             Width="100%" Height="600px"
 @bind-SelectedDate="@CurrentDate">
@@ -39,6 +40,7 @@
                            AllowDeleting="true">
     </ScheduleEventSettings>
 </SfSchedule>
+</div>
 
 @code {
     private ClaimsPrincipal User { get; set; }
