@@ -9,4 +9,5 @@ public interface IUserRepository
     Task<UserModel> GetUserByObjectId(string objectId);
     Task<int?> GetUserIdByObjectId(string azureObjectId);
     Task UpdateUser(UserModel user);
+    Task<bool> UserExists(string azureAD_ObjectID);
 }

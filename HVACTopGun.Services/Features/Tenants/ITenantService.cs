@@ -1,6 +1,6 @@
-﻿using HVACTopGun.Domain.Features.Users;
+﻿using HVACTopGun.Services.Features.Users;
 
-namespace HVACTopGun.Application.Features.Tenants;
+namespace HVACTopGun.Services.Features.Tenants;
 public interface ITenantService
 {
     Task CreateTenant(TenantDto tenantDto);
@@ -10,5 +10,5 @@ public interface ITenantService
     Task<TenantDto?> GetTenant(int id);
     Task<TenantDto?> GetTenantByBusinessName(string businessName);
     Task<int?> GetTenantIdByObjectId(string objectId);
-    Task<UserModel?> GetUserById(int id);
+    Task<UserDto?> GetUserById(int id);
 }

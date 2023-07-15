@@ -1,57 +1,55 @@
 using AutoMapper;
 using Blazored.LocalStorage;
-using HVACTopGun.Application.Common.Mappings;
-using HVACTopGun.Application.Features.Auth;
-using HVACTopGun.Application.Features.Tenants;
-using HVACTopGun.Application.Features.Users;
 using HVACTopGun.DataAccess;
-using HVACTopGun.DataAccess.Features.Roles;
+using HVACTopGun.DataAccess.Features.Tenants;
+using HVACTopGun.DataAccess.Features.Users;
 using HVACTopGun.Domain.Features.Auth;
+
 using HVACTopGun.Services.Extensions;
-using HVACTopGun.UI.Features.Scheduler.AutoMapper;
-using HVACTopGun.UI.Helpers;
+using HVACTopGun.Services.Features.Auth;
+using HVACTopGun.Services.Features.Tenants;
+using HVACTopGun.Services.Features.Users;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Syncfusion.Blazor;
 using System.Security.Claims;
-using UserService = HVACTopGun.Application.Features.Users.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add Connection String
 var ConnectionStrings = builder.Configuration["DefaultConnection"];
 //Register Sync fusion license
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NGaF5cXmdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWXlcdnVcRWZeVUB1WUM=");
 
 // Add services to the container.
+builder.Services.AddScoped<ITenantRepository, TenantRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITenantService, TenantService>();
+builder.Services.AddScoped<AuthClaimsModel>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor().AddMicrosoftIdentityConsentHandler();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddMemoryCache();
+builder.Services.AddScoped<AuthClaimsModel>();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
-
 // Register Services
-builder.Services.AddScoped<ITenantService, TenantService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<AuthClaimsDto>();
 
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
-builder.Services.AddScoped<AuthClaimsModel>();
-
-builder.Services.AddScoped<IAuthorizationHandler, SubscriptionAuthorizationHandler>();
-builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddAutoMapper(typeof(AppointmentMapper));
-
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(HVACTopGun.Services.Common.Mappings.MappingProfile).Assembly);
 
 // Add Service Layer
 builder.Services.AddServicesLayer();
-
-// Call the Data Access setup method to register Data Access services
+// Add DataAccess services
 DataAccessSetup.AddDataAccessServices(builder.Services);
+
 
 // Configure authentication, authorization, and other middleware
 
@@ -186,7 +184,6 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         };
     });
 
-
 builder.Services.AddControllersWithViews().AddMicrosoftIdentityUI();
 
 // ROLES POLICY
@@ -205,6 +202,10 @@ builder.Services.AddMediatR(cfg =>
 
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+var serviceProvider = scope.ServiceProvider;
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -236,12 +237,12 @@ else
             }
         });
     });
-
     app.UseHsts();
 }
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.UseHttpsRedirection();
 

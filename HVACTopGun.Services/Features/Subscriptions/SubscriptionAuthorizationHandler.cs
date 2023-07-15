@@ -1,16 +1,20 @@
 ﻿// SubscriptionAuthorizationHandler.cs
 
 using HVACTopGun.DataAccess.Features.Tenants;
+
 using Microsoft.AspNetCore.Authorization;
-namespace HVACTopGun.UI.Helpers
+
+namespace HVACTopGun.Services.Helpers
 {
     public class SubscriptionAuthorizationHandler : AuthorizationHandler<SubscriptionRequirement>
     {
         private readonly ITenantRepository _tenantDataService;
 
+
         public SubscriptionAuthorizationHandler(ITenantRepository tenantDataService)
         {
             _tenantDataService = tenantDataService;
+
         }
 
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, SubscriptionRequirement requirement)

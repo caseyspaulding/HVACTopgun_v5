@@ -105,6 +105,8 @@ public class TenantRepository : ITenantRepository
                                    tenant.PaymentStatus,
                                    tenant.TrialExpirationDate
                                });
+
+
         }
         catch (SqlException ex)
         {

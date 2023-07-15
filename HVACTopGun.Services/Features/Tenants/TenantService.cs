@@ -1,20 +1,24 @@
 ﻿using AutoMapper;
 using HVACTopGun.DataAccess.Features.Tenants;
+using HVACTopGun.DataAccess.Features.Users;
 using HVACTopGun.Domain.Features.Tenants;
-using HVACTopGun.Domain.Features.Users;
+using HVACTopGun.Services.Features.Users;
 
-
-namespace HVACTopGun.Application.Features.Tenants
+namespace HVACTopGun.Services.Features.Tenants
 {
     public class TenantService : ITenantService
     {
         private readonly ITenantRepository _tenantRepository;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
 
-        public TenantService(IMapper mapper, ITenantRepository tenantRepository)
+
+        public TenantService(IUserRepository userRepository, IMapper mapper, ITenantRepository tenantRepository)
         {
             _tenantRepository = tenantRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
+
         }
 
         public async Task<int?> GetTenantIdByObjectId(string objectId)
@@ -49,15 +53,15 @@ namespace HVACTopGun.Application.Features.Tenants
 
         public async Task CreateTenant(TenantDto tenantDto)
         {
+
             var tenantModel = _mapper.Map<TenantModel>(tenantDto);
-            // Add any business logic or validation before calling the repository
             await _tenantRepository.CreateTenant(tenantModel);
         }
 
-        public async Task<UserModel?> GetUserById(int id)
+        public async Task<UserDto?> GetUserById(int id)
         {
-            // Add any additional logic if needed
-            return await _tenantRepository.GetUserById(id);
+            var userModel = await _userRepository.GetUserById(id);
+            return _mapper.Map<UserDto>(userModel);
         }
 
         public async Task DeleteTenant(int id)

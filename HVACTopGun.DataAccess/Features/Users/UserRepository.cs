@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿
 using HVACTopGun.DataAccess.DataAccess;
 using HVACTopGun.Domain.Features.Users;
 using Microsoft.Data.SqlClient;
@@ -8,22 +8,22 @@ namespace HVACTopGun.DataAccess.Features.Users;
 public class UserRepository : IUserRepository
 {
     private readonly ISqlDataAccess _dataAccess;
-    private readonly IMapper _mapper;
 
-    public UserRepository(IMapper mapper, ISqlDataAccess dataAccess)
+
+    public UserRepository(ISqlDataAccess dataAccess)
     {
         _dataAccess = dataAccess;
-        _mapper = mapper;
+
     }
 
     public async Task CreateUser(UserModel user)
     {
-        var userModel = _mapper.Map<UserModel>(user);
+
         try
         {
             await _dataAccess.SaveData("dbo.spAddUser", new
             {
-                userModel.UserId,
+                user.UserId,
                 user.TenantID,
                 user.UserName,
                 user.Email,
@@ -134,6 +134,13 @@ public class UserRepository : IUserRepository
             Console.WriteLine($"Error occurred while updating user: {ex.Message}");
             throw;
         }
+    }
+
+    public async Task<bool> UserExists(string azureAD_ObjectID)
+    {
+        var userExists = await _dataAccess.LoadData<int, dynamic>("spUserExists", new { AzureAD_ObjectID = azureAD_ObjectID });
+
+        return userExists.FirstOrDefault() > 0;
     }
 
     public async Task DeleteUser(int id)

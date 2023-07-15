@@ -1,6 +1,6 @@
 ﻿using HVACTopGun.Domain.Features.Appointments;
 
-namespace HVACTopGun.DataAccess.Features.Appointments;
+namespace HVACTopGun.Services.Features.Appointments;
 public interface IAppointmentService
 {
     Task CreateAppointment(AppointmentModel appointment, int tenantId, int userId);

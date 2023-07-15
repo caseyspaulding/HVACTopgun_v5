@@ -36,7 +36,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Identity.Web" Version="2.12.4" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.13.0" />
 		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.12.4" />
 		<PackageReference Include="NLog" Version="5.2.2" />
 		<PackageReference Include="SendGrid" Version="9.28.1" />
@@ -111,7 +111,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj" />
-		<ProjectReference Include="..\HVACTopGun.Domain\HVACTopGun.Domain.csproj" />
 		<ProjectReference Include="..\HVACTopGun.Services\HVACTopGun.Services.csproj" />
 	</ItemGroup>
 

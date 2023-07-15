@@ -1,7 +1,6 @@
-﻿namespace HVACTopGun.Application.Features.Users;
+﻿namespace HVACTopGun.Services.Features.Users;
 public class UserDto
 {
-
     public int UserId { get; set; }
     public int TenantID { get; set; }
     public string? AzureAD_ObjectID { get; set; }
@@ -14,6 +13,5 @@ public class UserDto
     public bool Deleted { get; set; } = false;
     public DateTime? DateDeleted { get; set; }
 
+
 }
-
-

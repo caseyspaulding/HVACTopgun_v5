@@ -5,10 +5,9 @@
 @inject IUserService UserDataService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IAuthService AuthService
-@using HVACTopGun.Application.Features.Auth;
-@using HVACTopGun.Application.Features.Tenants;
-@using HVACTopGun.Application.Features.Users;
-@using HVACTopGun.Domain.Features.Auth;
+@using HVACTopGun.Services.Features.Auth;
+@using HVACTopGun.Services.Features.Tenants;
+@using HVACTopGun.Services.Features.Users;
 @using HVACTopGun.UI.Features.Scheduler.UI
 @using Syncfusion.Blazor.CircularGauge
 @using Syncfusion.Blazor.Layouts
@@ -18,7 +17,7 @@
 
 
 <div class="dark:text-white">
-    <p>Hello, @FirstName!</p>
+    <p>Welcome, @FirstName!</p>
     <p>Company: @CompanyName</p>
 
 </div>

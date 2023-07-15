@@ -4,7 +4,7 @@ using HVACTopGun.Domain.Features.Auth;
 using HVACTopGun.Domain.Features.Tenants;
 using HVACTopGun.Domain.Features.Users;
 
-namespace HVACTopGun.Application.Features.Auth
+namespace HVACTopGun.Services.Features.Auth
 {
     public class AuthService : IAuthService
     {

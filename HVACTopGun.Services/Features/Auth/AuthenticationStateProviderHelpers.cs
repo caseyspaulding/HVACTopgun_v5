@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 
-namespace HVACTopGun.UI.Helpers
+namespace HVACTopGun.Services.Auth
 {
     public static class AuthenticationStateProviderHelpers
     {

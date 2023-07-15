@@ -1,8 +1,9 @@
 ﻿@inherits LayoutComponentBase
 @inject ILocalStorageService localStorage
-@using HVACTopGun.Application.Features.Tenants;
-@using HVACTopGun.Application.Features.Users;
 @using HVACTopGun.Domain.Features.Auth;
+@using HVACTopGun.Services.Features.Auth;
+@using HVACTopGun.Services.Features.Tenants;
+@using HVACTopGun.Services.Features.Users;
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.JSInterop
 @using HVACTopGun.Application.Features
@@ -13,7 +14,6 @@
 @using HVACTopGun.UI.Shared 
 @using HVACTopGun.Application
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@using HVACTopGun.Application.Features.Auth
 @inject IAuthService AuthService
 
 <PageTitle>HVAC TopGun</PageTitle>

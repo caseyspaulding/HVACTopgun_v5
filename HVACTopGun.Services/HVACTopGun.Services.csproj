@@ -24,17 +24,28 @@
 		<PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
 		<PackageReference Include="MailKit" Version="4.1.0" />
 		<PackageReference Include="MediatR" Version="12.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.9" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.9" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.9" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.13.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Common\Interfaces\" />
-		<Folder Include="Common\Models\" />
 		<Folder Include="Common\ExceptionHandlers\" />
-		<Folder Include="Common\Services\" />
 		<Folder Include="Common\Security\" />
+		<Folder Include="Features\Availability\" />
+		<Folder Include="Features\ChatBot\" />
+		<Folder Include="Features\Companies\" />
+		<Folder Include="Features\Customers\" />
+		<Folder Include="Features\Dispatching\" />
+		<Folder Include="Features\Estimates\" />
+		<Folder Include="Features\Inventory\" />
+		<Folder Include="Features\Invoices\" />
+		<Folder Include="Features\Payments\" />
+		<Folder Include="Features\PriceBook\" />
+		<Folder Include="Features\Services\" />
+		<Folder Include="Features\Technicians\" />
 	</ItemGroup>
 
 	<ItemGroup>

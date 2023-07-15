@@ -1,6 +1,7 @@
-﻿using HVACTopGun.Domain.Features.Appointments;
+﻿using HVACTopGun.DataAccess.Features.Appointments;
+using HVACTopGun.Domain.Features.Appointments;
 
-namespace HVACTopGun.DataAccess.Features.Appointments
+namespace HVACTopGun.Services.Features.Appointments
 {
     public class AppointmentService : IAppointmentService
     {

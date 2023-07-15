@@ -1,16 +1,17 @@
 ﻿@page "/Scheduler"
 @layout Test2
-@using HVACTopGun.Application.Features.Tenants;
-@using HVACTopGun.Application.Features.Users;
 @using HVACTopGun.DataAccess.Features.Appointments;
 @using HVACTopGun.Domain.Entities
 @using HVACTopGun.Domain.Features.Appointments;
 @using HVACTopGun.Domain.Features.Auth;
 @using HVACTopGun.Domain.Features.Tenants;
+@using HVACTopGun.Services.Features.Appointments;
+@using HVACTopGun.Services.Features.Tenants;
+@using HVACTopGun.Services.Features.Users;
 @using Microsoft.AspNetCore.Http.HttpResults
 @using Syncfusion.Blazor.Schedule.Internal
 @inject ITenantService TenantDataService
-@inject IAppointmentService appointmentDataService
+@inject IAppointmentService appointmentService
 @inject IUserService UserDataService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @using System.Security.Claims
@@ -73,7 +74,7 @@
         FirstName = User.FindFirstValue("extension_FirstName");
         CompanyName = User.FindFirstValue("extension_CompanyName");
         userId = await UserDataService.GetUserIdByObjectId(objectId) ?? 0;
-        var allappointments = await appointmentDataService.GetAllAppointments(tenantId ?? 0);
+        var allappointments = await appointmentService.GetAllAppointments(tenantId ?? 0);
         DataSource = allappointments;
     }
 
@@ -85,23 +86,24 @@
         if (args.ActionType == ActionType.EventCreate)
         {
             var newAppointment = args.AddedRecords.First();
-            await appointmentDataService.CreateAppointment(newAppointment, tenantId ?? 0, userId);
+            await appointmentService.CreateAppointment(newAppointment, tenantId ?? 0, userId);
         }
 
         if (args.ActionType == ActionType.EventChange)
         {
             var updatedAppointment = args.ChangedRecords.First(); // Using args.ChangedRecords instead of appointment
-            await appointmentDataService.UpdateAppointment(updatedAppointment, tenantId ?? 0);
+            await appointmentService.UpdateAppointment(updatedAppointment, tenantId ?? 0);
         }
 
         if (args.ActionType == ActionType.EventRemove)
         {
+            Console.WriteLine("Delete appointment code is executed"); // Add logging statement
             int appointmentId = args.DeletedRecords.First().Id; // Get the Id from the deleted records
-            await appointmentDataService.DeleteAppointment(appointmentId, tenantId ?? 0);
+            await appointmentService.DeleteAppointment(appointmentId, tenantId ?? 0);
         }
 
         // Refresh the DataSource after any changes
-        var allappointments = await appointmentDataService.GetAllAppointments(tenantId ?? 0);
+        var allappointments = await appointmentService.GetAllAppointments(tenantId ?? 0);
         DataSource = allappointments;
 
         // Refresh the Scheduler component

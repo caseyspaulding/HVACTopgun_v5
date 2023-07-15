@@ -1,4 +1,6 @@
-﻿using HVACTopGun.DataAccess.Features.Appointments;
+﻿using HVACTopGun.Services.Features.Appointments;
+using HVACTopGun.Services.Features.Auth;
+using HVACTopGun.Services.Features.Users;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -15,18 +17,18 @@ public static class ServiceCollectionExtensions
 
         // Register application layer services and implementations
         services.AddScoped<IAppointmentService, AppointmentService>();
+        services.AddScoped<IUserService, UserService>();
+
+        services.AddScoped<IAuthService, AuthService>();
+        // Add additional application layer services and implementations...
+
+        // For example:
+        // services.AddScoped<IAnotherService, AnotherService>();
+
         // Other application layer services and implementations...
     }
 
-    private static void AddAutoMapper(this IServiceCollection services)
-    {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
-    }
 
-    private static void AddMediator(this IServiceCollection services)
-    {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-    }
 
 
 }
