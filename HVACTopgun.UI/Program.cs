@@ -174,6 +174,8 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                         }
                     }
                 }
+                // Redirect the user to the dashboard
+                ctxt.Response.Redirect("/dashboard");
             },
             OnRemoteFailure = context =>
             {
