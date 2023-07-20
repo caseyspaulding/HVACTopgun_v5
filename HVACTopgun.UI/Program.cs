@@ -4,7 +4,6 @@ using HVACTopGun.DataAccess;
 using HVACTopGun.DataAccess.Features.Tenants;
 using HVACTopGun.DataAccess.Features.Users;
 using HVACTopGun.Domain.Features.Auth;
-
 using HVACTopGun.Services.Extensions;
 using HVACTopGun.Services.Features.Auth;
 using HVACTopGun.Services.Features.Tenants;
@@ -174,8 +173,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                         }
                     }
                 }
-                // Redirect the user to the dashboard
-                ctxt.Response.Redirect("/dashboard");
+
             },
             OnRemoteFailure = context =>
             {
@@ -200,6 +198,12 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+});
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.Secure = CookieSecurePolicy.Always;
 });
 
 
@@ -242,6 +246,7 @@ else
     app.UseHsts();
 }
 
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -250,6 +255,7 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
+app.UseCookiePolicy();
 app.UseRouting();
 
 
