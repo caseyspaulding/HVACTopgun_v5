@@ -106,6 +106,7 @@
 		<Folder Include="Features\Reports\UI\" />
 		<Folder Include="Features\Tenants\UI\" />
 		<Folder Include="Features\Users\UI\" />
+		<Folder Include="Extensions\" />
 	</ItemGroup>
 
 	<ItemGroup>
