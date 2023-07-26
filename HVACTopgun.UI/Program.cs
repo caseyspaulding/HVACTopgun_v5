@@ -8,9 +8,12 @@ using HVACTopGun.Services.Extensions;
 using HVACTopGun.Services.Features.Auth;
 using HVACTopGun.Services.Features.Tenants;
 using HVACTopGun.Services.Features.Users;
+using HVACTopGun.UI.Data;
+using HVACTopGun.UI.Features.Blog.Services;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Syncfusion.Blazor;
@@ -20,10 +23,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add Connection String
 var ConnectionStrings = builder.Configuration["DefaultConnection"];
+
+// Add BLOG Connection String
+var BlogConnectionString = builder.Configuration["BlogConnection"];
+
 //Register Sync fusion license
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NGaF5cXmdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWXlcdnVcRWZeVUB1WUM=");
 
-// Add services to the container.
+// Add services to the container.  // Register Services
 builder.Services.AddScoped<ITenantRepository, TenantRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITenantService, TenantService>();
@@ -32,25 +39,32 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor().AddMicrosoftIdentityConsentHandler();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddMemoryCache();
-builder.Services.AddScoped<AuthClaimsModel>();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
-// Register Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<AuthClaimsDto>();
-
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddAutoMapper(typeof(HVACTopGun.Services.Common.Mappings.MappingProfile).Assembly);
+
+
 
 // Add Service Layer
 builder.Services.AddServicesLayer();
 // Add DataAccess services
 DataAccessSetup.AddDataAccessServices(builder.Services);
 
+// BLOG SERVICES _____________________________________________________________//
 
-// Configure authentication, authorization, and other middleware
+builder.Services.AddDbContext<BlogContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogConnection")));
+
+builder.Services.AddTransient<CategoryService>();
+
+// End Blog Services --------------------------------------------------------
+
+
+// Configure authentication, authorization, and other middleware -----------------------------------
 
 //AZURE AD B2C
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
@@ -98,12 +112,19 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                     ctxt.HandleResponse();
                     ctxt.Response.Redirect("/");
                 }
+                else if (ctxt.Exception.Message.Contains("server_error"))
+                {
+                    // Handle server error 
+                    ctxt.HandleResponse();
+                    ctxt.Response.Redirect("/Account/ServerError?message=" + Uri.EscapeDataString(ctxt.Exception.Message));
+                }
                 else
                 {
                     // In case of any other exception, redirect to an error page
                     ctxt.HandleResponse();
                     ctxt.Response.Redirect($"/Home/Error?message={Uri.EscapeDataString(ctxt.Exception.Message)}");
                 }
+
 
                 await Task.Yield();
             },
@@ -129,6 +150,9 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
                     var user = await userDataService.GetUserByObjectId(objAuthClaims.ObjectId);
 
+                    // After handling user/tenant creation, redirect to dashboard
+                    ctxt.ReturnUri = "/dashboard";
+
                     if (user == null)
                     {
                         // Create new tenant
@@ -146,6 +170,8 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
                         // Get the newly created Tenant ID
                         var newTenantId = await tenantDataService.GetLastCreatedTenantId();
+
+
 
                         // Create new user with the tenant's ID
                         var newUser = new UserDto
@@ -241,6 +267,7 @@ else
                 // context.Response.ContentType = "text/plain";
                 // await context.Response.WriteAsync("An error occurred.");
             }
+
         });
     });
     app.UseHsts();

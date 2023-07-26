@@ -13,8 +13,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj" />
-	  <ProjectReference Include="..\HVACTopGun.Services\HVACTopGun.Services.csproj" />
+		<ProjectReference Include="..\HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj" />
+		<ProjectReference Include="..\HVACTopGun.Services\HVACTopGun.Services.csproj" />
 	</ItemGroup>
 
 </Project>

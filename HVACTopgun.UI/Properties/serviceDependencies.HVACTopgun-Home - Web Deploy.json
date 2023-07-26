@@ -22,6 +22,14 @@
       "type": "appInsights.azure",
       "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING",
       "dynamicId": null
+    },
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/HVACTopgun-Home/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsBlogConnection_66B0A779E8",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/hvactopgun/databases/Blog_Db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:BlogConnection",
+      "dynamicId": null
     }
   }
 }

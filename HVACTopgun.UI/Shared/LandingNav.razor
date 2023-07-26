@@ -1,126 +1,64 @@
-﻿
-<nav class="border-b border-sky-500 bg-black lg:border-none">
-    <div class="max-w-9xl px-2 sm:px-4 lg:px-8">
-        <div class=" relative flex h-16 items-center justify-between justify-center lg:border-b lg:border-sky-500">
-            <div class="flex items-center lg:px-1">
-                <div class="flex items-center">
-
-                    <button @ref="btn" @onclick="NavToggle" id="btn" aria-label="Navigation Button"
-                            class="z-30 md:hidden focus:outline-none hamburger @(isMenuOpen ? "open" : "")">
-                        <span class="text-white hamburger-top"></span>
-                        <span class="hamburger-middle"></span>
-                        <span class="hamburger-bottom"></span>
-
-                    </button>
-                    <NavLink href="https://www.hvactopgun.com">
-                    <div class="flex-shrink-0 @(isMenuOpen ? "pl-6" : "")">
-                            <img class="block h-9 pl-2" src="/images/topgun_logosmallwhite2.jpg" alt="HVAC TopGun Logo">
-                    </div>
-                    </NavLink>
-                </div>
-            </div>
-         
-            <div class="hidden lg:ml-4 lg:block">
-                <div class="flex items-center">
-                    <div class="lg:flex hidden content-center gap-8 ">
-                        <div class="px-2 mx-1">
-                            <button class="hover:underline">
-                            <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
-                                     href="#features">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                                </svg>
-                                <span class="ml-3">Features</span>
-                            </NavLink>
-                        </button>
-                      </div>
-                       
-                        
-                        <div class="px-2 mx-1">
-                            <button class="hover:underline">
-                                <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75"
-                                         href="/Pricing">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
-                                    </svg>
+﻿@using Microsoft.AspNetCore.Components.Web
+@inject ILocalStorageService localStorage
 
 
-                                    <span class="ml-3">Pricing</span>
-                                </NavLink>
-                            </button>
-                        </div>
-
-
-                        <AccessControl />
-
-                </div>
-
-                </div>
-            </div>
+<header class="bg-black fixed w-full z-20 top-0 left-0 border-b border-sky-500 dark:bg-black">
+    <nav class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3" aria-label="navigation">
+        <div class="flex lg:flex-1">
+            <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only">HVAC TopGun</span>
+                <img class="h-9 w-auto" src="/images/topgun_logosmallwhite2.jpg" alt="">
+            </a>
         </div>
-    </div>
 
-    <!-- Mobile menu, show/hide based on menu state. -->
-   
-    <div @ref="menu" class="pb-3 pt-4 lg:hidden @(isMenuOpen ? "flex" : "hidden")" id="menu">
- 
-    </div>
-    <div @ref="menu1" class=" pb-3 lg:hidden @(isMenuOpen ? "flex" : "hidden") column-1" id="menu1">
+        <div class="hidden lg:flex lg:gap-x-12">
+            <a href="/Pricing" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Pricing</a>
+            <a href="#features" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Features</a>
+            <a href="/GrowthTactics" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Growth Tactics</a>
+            <a href="/Company" class="text-sm font-semibold leading-6 text-white hover:text-sky-400">Company</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <AccessControl />
 
-        <hr />
-        <div class="items-center px-5 space-y-1 px-2 pb-3 pt-2 ">
+        </div>
+        <!-- Hamburger Button -->
+        <button @ref="btn" @onclick="NavToggle" id="btn"
+                class="z-30 md:hidden focus:outline-none hamburger @(isMenuOpen ? "open" : "")">
+            <span class="text-white hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+        </button>
+        <!-- Mobile Menu -->
+        <div @ref="menu" id="menu" class="fixed inset-0 z-20 @(isMenuOpen ? "flex" : "hidden")
+         flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase
+         divide-y divide-gray-500 bg-black">
+            <div class="w-full py-3 text-center">
 
-            <ul role="list" class="mx-2 space-y-1">
-                <li class="hover:underline">
-                       <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
-                             href="#features">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                        </svg>
-                                    <span class="ml-3">Features</span>
-                        </NavLink>
-                    </li>
-              
-                <li class="hover:underline">
-                                <NavLink @onclick="NavToggle" class="flex items-center p-2 text-base font-medium text-gray-200 transition duration-75 dark:hover:bg-gray-900"
-                                         href="/Pricing">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
-                        </svg>
+                <img @ref="logo" src="/images/logo-dark.png" class="mx-auto block" alt="Logo" id="logo" />
 
-
-
-                                    <span class="ml-3">Pricing</span>
-                                </NavLink>
-                </li>
-               
+            </div>
+            <div class="w-full py-3 text-center">
+                <NavLink @onclick="NavToggle"  href="#features" class="block hover:text-sky-500">Features</NavLink>
+            </div>
+            <div class="w-full py-3 text-center">
+                <NavLink @onclick="NavToggle"  href="/GrowthTactics" class="block hover:text-sky-500">Growth Tactics</NavLink>
+            </div>
+            <div class="w-full py-3 text-center">
+                <NavLink @onclick="NavToggle" class=" block hover:text-sky-500" href="/Pricing">Pricing</NavLink>
+            </div>
+            <div class="w-full py-3 text-center block hover:text-sky-500 hover:shadow-xl">
                 <AccessControl />
-                
-
-
-
-            </ul>
-            
-           @*  <button class="flex block items-center rounded-lg  bg-transparent text-white  py-1 px-2 border border-transparent hover:border-sky-400 rounded">
-
-                <a href="#" class="text-sm font-semibold leading-6 text-white ">Company</a>
-            </button> *@
+            </div>
         </div>
+    </nav>
 
-    </div>
-</nav>
+
+</header>
+
 
 @code {
-    private string menuClass2 => isMenuOpen ? "flex" : "hidden";
-    private string dropdownClass => isDropdownOpen ? "block" : "hidden";
-
-    private bool isDropdownOpen = false;
-    private bool isMobileMenuOpen = false;
     private ElementReference btn;
     private ElementReference menu;
-    private ElementReference menu1;
     private ElementReference logo;
     private bool isMenuOpen = false;
     private bool _darkMode = true;
@@ -138,20 +76,13 @@
     private void NavToggle()
     {
         isMenuOpen = !isMenuOpen;
-
     }
-
 
     private string GetLogoSource()
     {
-        string logoFileName = _darkMode ? "topgun_logosmallwhite2.jpg" : "topgun_logosmallBlack.jpg";
+        string logoFileName = _darkMode ? "logo-dark.png" : "logo-light.png";
         string logoSource = $"images/{logoFileName}";
         return logoSource;
-    }
-
-    private void toggleMobileMenu()
-    {
-        isMobileMenuOpen = !isMobileMenuOpen;
     }
 
 
@@ -166,28 +97,8 @@
         await InvokeAsync(StateHasChanged);
     }
 
-    private void ToggleDropdown()
-    {
-        isDropdownOpen = !isDropdownOpen;
-    }
-
-    private void CloseDropdown()
-    {
-        isDropdownOpen = false;
-    }
-
-    private void HandleMenuItemClick()
-    {
-        // Handle the menu item click event here
-    }
-
-    private void HandleMobileMenuItemClick()
-    {
-        // Handle the mobile menu item click event here
-    }
-
-
 
 
 
 }
+

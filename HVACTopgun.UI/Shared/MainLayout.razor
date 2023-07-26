@@ -1,20 +1,18 @@
 @inherits LayoutComponentBase
 @inject IJSRuntime JS
 @using Syncfusion.Blazor.Navigations
+@using Syncfusion.Blazor
+@using Microsoft.AspNetCore.Components.Web
+@inject ILocalStorageService localStorage
+
 
 <PageTitle>HVAC Topgun</PageTitle>
-     
-		<LandingNav />
-  
-
+<div>
+    <LandingNav />
+</div>
 <div class="">
-    <div class="">
+    <div class="mt-15">
         @Body
     </div>
 </div>
 
-
-@code
-{
-
-}
