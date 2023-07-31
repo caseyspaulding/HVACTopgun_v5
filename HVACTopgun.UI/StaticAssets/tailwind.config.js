@@ -35,6 +35,7 @@ module.exports = {
         },
         fontFamily: {
             'body': [
+                'Garamond',
                 'nunito',
                 'sans-serif',
                 'system-ui',
@@ -45,8 +46,8 @@ module.exports = {
                 'Helvetica Neue',
                 'Arial',
                 'Noto Sans',
-
             ],
+            'heading': ['Roboto', 'sans-serif'],
         },
     },
     plugins: [

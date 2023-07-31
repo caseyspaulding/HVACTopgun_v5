@@ -7,6 +7,7 @@ using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
+
 namespace HVACTopGun.Services;
 public static class DependencyInjection
 {

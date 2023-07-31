@@ -1,0 +1,27 @@
+﻿[
+
+  {
+    "compilers": {
+      "sass": {
+        "autoPrefix": "",
+        "loadPaths": "",
+        "style": "expanded",
+        "relativeUrls": true,
+        "sourceMap": false
+      }
+    },
+    "outputFile": "wwwroot/Sass/Saas.css",
+    "inputFile": "Sass/Saas.scss",
+    "options": {
+      "sourceMap": true
+    },
+    "minifiers": {
+      "css": {
+        "enabled": true,
+        "termSemicolons": true,
+        "gzip": false
+      }
+    }
+  }
+
+]

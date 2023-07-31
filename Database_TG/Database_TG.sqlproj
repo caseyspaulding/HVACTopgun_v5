@@ -104,6 +104,10 @@
     <Build Include="dbo\Stored Procedures\spUpdateAppointmentModel.sql" />
     <Build Include="dbo\Stored Procedures\spSoftDeleteAppointmentModel.sql" />
     <Build Include="dbo\Stored Procedures\spGetAppointmentById.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAllChatMessages.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertChatMessage.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateChatMessage.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteChatMessage.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database_TG.publish.xml" />

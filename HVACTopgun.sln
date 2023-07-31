@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.Services", "HVAC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVACTopGun.DataAccess", "HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj", "{2B2DADF0-5774-4EF6-AF86-5868F9E0397D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogDataAccess", "BlogDataAccess\BlogDataAccess.csproj", "{0390192F-DE66-4A4A-B255-21998BEDC1E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{2B2DADF0-5774-4EF6-AF86-5868F9E0397D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B2DADF0-5774-4EF6-AF86-5868F9E0397D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B2DADF0-5774-4EF6-AF86-5868F9E0397D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0390192F-DE66-4A4A-B255-21998BEDC1E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0390192F-DE66-4A4A-B255-21998BEDC1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0390192F-DE66-4A4A-B255-21998BEDC1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0390192F-DE66-4A4A-B255-21998BEDC1E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

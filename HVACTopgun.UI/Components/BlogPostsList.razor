@@ -1,0 +1,65 @@
+﻿
+<ul class="list-none space-y-3">
+    @foreach (var post in Posts.OrderByDescending(p => p.PublishedOn))
+    {
+        var categoryTitle = $"{post.CategoryName} Blog Posts";
+        var categoryPostsLink = $"/c/{post.Category.Slug}/posts";
+        var color = Utilities.GetRandomColorClass();
+        var detailPageUrl = $"/posts/{post.Slug}";
+
+        <li class="mt-3" style="margin-top: 10px;">
+
+
+
+            <!-- END OF FIRST CARD -->
+
+            <article class="postcard dark blue">
+                @if (!string.IsNullOrWhiteSpace(post.HeaderImageUrl))
+                {
+                    <NavLink class="postcard__img_link" href="@detailPageUrl">
+                        <img class="postcard__img" src="@post.HeaderImageUrl" alt="@post.Title" />
+                </NavLink>
+                }
+                <div class="postcard__text">
+                    <NavLink href="@detailPageUrl" class="postcard__title blue" title="@post.Title">@post.Title</NavLink>
+
+                    <div class="postcard__subtitle small">
+                        <time>
+                            <i class=""></i>@post.PublishedOn!.Value.ToShortDateString()
+                        </time>
+                    </div>
+                    <div class="postcard__bar"></div>
+                    <div class="postcard__preview-txt">@post.Introduction</div>
+                    
+                    <div class="flex justify-between items-center mt-4">
+                        <NavLink href="@detailPageUrl" class="text-white hover:underline">
+                            <ul class="postcard__tagbox">
+                                <NavLink href="@detailPageUrl" title="@categoryTitle">
+                                    <li class="tag__item">Read More</li>
+                                </NavLink>
+
+                            </ul>
+                        </NavLink>
+                        <div>
+                            <NavLink class="flex items-center" href="@categoryPostsLink">
+
+                                <ul class="postcard__tagbox">
+                                    <NavLink href="@categoryPostsLink" title="@categoryTitle">
+                                        <li title="@categoryTitle" class="tag__item">@post.CategoryName</li>
+                                    </NavLink>
+
+                                </ul>
+                            </NavLink>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </li>
+
+    }
+</ul>
+
+@code {
+    [Parameter]
+    public IEnumerable<BlogPost> Posts { get; set; } = Enumerable.Empty<BlogPost>();
+}

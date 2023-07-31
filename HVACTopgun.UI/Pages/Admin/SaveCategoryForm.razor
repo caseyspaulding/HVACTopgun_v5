@@ -1,0 +1,107 @@
+﻿@using BlogDataAccess.Models;
+
+@inject CategoryService CategoryService
+@inject NavigationManager navigationManager
+@inject ILocalStorageService localStorageService
+
+<EditForm Model="_categoryModel" OnValidSubmit="SaveCategoryAsync">
+    <DataAnnotationsValidator />
+
+    <div class="overflow-hidden border-solid border-1 border-gray-500">
+        <div class="border-b border-gray-200 bg-black px-4 py-5 sm:px-6">
+            <div class="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
+                <div class="ml-4 mt-4">
+                    <h1 class="text-xl text-white font-semibold leading-6">
+                        @(_categoryModel.Id > 0 ? "Edit" : "Add New") Category
+                    </h1>
+
+                </div>
+                <div class="ml-4 mt-4 flex-shrink-0">
+                    <button type="button" 
+                             class="relative inline-flex items-center rounded-md bg-red-600 px-2.5 py-1 
+                                    text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline 
+                                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                                    @onclick="CloseFormAsync">X</button>
+                </div>
+            </div>
+        </div>
+        <div class="py-2 px-4 border-1 border-gray-400">
+             <div class="mb-3">
+                 <label class="form-label">Name: </label><br/>
+            <InputText @bind-Value="_categoryModel.Name" class="lg:w-64 appearance-none border-0 bg-white/5 px-3 py-2 text-base text-gray-600 shadow-lg
+                            ring-1 ring-inset ring-black/30 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-sky-300
+                            sm:w-64 sm:text-sm sm:leading-6" placeholder="Category Name"
+                            @onblur="OnNameBlur"> </InputText>
+                 <ValidationMessage For="()=> _categoryModel.Name"/>
+             </div>
+        <div class="mb-3">
+                <label class="form-label">Slug: </label><br />
+            <InputText @bind-Value="_categoryModel.Slug" class="lg:w-64 appearance-none border-0 bg-white/5 px-3 py-2 text-base text-gray-600 shadow-lg
+                            ring-1 ring-inset ring-black/30 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-sky-300
+                            sm:w-64 sm:text-sm sm:leading-6" placeholder="Category Slug" disabled="@(_categoryModel.Id > 0)" />
+            <ValidationMessage For="()=> _categoryModel.Slug" />
+        </div>
+    </div>
+ </div>         
+
+            <div class="space-x-4 bg-gray-100 py-4 px-4 text-center">
+                <button class="inline-block rounded-md bg-red-500 px-6 py-2 font-semibold text-red-100 shadow-md duration-75 hover:bg-red-400"
+                @onclick="CloseFormAsync" > Cancel</button>
+                <button class="inline-block rounded-md bg-green-500 px-6 py-2 font-semibold text-green-100 shadow-md duration-75 hover:bg-green-400">
+                    Save</button>
+            </div>
+ 
+</EditForm>
+<p>@_errorMessage</p>
+@code {
+    [Parameter]
+    public Category Category { get; set; }
+
+    [Parameter]
+    public EventCallback<MethodResult> OnSaveCategory { get; set; }
+
+    [Parameter]
+    public EventCallback OnCloseForm { get; set; }
+
+    private Category _categoryModel;
+    private string _errorMessage = string.Empty;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        _categoryModel = Category.Clone();
+    }
+
+    private void OnNameBlur()
+    {
+        if (_categoryModel.Id == 0 && !string.IsNullOrWhiteSpace(_categoryModel.Name))
+        {
+            _categoryModel.Slug = _categoryModel.Name.Slugify();
+        }
+    }
+
+    private async Task CloseFormAsync()
+    {
+        _categoryModel = new Category();
+        await OnCloseForm.InvokeAsync();
+    }
+
+    private async Task SaveCategoryAsync()
+    {
+        try
+        {
+            MethodResult result = await CategoryService.SaveCategoryAsync(_categoryModel);
+            if (result.Status)
+            {
+                _categoryModel = new Category();
+            }
+            await OnSaveCategory.InvokeAsync(result);
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = ex.Message;
+        }
+    }
+}
+
+

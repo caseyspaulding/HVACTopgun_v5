@@ -9,15 +9,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="~/" />
+   
     <link href="css/styles.css" rel="stylesheet" defer />
     <link href="HVACTopgun.UI.styles.css" rel="stylesheet" defer />
     <link href="css/tailwind_syncfusion.min.css" rel="stylesheet" defer />
+    <link href="_content/Syncfusion.Blazor.Themes/bootstrap5.css" rel="stylesheet" />
     <link href="css/animations.css" rel="stylesheet" defer />
     <link rel="icon" type="image/png" href="favicon.ico"/>
-    
-	
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-    
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" defer>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" defer>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" defer>
@@ -26,29 +25,10 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="description" content="Manage your HVAC business with ease. Simplify and Manage Your HVAC Business Effortlessly: Online Scheduling, Estimates, Dispatching, and Payments Made Easy. Boost efficiency, maximize growth,
                     and stay ahead of the competition with our powerful HVAC software.">
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:image" content="https://hvactopgun.com/images/social_card.jpg"/>
-    <meta property="og:image:secure_url" content="https://hvactopgun.com/images/social_card.jpg"/>
-    <meta property="og:image:alt" content="Transform your HVAC business with TopGun - the ultimate software solution. Streamline your operations,
-                    optimize scheduling, manage payments, and exceed customer expectations. Boost efficiency, maximize growth,
-                    and stay ahead of the competition with our powerful HVAC software. Sign up now for a free trial!">
-    <meta property="og:url" content="https://hvactopgun.com/images/social_card.jpg" />
-    <meta property="og:title" content="HVAC TopGun" />
-    <meta property="og:description" content="Transform your HVAC business with TopGun - the ultimate software solution. Streamline your operations,
-                    optimize scheduling, manage payments, and exceed customer expectations. Boost efficiency, maximize growth,
-                    and stay ahead of the competition with our powerful HVAC software. Sign up now for a free trial!" />
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@@hvactopgun" />
-    <meta name="twitter:creator" content="@@caseyspaulding_" />
-    <meta name="twitter:image" content="https://hvactopgun.com/images/social_card.jpg">
-    <meta name="twitter:image:alt" content="Transform your HVAC business with TopGun - the ultimate software solution. Streamline your operations,
-                    optimize scheduling, manage payments, and exceed customer expectations. Boost efficiency, maximize growth,
-                    and stay ahead of the competition with our powerful HVAC software. Sign up now for a free trial!">
-  
+    <link href="/Sass/Saas.min.css" rel="stylesheet" defer>
 
 </head>
+
 <body class="h-full w-full">
     <component type="typeof(App)" render-mode="ServerPrerendered" />
 
@@ -62,10 +42,14 @@
      @*    <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a> *@
     </div>
-  <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript" defer></script>
-   
+
     <script src="_framework/blazor.server.js"></script>
-	 <script>
+    <script src="/js/Disqus.js"></script>
+    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
+    <script src="~/js/theme.js"></script>
+    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
+    
+    <script>
         function navToggle() {
             btn.classList.toggle('open');
             menu.classList.toggle('flex');
@@ -77,6 +61,18 @@
                 logo.setAttribute('src', 'images/logo-bookmark.svg');
             }
         }
+    </script>
+    
+    <script>
+        window.openModal = (id) => {
+            var dialog = document.getElementById(id);
+            dialog.showModal();
+        };
+
+        window.closeModal = (id) => {
+            var dialog = document.getElementById(id);
+            dialog.close();
+        };
     </script>
     <script>
         const appData = () => {
@@ -111,6 +107,38 @@
         Blazor.defaultReconnectionHandler._reconnectCallback = function (d) {
             document.location.reload();
         }
+    </script>
+    <script src="_content/Microsoft.AspNetCore.SignalR.Client/browser/signalr.min.js"></script>
+    <!-- Include your custom JavaScript for chat functionality -->
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+        // Start the connection
+        connection.start().then(function () {
+            console.log("connected");
+        });
+
+        // Define how to handle messages from the server
+        connection.on("ReceiveMessage", function (user, message) {
+            // Handle the message here
+            console.log(user + " says " + message);
+        });
+
+        // Function to send messages to the server
+        function sendMessage(user, message) {
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11283085786"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11283085786');
     </script>
 </body>
 </html>

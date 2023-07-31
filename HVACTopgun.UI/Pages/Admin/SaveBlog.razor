@@ -1,0 +1,240 @@
+﻿@page "/admin/manage-blogs/new"
+@page "/admin/manage-blogs/edit/{urlBlogId:int?}"
+@inject ITenantService TenantDataService
+@inject IUserService UserDataService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IAuthService AuthService
+@using BlogDataAccess.Models;
+@using HVACTopGun.Services.Features.Auth;
+@using HVACTopGun.Services.Features.Tenants;
+@using HVACTopGun.Services.Features.Users;
+@using Blazored.TextEditor
+@using Syncfusion.Blazor.RichTextEditor
+@inject IWebHostEnvironment env
+@using Syncfusion.Blazor.Inputs
+@inject CategoryService CategoryService
+@inject BlogPostService BlogPostService
+
+@inject NavigationManager NavigationManager
+<div class="mt-40 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center my-5">
+        <h3 class="text-4xl my-2 font-extrabold">Publish Blog Post</h3>
+        <NavLink href="/admin/manage-blogs" class="my-2 bg-slate-500 hover:bg-sky-500 text-blue font-bold text-white py-2 px-4 rounded">Back to Manage Blog Posts</NavLink>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 py-8">
+        <div class="col-span-12">
+            @if (_isLoading)
+            {
+                <div class="flex items-center">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <EditForm Model="model" OnValidSubmit="SaveBlogAsync">
+                    <DataAnnotationsValidator />
+                    <div class="mb-3">
+                        <label class="block">Title:</label>
+                        <InputText @bind-Value="model.Title" class="w-full py-2 px-3 border rounded" placeholder="Enter title" />
+                        <ValidationMessage For="()=> model.Title" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="block">Slug:</label>
+                        <InputText @bind-Value="model.Slug" class="w-full py-2 px-3 border rounded" placeholder="Enter slug" />
+                        <ValidationMessage For="()=> model.Slug" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block">Category:</label>
+
+                        <InputSelect @bind-Value="model.CategoryId" class="w-full py-2 px-3 border rounded">
+                            <option value="">Select Category</option>
+                            @foreach (var category in categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="()=> model.CategoryId" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block">Introduction:</label>
+                        <InputTextArea @bind-Value="model.Introduction" class="w-full py-2 px-3 border rounded" placeholder="Enter introduction" />
+                        <ValidationMessage For="()=> model.Introduction" />
+                    </div>
+                    <div class="">
+                        <img id="blog-image-preview" src="@model.HeaderImageUrl" alt="Blog post image preview" />
+
+                        <SfUploader ID="UploadFiles" AutoUpload="false">
+                            <UploaderEvents ValueChange="OnChange"></UploaderEvents>
+                        </SfUploader>
+                        
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block">Content:</label>
+
+                        <SfRichTextEditor SaveInterval="saveInterval" AutoSaveOnIdle="true" ID="AutoSave" @bind-Value="model.Content">
+                            <RichTextEditorImageSettings SaveUrl="api/Image/Save" Path="./Images/"></RichTextEditorImageSettings>
+                        </SfRichTextEditor>
+                        
+                          
+                        
+
+                        <ValidationMessage For="()=> model.Content" />
+                      
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="flex items-center">
+                            <InputCheckbox id="blog-publish-chk" @bind-Value="model.IsPublished" class="form-checkbox" role="switch" />
+                            <label class="ml-2">Published?</label>
+                        </div>
+                    </div>
+                    <hr />
+                    @if (!string.IsNullOrWhiteSpace(errorMessage))
+                    {
+                        <p class="text-danger">@errorMessage</p>
+                    }
+                    <div class="mb-3 flex justify-between">
+                        <NavLink href="/admin/manage-blogs" class="my-2 bg-red-500 hover:bg-red-700 text-blue font-bold text-white py-2 px-4 rounded">Cancel</NavLink>
+                        <button type="submit" class="my-2 bg-emerald-500 hover:bg-emerald-700 text-blue font-bold text-white py-2 px-4 rounded">Save</button>
+                    </div>
+                    <hr />
+                </EditForm>
+            }
+        </div>
+    </div>
+</div>
+<style>
+    .control-wrapper {
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 50px 0px 0px;
+    }
+
+    #blog-image-preview[src=""] {
+        display: none;
+    }
+</style>
+@code {
+    [Parameter]
+    public int? UrlBlogId { get; set; }
+
+    private int BlogId => UrlBlogId ?? 0;
+   
+    private int saveInterval { get; set; } = 5000;
+    private int userId;
+    private ClaimsPrincipal User { get; set; }
+    private string FirstName { get; set; }
+    private string CompanyName { get; set; }
+    private int? tenantId;
+    bool RichTextEditorMode = true;
+    bool RichTextEditorModeSummary = true;
+    private bool _isLoading = false;
+    private string? errorMessage = null;
+
+    private BlogSaveModel model = new();
+
+    private IEnumerable<Category> categories = Enumerable.Empty<Category>();
+
+    SfRichTextEditor RteObj;
+
+    
+
+    @code {
+        public async Task OnChange(UploadChangeEventArgs args)
+        {
+            var uploadFolder = Path.Combine("blog-images"); // Relative path from web root
+            foreach (var file in args.Files)
+            {
+                var fileName = file.FileInfo.Name;
+                var filePath = Path.Combine(env.WebRootPath, uploadFolder, fileName);
+                using (var stream = file.File.OpenReadStream())
+                {
+                    using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                    {
+                        await stream.CopyToAsync(fileStream);
+                    }
+                }
+
+                // Save the relative path to the model
+                model.HeaderImageUrl = Path.Combine(uploadFolder, fileName);
+                var relativePath = Path.Combine(uploadFolder, fileName);
+                model.HeaderImageUrl = relativePath;
+                
+            }
+        }
+    }
+
+    
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var categoriesList = await CategoryService.GetCategoriesAsync();
+        if (categoriesList?.Any() == true)
+        {
+            categories = categoriesList;
+        }
+
+        if(BlogId > 0)
+        {
+            // We are in edit mode
+            var dbModel = await BlogPostService.GetPostAsync(BlogId);
+            if(dbModel is null)
+            {
+                errorMessage = "Invalid url";
+            }
+            else
+            {
+                model = dbModel;
+            }
+        }
+    }
+    
+    private async Task SaveBlogAsync()
+    {
+        
+        if (string.IsNullOrWhiteSpace(model.Content))
+        {
+            errorMessage = "Content is required";
+            return;
+        }
+
+        _isLoading = true;
+        try
+        {
+            // Add this line to extract the user ID from the User object
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
+            userId = await UserDataService.GetUserIdByObjectId(objectId) ?? 0;
+            var result = await BlogPostService.SaveAsync(model, userId);
+            if (result.Status)
+            {
+                NavigationManager.NavigateTo("/admin/manage-blogs");
+                return;
+            }
+            else
+            {
+                errorMessage = result.ErrorMessage ?? "Error in saving blog post. Please try again";
+                _isLoading = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _isLoading = false;
+            errorMessage = ex.Message;
+        }
+    }
+
+    
+
+
+
+}

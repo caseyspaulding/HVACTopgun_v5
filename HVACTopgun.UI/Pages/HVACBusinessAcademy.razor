@@ -1,0 +1,66 @@
+﻿@page "/HVACBusinessAcademy"
+@page "/c/{categorySlug}/posts"
+
+@inject BlogPostService BlogPostService
+@inject CategoryService CategoryService
+
+<PageTitle>@heading | HVAC Business Academy</PageTitle>
+
+
+
+
+<div class="mt-20 mx-auto max-w-7xl px-5 py-30 sm:py-25 lg:px-7 lg:py-29">
+    <div class="flex flex-wrap -mx-4">
+        <div class="w-full sm:w-3/4 px-4">
+            <h1 class="text-5xl mb-3 font-extrabold">@heading</h1>
+            <hr />
+            @if (!posts.Any())
+            {
+                <div class="flex justify-center items-center min-h-[250px] flex-col">
+                    <h3>No blog posts found</h3>
+                   
+                            <p>Please check back later</p>
+                       
+                </div>
+            }
+            else
+            {
+                <BlogPostsList Posts="posts" />
+            }
+        </div>
+        <div class="w-full sm:w-1/4 px-4">
+            <CategoriesBox CategorySlug="@CategorySlug" OnCategoryNameFound="SetHeading" />
+        </div>
+    </div>
+</div>
+
+
+@code{
+    [Parameter]
+    public string? CategorySlug { get; set; }
+
+    private string heading = "HVAC Business Academy";
+
+    private IEnumerable<BlogPost> posts = Enumerable.Empty<BlogPost>();
+
+    protected override async Task OnParametersSetAsync() => await SetDataAsync();
+
+    private async Task SetDataAsync()
+    {
+        var postsTask = BlogPostService.GetPostsAsync(publishedOnly: true, CategorySlug);
+
+        posts = (await postsTask).OrderByDescending(p => p.PublishedOn).ToList();
+    }
+
+    private void SetHeading(string? categoryName = null)
+    {
+        if (!string.IsNullOrWhiteSpace(CategorySlug) && !string.IsNullOrWhiteSpace(categoryName))
+        {
+            heading = $"Latest {categoryName} Posts";
+        }
+        else
+        {
+            heading = "Latest Posts";
+        }
+    }
+}

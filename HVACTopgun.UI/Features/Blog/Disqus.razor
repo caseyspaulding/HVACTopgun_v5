@@ -1,0 +1,20 @@
+<!-- Disqus.razor -->
+
+@inject IJSRuntime JSRuntime
+
+<div id="disqus_thread"></div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("loadDisqus");
+        }
+    }
+
+    public async Task ReloadComments(string pageUrl, string pageIdentifier)
+    {
+        await JSRuntime.InvokeVoidAsync("resetDisqus", pageUrl, pageIdentifier);
+    }
+}

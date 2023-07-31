@@ -35,7 +35,6 @@
 		<Folder Include="Common\ExceptionHandlers\" />
 		<Folder Include="Common\Security\" />
 		<Folder Include="Features\Availability\" />
-		<Folder Include="Features\ChatBot\" />
 		<Folder Include="Features\Companies\" />
 		<Folder Include="Features\Customers\" />
 		<Folder Include="Features\Dispatching\" />

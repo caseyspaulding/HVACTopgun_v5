@@ -9,7 +9,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Remove="Controllers\RssFeedController.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="compilerconfig.json" />
+		<Content Remove="Features\Blog\Like.razor" />
 		<Content Remove="nlog.config" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Features\Blog\Like.razor.css" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -17,7 +27,11 @@
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
 		<PackageReference Include="Blazored.SessionStorage" Version="2.3.0" />
+		<PackageReference Include="Blazored.TextEditor" Version="1.1.0" />
 		<PackageReference Include="BuildBundlerMinifierPlus" Version="5.3.0" />
+		<PackageReference Include="BuildWebCompiler2022" Version="1.14.10" />
+		<PackageReference Include="Markdig" Version="0.31.0" />
+		<PackageReference Include="Markdig.Signed" Version="0.31.0" />
 		<PackageReference Include="MediatR" Version="12.1.1" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" Version="6.0.20" />
@@ -29,11 +43,11 @@
 		<PackageReference Include="Microsoft.Azure.SignalR" Version="1.21.5" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
@@ -83,8 +97,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Features\AIChatBot\Models\" />
-		<Folder Include="Features\AIChatBot\UI\" />
 		<Folder Include="Features\Appointments\Models\" />
 		<Folder Include="Features\Customers\Models\" />
 		<Folder Include="Features\Dashboards\Models\" />
@@ -106,14 +118,20 @@
 		<Folder Include="Features\Reports\UI\" />
 		<Folder Include="Features\Tenants\UI\" />
 		<Folder Include="Features\Users\UI\" />
-		<Folder Include="Extensions\" />
+		<Folder Include="Pages\Blog\" />
+		<Folder Include="wwwroot\blog-images\" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="compilerconfig.json" />
+		<None Include="Components\Admin\SaveCategoryForm.razor" />
+		<None Include="Components\BlogPostsList.razor" />
+		<None Include="Components\CategoriesBox.razor" />
 		<None Include="nlog.config" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\BlogDataAccess\BlogDataAccess.csproj" />
 		<ProjectReference Include="..\HVACTopGun.DataAccess\HVACTopGun.DataAccess.csproj" />
 		<ProjectReference Include="..\HVACTopGun.Services\HVACTopGun.Services.csproj" />
 	</ItemGroup>
@@ -123,6 +141,8 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
+
+
 
 	<Target Name="CheckForNpm" BeforeTargets="BuildCSS">
 		<Exec Command="npm -v" ContinueOnError="true">

@@ -11,13 +11,13 @@ public static class ServiceCollectionExtensions
 
     public static void AddServicesLayer(this IServiceCollection services)
     {
-
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
         // Register application layer services and implementations
         services.AddScoped<IAppointmentService, AppointmentService>();
         services.AddScoped<IUserService, UserService>();
+
 
         services.AddScoped<IAuthService, AuthService>();
         // Add additional application layer services and implementations...

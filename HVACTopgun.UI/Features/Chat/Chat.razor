@@ -1,0 +1,136 @@
+﻿@page "/Chat"
+@using HVACTopGun.Domain.Features.Auth;
+@using HVACTopGun.Services.Features.Appointments;
+@using HVACTopGun.Services.Features.Tenants;
+@using HVACTopGun.Services.Features.Users;
+@using Microsoft.AspNetCore.SignalR.Client;
+@inject ChatService ChatService
+@inject IJSRuntime JSRuntime
+@inject ITenantService TenantDataService
+@inject IAppointmentService appointmentService
+@inject IUserService UserDataService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthClaimsModel authClaimsModel
+@inject NavigationManager navigationManager
+@using HVACTopGun.Domain.Features.Chat;
+
+<EditForm Model="ChatMessage" OnValidSubmit="HandleSubmit">
+    <div class="w-full mt-40 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+        <div class="chat-history overflow-y-auto max-h-[400px] p-4 border border-1 boarder-black mt-20 bg-gray-100">
+            @foreach (var message in ChatHistory)
+            {
+                <p class="p-2 rounded mb-2 bg-gray-200 text-gray-800 break-words">@message.SenderId: @message.Message</p>
+            }
+        </div>
+        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+            <label for="comment" class="sr-only">Your comment</label>
+            <InputTextArea @bind-Value="ChatMessage.Message" id="comment" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required />
+        </div>
+        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+            <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                Post comment
+            </button>
+            <!-- Other buttons as per your requirement -->
+        </div>
+    </div>
+</EditForm>
+<p class="ml-auto text-xs text-gray-500 dark:text-gray-400">Remember, contributions to this topic should follow our <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Community Guidelines</a>.</p>
+<style>
+    .chat-history {
+        max-height: 400px; /* Set to the height you want */
+        overflow-y: scroll;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+
+        .chat-history p {
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+            .chat-history p:nth-child(odd) {
+                background-color: #e9e9e9;
+            }
+
+        .chat-history::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-history::-webkit-scrollbar-thumb {
+            background-color: #000;
+            border-radius: 4px;
+        }
+
+        .chat-history::-webkit-scrollbar-track {
+            background-color: #000;
+        }
+
+</style>
+@code {
+    private HubConnection hubConnection; 
+    public List<ChatMessageModel> ChatHistory { get; set; } = new List<ChatMessageModel>();
+    private ClaimsPrincipal User { get; set; }
+    private string FirstName { get; set; }
+    private string CompanyName { get; set; }
+    private int tenantId;
+    private int userId;
+
+    DateTime CurrentDate { get; set; } = DateTime.UtcNow;
+
+    private ChatMessageModel ChatMessage = new ChatMessageModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var objectId = authState.User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier");
+        
+        User = authState.User;
+        FirstName = User.FindFirstValue("extension_FirstName");
+        CompanyName = User.FindFirstValue("extension_CompanyName");
+        userId = await UserDataService.GetUserIdByObjectId(objectId) ?? 0;
+
+        var hubUrl = $"{navigationManager.BaseUri}ChatSignalRHub";
+
+        hubConnection = new HubConnectionBuilder()
+    .WithUrl(hubUrl)
+    .Build();
+
+        hubConnection.On<ChatMessageModel>("ReceiveMessage", (message) =>
+      {
+      ChatHistory.Add(message);
+      StateHasChanged(); // Notify Blazor the state has changed, and it needs to re-render the component
+      });
+        await hubConnection.StartAsync();
+
+       
+
+    }
+
+
+    private async Task HandleSubmit()
+    {
+        ChatMessage.SenderId = userId; // or whatever logic you use to identify the sender
+
+        // Send the message to the hub or save to the database using a service
+        await hubConnection.SendAsync("SendMessage", ChatMessage); // Replace with actual hub method
+
+        // Optionally, you can add the message to the local chat history
+        ChatHistory.Add(ChatMessage);
+
+        // Clear the message input field
+        ChatMessage = new ChatMessageModel();
+        
+    }
+
+   
+
+    public void Dispose()
+    {
+        _ = hubConnection.DisposeAsync();
+    }
+
+}
+

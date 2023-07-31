@@ -1,19 +1,20 @@
 using AutoMapper;
 using Blazored.LocalStorage;
 using HVACTopGun.DataAccess;
+using HVACTopGun.DataAccess.Features.Chat;
 using HVACTopGun.DataAccess.Features.Tenants;
 using HVACTopGun.DataAccess.Features.Users;
 using HVACTopGun.Domain.Features.Auth;
+using HVACTopGun.Domain.Features.Chat;
 using HVACTopGun.Services.Extensions;
 using HVACTopGun.Services.Features.Auth;
+using HVACTopGun.Services.Features.ChatHub;
+using HVACTopGun.Services.Features.ChatService;
 using HVACTopGun.Services.Features.Tenants;
 using HVACTopGun.Services.Features.Users;
-using HVACTopGun.UI.Data;
-using HVACTopGun.UI.Features.Blog.Services;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Syncfusion.Blazor;
@@ -46,9 +47,9 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<AuthClaimsDto>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddAutoMapper(typeof(HVACTopGun.Services.Common.Mappings.MappingProfile).Assembly);
-
-
-
+builder.Services.AddSignalR();
+builder.Services.AddScoped<ChatService>();
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
 // Add Service Layer
 builder.Services.AddServicesLayer();
 // Add DataAccess services
@@ -57,9 +58,10 @@ DataAccessSetup.AddDataAccessServices(builder.Services);
 // BLOG SERVICES _____________________________________________________________//
 
 builder.Services.AddDbContext<BlogContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogConnection")), ServiceLifetime.Transient);
 
 builder.Services.AddTransient<CategoryService>();
+builder.Services.AddTransient<BlogPostService>();
 
 // End Blog Services --------------------------------------------------------
 
@@ -297,6 +299,8 @@ app.UseRewriter(
     }));
 
 app.MapControllers();
+
+app.MapHub<ChatSignalRHub>("/ChatSignalRHub");
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
