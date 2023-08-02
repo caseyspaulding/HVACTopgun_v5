@@ -44,7 +44,7 @@
     transform: translateY(0px);
     position: fixed;
     top: 20px;
-    left: 12px;
+    right: 12px;
 }
 
     .open .hamburger-top {

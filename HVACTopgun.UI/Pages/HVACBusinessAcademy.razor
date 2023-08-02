@@ -6,14 +6,27 @@
 
 <PageTitle>@heading | HVAC Business Academy</PageTitle>
 
+<div class="mt-10 relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:py-30 lg:px-8">
+    <img src="/images/blogheaderBG.jpg" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
+    <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
 
+    </div>
+
+    
+    <div class="mx-auto max-w-2xl text-center">
+        <h1 class="text-5xl mb-3 text-white sm:text-6xl font-extrabold">@heading</h1>
+     
+        <p class="mt-6 text-lg leading-8 text-gray-300">
+            Building Stronger, Smarter, and More Efficient HVAC Businesses.<br/> Your HVAC Business Command Center
+        </p>
+    </div>
+</div>
 
 
 <div class="mt-20 mx-auto max-w-7xl px-5 py-30 sm:py-25 lg:px-7 lg:py-29">
     <div class="flex flex-wrap -mx-4">
         <div class="w-full sm:w-3/4 px-4">
-            <h1 class="text-5xl mb-3 font-extrabold">@heading</h1>
-            <hr />
+            
             @if (!posts.Any())
             {
                 <div class="flex justify-center items-center min-h-[250px] flex-col">
