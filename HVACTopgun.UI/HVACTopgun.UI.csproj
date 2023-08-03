@@ -118,7 +118,6 @@
 		<Folder Include="Features\Reports\UI\" />
 		<Folder Include="Features\Tenants\UI\" />
 		<Folder Include="Features\Users\UI\" />
-		<Folder Include="Pages\Blog\" />
 		<Folder Include="wwwroot\blog-images\" />
 	</ItemGroup>
 

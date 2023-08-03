@@ -19,6 +19,7 @@ public class BlogPostService
                         .Include(bp => bp.Category)
                        .AsNoTracking();
 
+
         if (!string.IsNullOrWhiteSpace(categorySlug))
         {
             var categoryId = await _context.Categories

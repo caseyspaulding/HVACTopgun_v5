@@ -1,6 +1,6 @@
 ﻿@* //Blog detail post page *@
 @inject IJSRuntime JSRuntime
-@page "/posts/{slug}"
+@page "/pos/{slug}"
 @using HVACTopGun.UI
 @using HVACTopGun.UI.Features.Blog
 @inject BlogPostService BlogPostService
@@ -11,7 +11,7 @@
 @using Microsoft.AspNetCore.Components.Routing
 @using HVACTopGun.UI.Shared
 
-<PageTitle>@post.Title | HVAC Growth Tactics</PageTitle>
+<PageTitle>@post.Title | HVAC Business Academy</PageTitle>
 
 <HeadContent>
     <meta property="og:image" content="@post.HeaderImageUrl" />
@@ -32,6 +32,7 @@
     
     
 </HeadContent>
+
 <OgData2 Title="@post.Title"
         AbsolutePreviewImageUrl="@post.HeaderImageUrl"
         Description="@post.Introduction"
@@ -62,12 +63,12 @@
             {
                 <div class="flex justify-center items-center" style="min-height: 250px">
                     <h3>Not found</h3>
-                    <NavLink href="/GrowthTactics" class="font-bold hover:underline">Click here to see the latest blog posts</NavLink>
+                    <NavLink href="/HVACBusinessAcademy" class="font-bold hover:underline">Click here to see the latest blog posts</NavLink>
                 </div>
             }
             else if(post?.Id > 0)
             {
-                var color = Utilities.GetRandomColorClass();
+                
                 var categoryTitle = $"{post.CategoryName} Blog Posts";
                 var categoryPostsLink = $"/c/{post.Category.Slug}/posts";
 
@@ -146,6 +147,8 @@
         font-family: "Garamond", serif;
     }
 </style>
+
+
 @code {
     [Parameter]
     public string Slug { get; set; }

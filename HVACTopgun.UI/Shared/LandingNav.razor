@@ -2,7 +2,7 @@
 @inject ILocalStorageService localStorage
 
 
-<header class="bg-black fixed w-full z-20 top-0 left-0 border-b border-sky-500 dark:bg-black">
+<header class="navindex bg-black fixed w-full top-0 left-0 border-b border-sky-500 dark:bg-black">
     @* <div class="bg-zinc-900 md:block hidden">
         <div class="max-w-screen-xl mx-auto flex items-center justify-between sm:pr-3.5 px-2 lg:pl-5">
             <div class="flex-1">
@@ -77,6 +77,11 @@
 
 
 </header>
+<style>
+    .navindex {
+        z-index: 1000;
+    }
+</style>
 
 
 @code {
