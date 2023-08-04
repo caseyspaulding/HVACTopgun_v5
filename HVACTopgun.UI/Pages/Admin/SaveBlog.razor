@@ -147,7 +147,6 @@
 
     
 
-    @code {
         public async Task OnChange(UploadChangeEventArgs args)
         {
             var uploadFolder = Path.Combine("blog-images"); // Relative path from web root
@@ -170,10 +169,6 @@
                 
             }
         }
-    }
-
-    
-
 
     protected override async Task OnInitializedAsync()
     {
@@ -183,11 +178,11 @@
             categories = categoriesList;
         }
 
-        if(BlogId > 0)
+        if (BlogId > 0)
         {
             // We are in edit mode
             var dbModel = await BlogPostService.GetPostAsync(BlogId);
-            if(dbModel is null)
+            if (dbModel is null)
             {
                 errorMessage = "Invalid url";
             }
@@ -197,10 +192,10 @@
             }
         }
     }
-    
+
     private async Task SaveBlogAsync()
     {
-        
+
         if (string.IsNullOrWhiteSpace(model.Content))
         {
             errorMessage = "Content is required";
@@ -233,8 +228,12 @@
         }
     }
 
-    
+
 
 
 
 }
+
+
+    
+

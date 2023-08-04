@@ -205,8 +205,17 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
             },
             OnRemoteFailure = context =>
             {
-                context.HandleResponse();
-                context.Response.Redirect("/Home/Error?message=" + Uri.EscapeDataString(context.Failure.Message));
+                if (context.Failure.Message.Contains("Correlation failed"))
+                {
+                    // Redirect to the home page if the error message contains "Correlation failed"
+                    context.HandleResponse();
+                    context.Response.Redirect("/");
+                }
+                else
+                {
+                    context.HandleResponse();
+                    context.Response.Redirect("/Home/Error?message=" + Uri.EscapeDataString(context.Failure.Message));
+                }
                 return Task.CompletedTask;
             }
         };
