@@ -11,7 +11,8 @@
     <base href="~/" /> 
     <link href="css/styles.css" rel="stylesheet" defer />
     <link href="HVACTopgun.UI.styles.css" rel="stylesheet" defer />
-     <link href="css/tailwind_syncfusion.min.css" rel="stylesheet" defer /> 
+     <link href="css/tailwind_syncfusion.min.css" rel="stylesheet" defer />
+  
     <link rel="icon" type="image/png" href="favicon.ico"/>
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" defer>
@@ -45,7 +46,41 @@
     <script src="/js/Disqus.js"></script>
     <script src="~/js/theme.js"></script>
     <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
-    
+    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <script>
+
+        // Set  the CSS rules.
+        const styleSet = window.WebChat.createStyleSet({
+            bubbleBackground: 'rgba(0, 0, 255, .1)',
+            bubbleFromUserBackground: 'rgba(0, 255, 0, .1)',
+            rootHeight: '100%',
+            rootWidth: '50%',
+            backgroundColor: 'paleturquoise'
+        });
+
+        // After generated, you can modify the CSS rules.
+        // Change font family and weight.
+        styleSet.textContent = {
+            ...styleSet.textContent,
+            fontFamily: "'Comic Sans MS', 'Arial', sans-serif",
+            fontWeight: 'bold'
+        };
+
+        // Set the avatar options.
+        const avatarOptions = {
+            botAvatarInitials: 'BF',
+            userAvatarInitials: 'WC'
+        };
+
+        window.WebChat.renderWebChat({
+            directLine: window.WebChat.createDirectLine({
+                token: '<Your Direct Line token>'
+            }),
+            styleSet,
+            styleOptions: avatarOptions
+        }, document.getElementById('webchat'));
+
+    </script>
     <script>
         function navToggle() {
             btn.classList.toggle('open');

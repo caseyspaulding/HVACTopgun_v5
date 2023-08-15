@@ -11,7 +11,25 @@ export function setTheme(theme) {
         document.documentElement.classList.remove('dark');
     }
 }
+async function initializeChat() {
+    const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/oqOHqb5pms8.g0hAsIdyCklbu3ewkK-RPbADrFFuw9_RWE-a3vvT7FM', { method: 'POST' });
+    const { token } = await res.json();
 
+    const styleOptions = {
+        bubbleBackground: 'rgba(0, 0, 255, .1)',
+        bubbleFromUserBackground: 'rgba(0, 255, 0, .1)'
+    };
+
+    window.WebChat.renderWebChat(
+        {
+            directLine: window.WebChat.createDirectLine({ token }),
+            styleOptions
+        },
+        document.getElementById('webchat')
+    );
+
+    document.querySelector('#webchat > *').focus();
+}
 export function bindScrollEvent() {
     indow.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY || document.documentElement.scrollTop;

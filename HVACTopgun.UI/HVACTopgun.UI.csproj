@@ -16,6 +16,7 @@
 		<Content Remove="compilerconfig.json" />
 		<Content Remove="Features\Blog\Like.razor" />
 		<Content Remove="nlog.config" />
+		<Content Remove="Shared\ChatBot.razor" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -94,6 +95,7 @@
 		<PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="22.1.39" />
 		<PackageReference Include="Syncfusion.Blazor.Themes" Version="22.1.39" />
 		<PackageReference Include="Syncfusion.Blazor.TreeMap" Version="22.1.39" />
+		<PackageReference Include="Universal.Microsoft.Bot.Connector.DirectLine" Version="2.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -127,6 +129,7 @@
 		<None Include="Components\BlogPostsList.razor" />
 		<None Include="Components\CategoriesBox.razor" />
 		<None Include="nlog.config" />
+		<None Include="Pages\ChatBot.razor" />
 	</ItemGroup>
 
 	<ItemGroup>
