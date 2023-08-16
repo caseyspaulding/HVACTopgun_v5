@@ -5,8 +5,11 @@
 @inject CategoryService CategoryService
 
 <PageTitle>@heading | HVAC Business Academy</PageTitle>
-
-<div class="mt-10 relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:py-30 lg:px-8">
+@if (isLoading)
+{
+    <div class="mt-40">Loading...</div>
+}
+<div class="mt-7 relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:py-30 lg:px-8">
     <img src="/images/blogheaderBG.jpg" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
     <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
 
@@ -51,18 +54,24 @@
 @code{
     [Parameter]
     public string? CategorySlug { get; set; }
+    private bool isLoading = true;
 
     private string heading = "HVAC Business Academy";
 
     private IEnumerable<BlogPost> posts = Enumerable.Empty<BlogPost>();
 
-    protected override async Task OnParametersSetAsync() => await SetDataAsync();
+    protected override async Task OnInitializedAsync()
+    {
+        await SetDataAsync();
+    }
 
     private async Task SetDataAsync()
     {
+        isLoading = true;
         var postsTask = BlogPostService.GetPostsAsync(publishedOnly: true, CategorySlug);
-
         posts = (await postsTask).OrderByDescending(p => p.PublishedOn).ToList();
+        isLoading = false;
+        StateHasChanged();  // notify the framework to re-render the component
     }
 
     private void SetHeading(string? categoryName = null)
