@@ -17,15 +17,10 @@
       <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
 
-                <button @ref="btn" @onclick="NavToggle" id="btn"
-                        class="z-30 md:hidden focus:outline-none hamburger @(isMenuOpen ? "open" : "")">
-                    <span class="text-white hamburger-top"></span>
-                    <span class="hamburger-middle"></span>
-                    <span class="hamburger-bottom"></span>
-                </button>
+                
                 <NavLink href="https://www.hvactopgun.com">
-                    <div class="flex-shrink-0 @(isMenuOpen ? "pl-6" : "")">
-                        <img class="block h-9 pl-2" src="/images/topgun_logosmallwhite2.jpg" alt="HVAC TopGun Logo">
+                    <div class="flex-shrink-0 @(isMenuOpen ? "" : "")">
+                        <img class="block h-8 " src="/images/topgun_logosmallwhite2.jpg" alt="HVAC TopGun Logo">
                     </div>
                 </NavLink>
                 
@@ -33,7 +28,7 @@
         </div>
         <div class="flex items-center lg:order-2">
           
-                <DarkModeToggle DarkModeChanged="HandleDarkModeChanged" />
+              
           <!-- Notifications -->
           
           <!-- Dropdown menu -->
@@ -42,7 +37,7 @@
           
           <!-- Dropdown menu -->
                 <!-- Profile dropdown -->
-                <div class="relative ml-3 flex-shrink-0">
+                <div class="relative ml-3 flex-shrink-0 mr-6">
                     <div>
                         <button type="button" class="flex rounded-full bg-sky-600 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-sky-600"
                         @onclick="ToggleDropdown" aria-expanded="@isDropdownOpen">
@@ -66,6 +61,12 @@
                         </div>
                     </div>
                 </div>
+                <button @ref="btn" @onclick="NavToggle" id="btn"
+                        class="z-30 md:hidden focus:outline-none hamburger @(isMenuOpen ? "open" : "")">
+                    <span class="text-white hamburger-top"></span>
+                    <span class="hamburger-middle"></span>
+                    <span class="hamburger-bottom"></span>
+                </button>
         </div>
       </div>
         <div @ref="menu1" class="dropdown-menu pb-3 pt-4 lg:hidden @(isMenuOpen ? "flex" : "hidden") column-1" id="menu1">
@@ -73,7 +74,7 @@
 
             <nav class="flex flex-1 flex-col mx-1">
                 <div class="ml-3 mr-5">
-                    <div class="text-base font-medium text-white mb-3">
+                    <div class="text-lg font-medium text-white mb-3">
                         Welcome @FirstName!<br />
                         @CompanyName
                     </div>
@@ -420,6 +421,8 @@
 
                         <span class="ml-1">Settings</span>
                     </NavLink>
+
+                    <DarkModeToggle DarkModeChanged="HandleDarkModeChanged" />
                 </li>
         </ul>
       </div>

@@ -8,8 +8,7 @@ using HVACTopGun.Domain.Features.Auth;
 using HVACTopGun.Domain.Features.Chat;
 using HVACTopGun.Services.Extensions;
 using HVACTopGun.Services.Features.Auth;
-using HVACTopGun.Services.Features.ChatHub;
-using HVACTopGun.Services.Features.ChatService;
+
 using HVACTopGun.Services.Features.Tenants;
 using HVACTopGun.Services.Features.Users;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -29,7 +28,6 @@ var ConnectionStrings = builder.Configuration["DefaultConnection"];
 var BlogConnectionString = builder.Configuration["BlogConnection"];
 
 //Register Sync fusion license
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NGaF5cXmdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWXlcdnVcRWZeVUB1WUM=");
 
 // Add services to the container.  // Register Services
 builder.Services.AddScoped<ITenantRepository, TenantRepository>();
@@ -48,8 +46,9 @@ builder.Services.AddScoped<AuthClaimsDto>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddAutoMapper(typeof(HVACTopGun.Services.Common.Mappings.MappingProfile).Assembly);
 builder.Services.AddSignalR();
-builder.Services.AddScoped<ChatService>();
+
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
+builder.Services.AddScoped<IApiKeyGenerator, ApiKeyGenerator>();
 // Add Service Layer
 builder.Services.AddServicesLayer();
 // Add DataAccess services
@@ -222,7 +221,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddControllersWithViews().AddMicrosoftIdentityUI();
-
+builder.Services.AddControllers();
 // ROLES POLICY
 builder.Services.AddAuthorization(options =>
 {
@@ -309,7 +308,7 @@ app.UseRewriter(
 
 app.MapControllers();
 
-app.MapHub<ChatSignalRHub>("/ChatSignalRHub");
+
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 

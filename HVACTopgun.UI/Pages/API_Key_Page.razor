@@ -1,0 +1,15 @@
+﻿@page "/api-key"
+@inject IApiKeyGenerator ApiKeyGenerator
+@layout Test2
+
+<button class="button" @onclick="GenerateApiKey">Generate API Key</button>
+<p>Your API Key: @apiKey</p>
+
+@code {
+    private string apiKey;
+
+    private void GenerateApiKey()
+    {
+        apiKey = ApiKeyGenerator.GenerateKey(32);  // Generates a 32-byte key
+    }
+}
